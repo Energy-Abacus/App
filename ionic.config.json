@@ -1,0 +1,7 @@
+{
+  "name": "energy-abacus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
