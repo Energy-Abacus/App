@@ -13,6 +13,14 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page">
-  </app-explore-container>
+  <canvas baseChart class="chart"
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [type]="barChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+  </canvas>
+
+  <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
 </ion-content>
