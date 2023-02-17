@@ -26,7 +26,8 @@ const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capaci
       domain: "dev-3adocs3bconafo8d.us.auth0.com",
       clientId: "YCYOaF66WycinTG2leQKhMqRZT8bWu4o",
       authorizationParams: {
-        redirect_uri,
+        redirect_uri: window.location.origin,
+        audience: 'Quarkus-Backend-Abacus'
       }
     }),
   ],
