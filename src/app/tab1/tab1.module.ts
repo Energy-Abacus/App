@@ -7,6 +7,8 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {NgChartsModule} from "ng2-charts";
+import {NgApexchartsModule} from "ng-apexcharts";
+import {Tab2PageModule} from "../tab2/tab2.module";
 
 @NgModule({
   imports: [
@@ -14,8 +16,10 @@ import {NgChartsModule} from "ng2-charts";
     CommonModule,
     FormsModule,
     NgChartsModule,
+    NgApexchartsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule
+    Tab1PageRoutingModule,
+    Tab2PageModule
   ],
   declarations: [Tab1Page]
 })
