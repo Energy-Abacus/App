@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgChartsModule } from 'ng2-charts';
 import { RouteReuseStrategy } from '@angular/router';
 
+import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +25,7 @@ const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capaci
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
     NgChartsModule,
     AuthModule.forRoot({
       domain: "dev-3adocs3bconafo8d.us.auth0.com",
