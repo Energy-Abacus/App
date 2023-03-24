@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgChartsModule } from 'ng2-charts';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
@@ -14,6 +13,7 @@ import { AuthModule } from '@auth0/auth0-angular';
 import config from '../../capacitor.config';
 import {LoginButtonComponent} from "./login/login-button/login-button.component";
 import {LogoutButtonComponent} from "./login/logout-button/logout-button.component";
+import { NgApexchartsModule } from "ng-apexcharts";
 
 // Build the URL that Auth0 should redirect back to
 const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capacitor/${config.appId}/callback`;
@@ -26,7 +26,7 @@ const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capaci
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    NgChartsModule,
+    NgApexchartsModule,
     AuthModule.forRoot({
       domain: "dev-3adocs3bconafo8d.us.auth0.com",
       clientId: "YCYOaF66WycinTG2leQKhMqRZT8bWu4o",
