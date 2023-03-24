@@ -8,10 +8,12 @@ import {
   ApexDataLabels,
   ApexTitleSubtitle,
   ApexStroke,
-  ApexGrid
+  ApexGrid,
+  ApexTooltip,
 } from "ng-apexcharts";
 
 export type ChartOptions = {
+  tooltip: ApexTooltip
   series: ApexAxisChartSeries;
   chart: ApexChart;
   xaxis: ApexXAxis;
@@ -24,7 +26,7 @@ export type ChartOptions = {
 @Component({
   selector: 'app-apex-line-chart',
   templateUrl: './apex-line-chart.component.html',
-  styleUrls: ['./apex-line-chart.component.scss'],
+  styleUrls: ['./apex-line-chart.component.css'],
 })
 export class ApexLineChartComponent {
 
@@ -33,6 +35,9 @@ export class ApexLineChartComponent {
 
   constructor() {
     this.chartOptions = {
+      tooltip: {
+        theme: 'dark'
+      },
       series: [
         {
           name: "Desktops",

@@ -11,7 +11,7 @@ const callbackUri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capacit
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  styleUrls: ['app.component.css'],
 })
 export class AppComponent implements OnInit {
   // Import the AuthService module from the Auth0 Angular SDK
