@@ -18,7 +18,5 @@ export class LoginButtonComponent {
         }
       })
       .subscribe();
-    this.auth.getAccessTokenSilently().subscribe(token => console.log(token));
-    console.log("test");
   }
 }
