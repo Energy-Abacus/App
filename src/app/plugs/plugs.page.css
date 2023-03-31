@@ -1,20 +1,30 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-items: center;
+.grid-container{
+  display: grid;
+  grid-template-columns: auto auto;
+  background-color: #2b2b2b;
+  margin: 10px;
+  justify-items: center;
+  row-gap: 10px;
+  border-radius: 5%;
 }
-
 .circle-button {
-    width: 30vw;
-    height: 30vw;
-    border-radius: 100%;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+  width: 30vw;
+  height: 30vw;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  cursor: pointer;
+  background: url("../../assets/icon/energy.svg");
+  background-size: contain;
+}
+.grid-item{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.placeholder {
+  background-color: white;
+
 }
