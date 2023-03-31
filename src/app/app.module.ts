@@ -30,6 +30,9 @@ const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capaci
     AuthModule.forRoot({
       domain: "dev-3adocs3bconafo8d.us.auth0.com",
       clientId: "YCYOaF66WycinTG2leQKhMqRZT8bWu4o",
+      useRefreshTokens: true,
+      useRefreshTokensFallback: false,
+      cacheLocation: 'localstorage',
       authorizationParams: {
         redirect_uri: window.location.origin,
         audience: 'Quarkus-Backend-Abacus'

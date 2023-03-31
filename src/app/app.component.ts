@@ -18,19 +18,6 @@ export class AppComponent implements OnInit {
   constructor(public auth: AuthService, private ngZone: NgZone, private measurementsService: MeasurementsService) {}
 
   ngOnInit(): void {
-
-    const strFrom = '01.01.1999 00:00:00';
-    const dateFrom = new Date(strFrom);
-    const strTo = '01.01.2024 00:00:00';
-    const dateTo = new Date(strTo);
-
-
-    this.measurementsService.getMeasurements(1,dateFrom,dateTo).subscribe({
-      next: data =>{
-        console.log(data);
-      }
-    });
-
     // Use Capacitor's App plugin to subscribe to the `appUrlOpen` event
     App.addListener('appUrlOpen', ({ url }) => {
       // Must run inside an NgZone for Angular to pick up the changes
