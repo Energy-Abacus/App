@@ -16,10 +16,10 @@
   </div>
 
   <div class="grid-container">
-    <div class="grid-item" >
-      <button class="circle-button">
+    <div class="grid-item" *ngFor="let plug of plugs">
+      <button class="circle-button" [routerLink]="['details', plug.id]" routerLinkActive="router-link-active">
       </button>
-      <section>name</section>
+      <section>{{plug.name}}</section>
     </div>
   </div>
 </ion-content>

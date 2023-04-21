@@ -1,6 +1,6 @@
 export interface Measurement {
     id: number;
-    timestamp: Date;
+    timeStamp: Date;
     powerOn: boolean;
     wattPower: number;
     totalPowerUsed: number;
