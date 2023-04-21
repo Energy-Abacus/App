@@ -11,17 +11,12 @@ import { Plug } from '../models/measurement/plug.model';
 })
 export class MeasurementsService {
 
-  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/main/api/v1/measurements';
+  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-total-watt-consumption/api/v1/measurements';
 
   constructor(private http: HttpClient, private auth: AuthService) { }  
 
   getMeasurements(outletId: number, paramFrom: Date, paramTo: Date) {
-
-    let pipe = new DatePipe('en-US');
-    let paramFromFormatted = pipe.transform(paramFrom,'YYYY/MM/dd HH:mm:ss')!;
-    let paramToFormatted = pipe.transform(paramTo,'YYYY/MM/dd HH:mm:ss')!;
-
-    let httpParams = new HttpParams({fromObject: {from: paramFromFormatted , to: paramToFormatted, outletId: outletId}});
+    let httpParams = new HttpParams({fromObject: {from: paramFrom.getTime() / 1000 , to: paramTo.getTime() / 1000, outletId: outletId}});
 
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<Measurement[]>(this.url,{
