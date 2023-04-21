@@ -1,9 +1,9 @@
 export interface Measurement {
     id: number;
-    timestamp: string;
+    timeStamp: Date;
     powerOn: boolean;
     wattPower: number;
-    wattMinutePower: number;
+    totalPowerUsed: number;
     temperature: number;
     outletId: number;
 }

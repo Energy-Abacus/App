@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Browser } from '@capacitor/browser';
 import { tap } from 'rxjs/operators';
-import config from "../../../../capacitor.config";
+import config from "../../../../../capacitor.config";
 
 // Build the URL to return back to your app after logout
 const returnTo = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capacitor/${config.appId}/callback`;

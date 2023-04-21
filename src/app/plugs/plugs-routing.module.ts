@@ -7,7 +7,12 @@ const routes: Routes = [
   {
     path: '',
     component: PlugsPage
-  }
+  },
+  {
+    path: 'details/:id',
+    loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
+  },
+
 ];
 
 @NgModule({
