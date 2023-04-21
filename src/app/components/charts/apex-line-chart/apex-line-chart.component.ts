@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 
 import { MeasurementsService} from "../../../services/measurements.service";
 import {Measurement} from "../../../models/measurement/measurement.model";
@@ -14,6 +14,7 @@ import {
   ApexGrid,
   ApexTooltip,
 } from "ng-apexcharts";
+import * as ApexCharts from 'apexcharts';
 
 export type ChartOptions = {
   tooltip: ApexTooltip
@@ -43,13 +44,15 @@ export class ApexLineChartComponent implements OnInit {
   measurements: Measurement[] = [];
   dates: Date[] = [];
   dataTemp: number[][] = [];
+  @Input() plug_Id: number | undefined = undefined;
 
   ngOnInit(): void {
-    this.measurementsService.getMeasurements(4, new Date('2022/01/01 00:00:00'), new Date('2023/05/01 00:00:00')).subscribe(
+    this.measurementsService.getMeasurements(this.plug_Id!, new Date('2022/01/01 00:00:00'), new Date('2023/05/01 00:00:00')).subscribe(
       (data) => {
         this.measurements = data;
+        console.log(this.measurements);
         this.measurements.forEach(m => {
-          this.dataTemp.push([new Date(m.timeStamp).getTime(), m.temperature]);
+          this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]); 
         });
       }
     );
@@ -65,7 +68,7 @@ export class ApexLineChartComponent implements OnInit {
       ],
       chart: {
         type: "area",
-        height: 350
+        height: 350,
       },
       annotations: {
         yaxis: [
@@ -120,5 +123,6 @@ export class ApexLineChartComponent implements OnInit {
         }
       }
     };
+
   }
 }
