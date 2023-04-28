@@ -1,7 +1,7 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
-import { MeasurementsService} from "../../../services/measurements.service";
-import {Measurement} from "../../../models/measurement/measurement.model";
+import { MeasurementsService } from "../../../services/measurements.service";
+import { Measurement } from "../../../models/measurement/measurement.model";
 
 import {
   ChartComponent,
@@ -55,14 +55,14 @@ export class ApexLineChartComponent implements OnInit {
         this.measurements = data;
         console.log(this.measurements);
         this.measurements.forEach(m => {
-          this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]); 
+          this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]);
         });
       }
     );
     this.initGraph();
   }
 
-  initGraph(){
+  initGraph() {
     this.chartOptions = {
       colors: ['#6fde14'],
       series: [
@@ -120,11 +120,13 @@ export class ApexLineChartComponent implements OnInit {
         }
       },
       fill: {
-        type: 'gradient',
-  gradient: {
-
-  }
-        
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 0,
+          opacityFrom: 1,
+          opacityTo: 0.1,
+          stops: [0, 100]
+        }
       },
     };
   }

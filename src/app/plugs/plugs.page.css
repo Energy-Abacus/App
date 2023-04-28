@@ -17,7 +17,7 @@
 
   cursor: pointer;
   background: url("../../assets/icon/energy.svg");
-  background-size: contain;
+  background-size: contain;  
 }
 .grid-item{
   text-align: center;
