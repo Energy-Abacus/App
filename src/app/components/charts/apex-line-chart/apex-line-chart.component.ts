@@ -15,11 +15,14 @@ import {
   ApexTooltip,
 } from "ng-apexcharts";
 import * as ApexCharts from 'apexcharts';
+import { Color } from 'chart.js';
 
 export type ChartOptions = {
   tooltip: ApexTooltip
   series: ApexAxisChartSeries;
   chart: ApexChart;
+  colors: any[];
+  fill: ApexFill;
   xaxis: ApexXAxis;
   dataLabels: ApexDataLabels;
   grid: ApexGrid;
@@ -61,9 +64,10 @@ export class ApexLineChartComponent implements OnInit {
 
   initGraph(){
     this.chartOptions = {
+      colors: ['#6fde14'],
       series: [
         {
-          data: this.dataTemp
+          data: this.dataTemp,
         }
       ],
       chart: {
@@ -87,7 +91,6 @@ export class ApexLineChartComponent implements OnInit {
         xaxis: [
           {
             x: new Date("14 Nov 2012").getTime(),
-            borderColor: "#999",
             label: {
               text: "Rally",
               style: {
@@ -106,7 +109,10 @@ export class ApexLineChartComponent implements OnInit {
       },
       xaxis: {
         type: "datetime",
-        tickAmount: 6
+        tickAmount: 6,
+        axisTicks: {
+          show: false
+        }
       },
       tooltip: {
         x: {
@@ -114,15 +120,12 @@ export class ApexLineChartComponent implements OnInit {
         }
       },
       fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 1,
-          opacityFrom: 0.7,
-          opacityTo: 0.9,
-          stops: [0, 100]
-        }
-      }
-    };
+        type: 'gradient',
+  gradient: {
 
+  }
+        
+      },
+    };
   }
 }

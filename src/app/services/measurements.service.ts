@@ -11,9 +11,9 @@ import { Plug } from '../models/measurement/plug.model';
 })
 export class MeasurementsService {
 
-  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-total-watt-consumption/api/v1/measurements';
+  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-total-watt-consumption/api/v1/measurement';
 
-  constructor(private http: HttpClient, private auth: AuthService) { }  
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   getMeasurements(outletId: number, paramFrom: Date, paramTo: Date) {
     let httpParams = new HttpParams({fromObject: {from: paramFrom.getTime() / 1000 , to: paramTo.getTime() / 1000, outletId: outletId}});
@@ -21,19 +21,6 @@ export class MeasurementsService {
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<Measurement[]>(this.url,{
         headers: {'Authorization' : 'Bearer ' + token} , params: httpParams
-      }))
-    )
-  }
-
-  getPlugs(hubId: number) {
-    this.auth.isAuthenticated$.subscribe({
-      next: data => {
-        console.log(data);
-      }
-    });
-    return this.auth.getAccessTokenSilently().pipe(
-      mergeMap(token => this.http.get<Plug[]>(this.url + '/outlet',{
-        headers: {'Authorization' : 'Bearer ' + token} , params: {hubId: hubId}
       }))
     )
   }

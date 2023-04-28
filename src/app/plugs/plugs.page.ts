@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Plug } from 'src/app/models/measurement/plug.model';
 import { MeasurementsService } from 'src/app/services/measurements.service';
+import {PlugsService} from "../services/plugs.service";
 
 
 @Component({
@@ -12,14 +13,14 @@ export class PlugsPage implements OnInit {
 
   plugs: Plug[] = [];
 
-  constructor(private measurementsService: MeasurementsService) { }
+  constructor(private plugsService: PlugsService) { }
 
   ngOnInit() {
     this.loadPlugs();
   }
 
   loadPlugs() {
-    this.measurementsService.getPlugs(2).subscribe({
+    this.plugsService.getPlugs(2).subscribe({
       next: data => {
         this.plugs = data;
       },
