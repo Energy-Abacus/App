@@ -7,8 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DetailsPageRoutingModule } from './details-routing.module';
 
 import { DetailsPage } from './details.page';
-import { ApexLineChartComponent } from 'src/app/components/charts/apex-line-chart/apex-line-chart.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
+import { SharedModule } from 'src/app/shared.module';
 
 @NgModule({
   imports: [
@@ -16,8 +15,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     FormsModule,
     IonicModule,
     DetailsPageRoutingModule,
-    NgApexchartsModule
+    SharedModule,
   ],
-  declarations: [DetailsPage, ApexLineChartComponent]
+  declarations: [DetailsPage]
 })
 export class DetailsPageModule {}

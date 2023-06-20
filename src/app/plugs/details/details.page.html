@@ -1,4 +1,15 @@
-
 <ion-content>
-  <app-apex-line-chart [plug_Id] = plug_Id></app-apex-line-chart>
+
+  <h5><b>OUTLET INFO</b></h5>
+
+  <h6><b>TEMPERATURE</b></h6>
+
+  <div class="slides-container">
+    
+    <app-apex-line-chart [data] = dataTemp [firstColor]="'#A73D2A'" [secondColor]="'#C07B47'"></app-apex-line-chart>
+  </div>
+
+  <label><b>name:</b></label> 
+  <h5><b>{{plug.name}}</b></h5>
+
 </ion-content>

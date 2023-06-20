@@ -20,7 +20,7 @@ export class PlugsPage implements OnInit {
   }
 
   loadPlugs() {
-    this.plugsService.getPlugs(2).subscribe({
+    this.plugsService.getPlugs(4).subscribe({
       next: data => {
         this.plugs = data;
       },
