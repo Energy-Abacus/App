@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../plugs/plugs.module').then(m => m.PlugsPageModule)
       },
       {
+        path: 'view-profile/:id',
+        loadChildren: () => import('../components/social-system/view-profile/view-profile.module').then(m => m.ViewProfilePageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

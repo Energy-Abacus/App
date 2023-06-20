@@ -9,3 +9,30 @@
   border-radius: 5%;
 
 }
+
+.container{
+
+  display: flex;
+  flex-direction: row;
+
+}
+
+.item-1{
+
+  flex-grow: 1;
+  flex-basis: 500px;
+  border-radius: 15px;
+  background-color: #2b2b2b;
+  align-self: center;
+}
+
+.item-2{
+
+  flex-grow: 1;
+  flex-basis: 500px;
+  border-radius: 15px;
+  background-color: #2b2b2b;
+  
+
+}
+

@@ -19,7 +19,7 @@ import {Tab2PageModule} from "../tab2/tab2.module";
     NgApexchartsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    Tab2PageModule
+    
   ],
   declarations: [Tab1Page]
 })

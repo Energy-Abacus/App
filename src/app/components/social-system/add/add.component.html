@@ -1,0 +1,11 @@
+&nbsp;
+<ion-searchbar [(ngModel)]="filter" value="Search for new friends!"></ion-searchbar>
+
+<ion-list *ngFor="let profile of filteredProfiles">
+  <ion-item>
+      <img src="{{profile.picture}}" style="width: 10vw; height: 10vw; border-radius: 10px; ">&nbsp;
+    <ion-label>{{profile.username}}</ion-label>
+    <ion-button size="default" (click)="sendRequest(profile.user_id)">Add</ion-button>
+  </ion-item>
+</ion-list>
+        

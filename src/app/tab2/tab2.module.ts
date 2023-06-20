@@ -8,6 +8,9 @@ import { ExploreContainerComponentModule } from '../components/explore-container
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import {NgApexchartsModule} from "ng-apexcharts";
 import { ApexLineChartComponent } from '../components/charts/apex-line-chart/apex-line-chart.component';
+import { AddComponent } from '../components/social-system/add/add.component';
+import { FriendsComponent } from '../components/social-system/friends/friends.component';
+import { RequestsComponent } from '../components/social-system/requests/requests.component';
 
 @NgModule({
   imports: [
@@ -15,10 +18,11 @@ import { ApexLineChartComponent } from '../components/charts/apex-line-chart/ape
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab2PageRoutingModule
+    Tab2PageRoutingModule,
+    
   ],
   exports: [
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page,AddComponent,FriendsComponent,RequestsComponent]
 })
 export class Tab2PageModule {}
