@@ -1,39 +1,4 @@
-.select-graph{
-    margin: auto;
-    display: flex;
-}
 
-.graph-type{
- text-align: center;   
-}
-
-.btn-bg{
-    background-color: transparent;
-    width: fit-content;
-}
-
-.greyed-out {
-    color: #757373;
-    font-size: 80%;
-}
-
-.sector{
-    margin: auto;
-    width: 80%;
-    border-bottom: 0.2vw solid #575555;
-    padding-bottom: 3vw;
-    padding-right: 10vw;
-    padding-left: 1vw;
-}
-
-.text-margin{
-    margin-left: 10vw;
-    margin-top: 15vw;
-}
-
-.text-height{
-    line-height: 12vw;
-}
 
 .dot-red {
     float: left;

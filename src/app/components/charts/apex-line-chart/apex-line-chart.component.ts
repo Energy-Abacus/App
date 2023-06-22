@@ -30,6 +30,7 @@ export type ChartOptions = {
   grid: ApexGrid;
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
+  legend: ApexLegend;
 };
 
 @Component({
@@ -70,6 +71,11 @@ export class ApexLineChartComponent implements OnInit {
         type: "area",
         height: "auto",
         width: 370
+      },
+      legend:{
+        itemMargin: {
+          vertical: 5
+        } 
       },
       dataLabels: {
         enabled: false

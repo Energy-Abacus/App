@@ -1,14 +1,69 @@
 <ion-content>
   
   <div class="compare-chart">
-    <h3>COMPARISON</h3>
-    <app-apex-line-chart [data] = dataTemp [firstColor]="'#A73D2A'" [secondColor]="'#C07B47'"></app-apex-line-chart>
-    <p>Avg:</p>
+
+    <h5 class="text-margin"><b>COMPARISON</b></h5>
+
+    <div class="select-graph">
+      <div class="graph-type">
+        <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden}">TEMPERATURE</b></h6></button>
+      </div>
+  
+      <div class="graph-type">
+        <button class="btn-bg" (click)="changeGraph(true)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': !hidden}">WATT POWER</b></h6></button>
+      </div>
+    </div>
+
+    <ng-container *ngIf= !hidden>
+      <app-apex-spline-chart [dataFirst] = dataTempFirst [dataSecond]= dataTempSecond [firstColor]="'#A73D2A'" [secondColor]="'#C07B47'"></app-apex-spline-chart>
+    </ng-container>
+    <ng-container *ngIf= hidden>
+      <app-apex-spline-chart [dataFirst] = dataWattFirst [dataSecond]= dataWattSecond [firstColor]="'#375E94'" [secondColor]="'#54cc50'"></app-apex-spline-chart>
+    </ng-container>
+    
+    
+    <ng-container *ngIf="!hidden">
+      <div class="sector">
+        <label class="text-height"><b>Avg Temp:</b></label> 
+        <div class="select-graph">
+          
+          <div class="select-graph">
+            <span class="dot-red1" ></span>
+            <h6 class=""> {{avgTempFirst}} °C</h6>
+          </div>
+  
+          <div class="select-graph">
+            <span class="dot-red2" [ngClass]="{'background-color: firstColor': hidden}"></span>
+          <h6 class=""> {{avgTempSecond}} °C</h6>
+          </div>
+        </div>
+        
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="hidden">
+      <div class="sector">
+        <label class="text-height"><b>Avg power:</b></label> 
+        <div class="select-graph">
+          
+          <div class="select-graph">
+            <span class="dot-blue" ></span>
+            <h6 class=""> {{avgWattFirst}} W</h6>
+          </div>
+  
+          <div class="select-graph">
+            <span class="dot-green" [ngClass]="{'background-color: firstColor': hidden}"></span>
+          <h6 class=""> {{avgWattSecond}} W</h6>
+          </div>
+        </div>
+        
+      </div>
+    </ng-container>
   </div>
 
   <div class="slides-container">
-    <h6>MOST CONSUMING</h6>
-    <h6>DEVICE</h6>
+    <h6><b>MOST CONSUMING</b></h6>
+    <h6 class="text-spacing"><b>DEVICE</b></h6>
     <app-apex-bar-chart></app-apex-bar-chart>
   </div>
 

@@ -7,6 +7,7 @@ import { ComparisonComponent } from './components/comparison/comparison.componen
 import { ApexLineChartComponent } from './components/charts/apex-line-chart/apex-line-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ApexBarChartComponent } from './components/charts/apex-bar-chart/apex-bar-chart.component';
+import { ApexSplineChartComponent } from './components/charts/apex-spline-chart/apex-spline-chart.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { ApexBarChartComponent } from './components/charts/apex-bar-chart/apex-b
   declarations: [
     ComparisonComponent,
     ApexLineChartComponent,
-    ApexBarChartComponent
+    ApexBarChartComponent,
+    ApexSplineChartComponent
   ]
 })
 export class SharedModule {}
