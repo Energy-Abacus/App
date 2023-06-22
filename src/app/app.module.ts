@@ -14,12 +14,15 @@ import config from '../../capacitor.config';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { LoginButtonComponent } from './components/login/login-button/login-button.component';
 import { LogoutButtonComponent } from './components/login/logout-button/logout-button.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { AddComponent } from './components/social-system/add/add.component';
+import { FriendsComponent } from './components/social-system/friends/friends.component';
 
 // Build the URL that Auth0 should redirect back to
 const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capacitor/${config.appId}/callback`;
 
 @NgModule({
-    declarations: [AppComponent, LoginButtonComponent, LogoutButtonComponent],
+    declarations: [AppComponent],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -41,8 +44,6 @@ const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capaci
     ],
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
     bootstrap: [AppComponent],
-    exports: [
-        LoginButtonComponent
-    ]
+    exports: []
 })
 export class AppModule {}

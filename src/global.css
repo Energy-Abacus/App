@@ -25,3 +25,31 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@import "~bootstrap/dist/css/bootstrap.css";
+
+@font-face{
+    font-family: 'Arial Rounded MT Std';
+    src: url(/assets/fonts/ArialRoundedMTStd.ttf) format('truetype');
+}
+
+* {
+    font-family: 'Arial Rounded MT Std';
+}
+
+h6 {
+    color: #BBBBBB;
+    line-height: 1vw;
+    letter-spacing: 0.5vw;
+}
+
+h5 {
+    color: #BBBBBB;
+    line-height: 1vw;
+    letter-spacing: 0.5vw; 
+}
+
+label {
+    color: #8a8888;
+    font-size: 3vw;
+    letter-spacing: 0.5vw;
+}

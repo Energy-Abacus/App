@@ -9,6 +9,9 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {NgChartsModule} from "ng2-charts";
 import {NgApexchartsModule} from "ng-apexcharts";
 import {Tab2PageModule} from "../tab2/tab2.module";
+import { MenuComponent } from '../components/menu/menu.component';
+import { LoginButtonComponent } from '../components/login/login-button/login-button.component';
+import { LogoutButtonComponent } from '../components/login/logout-button/logout-button.component';
 
 @NgModule({
   imports: [
@@ -19,8 +22,13 @@ import {Tab2PageModule} from "../tab2/tab2.module";
     NgApexchartsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    Tab2PageModule
+    
   ],
-  declarations: [Tab1Page]
+  declarations: [
+    Tab1Page,
+    MenuComponent,
+    LoginButtonComponent,
+    LogoutButtonComponent
+  ]
 })
 export class Tab1PageModule {}
