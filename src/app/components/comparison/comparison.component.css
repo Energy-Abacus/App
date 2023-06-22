@@ -1,0 +1,24 @@
+p {
+    margin-top: -10vw;
+    margin-left: 5vw;
+    font-size: small;
+}
+
+.slides-container{
+    text-align: center;
+    margin-top: 15vw;
+    justify-content: center;
+}
+
+app-apex-bar-chart {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+compare-chart {
+    margin-bottom: 50vw;
+}
+
+svg {
+    overflow: visible !important;
+}

@@ -16,6 +16,7 @@ import {
 } from "ng-apexcharts";
 import * as ApexCharts from 'apexcharts';
 import { Color } from 'chart.js';
+import { first } from 'rxjs';
 
 export type ChartOptions = {
   tooltip: ApexTooltip
@@ -24,6 +25,7 @@ export type ChartOptions = {
   colors: any[];
   fill: ApexFill;
   xaxis: ApexXAxis;
+  yaxis: ApexYAxis;
   dataLabels: ApexDataLabels;
   grid: ApexGrid;
   stroke: ApexStroke;
@@ -45,61 +47,29 @@ export class ApexLineChartComponent implements OnInit {
   public chartOptions: Partial<ChartOptions> | any;
 
   measurements: Measurement[] = [];
-  dates: Date[] = [];
-  dataTemp: number[][] = [];
-  @Input() plug_Id: number | undefined = undefined;
+  @Input() data: number[][] = [];
+  @Input() firstColor = '';
+  @Input() secondColor = '';
 
   ngOnInit(): void {
-    this.measurementsService.getMeasurements(this.plug_Id!, new Date('2022/01/01 00:00:00'), new Date('2023/05/01 00:00:00')).subscribe(
-      (data) => {
-        this.measurements = data;
-        console.log(this.measurements);
-        this.measurements.forEach(m => {
-          this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]);
-        });
-      }
-    );
     this.initGraph();
   }
 
   initGraph() {
+
     this.chartOptions = {
-      colors: ['#6fde14'],
       series: [
         {
-          data: this.dataTemp,
+          data: this.data,
         }
       ],
       chart: {
+        toolbar: {
+          show: false
+        },
         type: "area",
-        height: 350,
-      },
-      annotations: {
-        yaxis: [
-          {
-            y: 30,
-            borderColor: "#999",
-            label: {
-              text: "Support",
-              style: {
-                color: "#fff",
-                background: "#00E396"
-              }
-            }
-          }
-        ],
-        xaxis: [
-          {
-            x: new Date("14 Nov 2012").getTime(),
-            label: {
-              text: "Rally",
-              style: {
-                color: "#fff",
-                background: "#775DD0"
-              }
-            }
-          }
-        ]
+        height: "auto",
+        width: 370
       },
       dataLabels: {
         enabled: false
@@ -112,22 +82,87 @@ export class ApexLineChartComponent implements OnInit {
         tickAmount: 6,
         axisTicks: {
           show: false
+        },
+        axisBorder: {
+          show: true,
+          color: '#31333C'
+        },
+        labels: {
+          format: 'HH:mm'
+        }
+      },
+      yaxis: {
+        opposite: true,
+        labels:{
+          formatter: function (value: number) {
+            return value.toFixed(0);
+          }
         }
       },
       tooltip: {
-        x: {
-          format: "dd MMM yyyy"
+        x:{
+          
         }
+      },
+      grid:{
+        borderColor: "#31333C"
       },
       fill: {
         type: "gradient",
-        gradient: {
-          shadeIntensity: 0,
-          opacityFrom: 1,
-          opacityTo: 0.1,
-          stops: [0, 100]
+        gradient: { 
+          type: getType(this.firstColor),
+          colorStops: [
+            {
+              offset: 0,
+              color: this.firstColor,
+              opacity: 0.8
+            },
+            { 
+              offset: 100,
+              color: this.secondColor,
+              opacity: 0.8
+            }
+          ]
         }
       },
+      stroke: {
+        width: 2,
+        fill: {
+          type: "gradient",
+        
+          gradient: { 
+            type: "horizontal",
+            shadeIntensity: 0,
+            opacityFrom: 1,
+            opacityTo: 0.1,
+            colorStops: [
+              {
+                offset: 0,
+                color: this.firstColor,
+                opacity: 1
+              },
+              { 
+                offset: 100,
+                color: this.secondColor,
+                opacity: 1
+              }
+            ]
+          }
+        }
+      }
     };
   }
+}
+function getType(firstColor: string) {
+  if (firstColor === '#A73D2A') {
+    return "horizontal"
+  }
+  return "vertical"
+}
+
+function infoText(firstColor: string){
+  if(firstColor === '#A73D2A'){
+    return "temperature"
+  }
+  return "watt"
 }

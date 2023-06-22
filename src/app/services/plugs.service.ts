@@ -9,7 +9,7 @@ import {AuthService} from "@auth0/auth0-angular";
 })
 export class PlugsService {
 
-  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-total-watt-consumption/api/v1/outlet';
+  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-test-coverage/api/v1/outlet';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 
@@ -22,6 +22,19 @@ export class PlugsService {
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<Plug[]>(this.url,{
         headers: {'Authorization' : 'Bearer ' + token} , params: {hubId: hubId}
+      }))
+    )
+  }
+
+  getPlug(id: number | undefined) {
+    this.auth.isAuthenticated$.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    });
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<Plug>(this.url + '/' + id,{
+        headers: {'Authorization' : 'Bearer ' + token}
       }))
     )
   }
