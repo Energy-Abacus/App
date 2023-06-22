@@ -12,7 +12,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule, 
     FormsModule,
     IonicModule,
     DetailsPageRoutingModule,
