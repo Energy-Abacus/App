@@ -15,6 +15,8 @@ const httpOptions = {
 
 
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -60,10 +62,12 @@ export class FriendsService {
 
   updateRequest(accept: boolean, receiverId: string){
 
+
+
     return this.auth.getAccessTokenSilently().pipe(
-      mergeMap(token => this.http.post<any>(this.url,{accept,receiverId}, {
+      mergeMap(token => this.http.post<any>(this.url + '/reaction', { sender: receiverId, accept: accept }, {
         headers: {
-          'Authorization': 'Bearer ' + token,
+          'Authorization': 'Bearer ' + token
 
         }
       }) )
@@ -72,7 +76,7 @@ export class FriendsService {
 
 
   
-  getProfile(userId: string){
+  getProfile(){
 
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<User>(this.url, {

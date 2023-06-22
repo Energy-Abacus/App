@@ -22,7 +22,7 @@ import { FriendsComponent } from './components/social-system/friends/friends.com
 const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capacitor/${config.appId}/callback`;
 
 @NgModule({
-    declarations: [AppComponent, LoginButtonComponent, LogoutButtonComponent,MenuComponent],
+    declarations: [AppComponent],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -44,8 +44,6 @@ const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capaci
     ],
     providers: [{provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
     bootstrap: [AppComponent],
-    exports: [
-        LoginButtonComponent,
-    ]
+    exports: []
 })
 export class AppModule {}

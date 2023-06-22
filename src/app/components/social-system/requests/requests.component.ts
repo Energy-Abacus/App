@@ -28,8 +28,8 @@ export class RequestsComponent implements OnInit {
       this.friendsService.getAllRequests().subscribe({
         next: data =>{
           this.requests = data;
-          console.log("Daten wurden erfolgreich geladen!")
-          this.filterRequests();
+          console.log("Daten wurden erfolgreich geladen!" +data.length)
+         this.filterRequests();
 
 
         },
@@ -53,7 +53,9 @@ export class RequestsComponent implements OnInit {
           console.log("Konnte dies nicht ausführen")
         }
       })
-        
+
+
+        this.filteredRequests = this.filteredRequests.filter(user => user.userId !== receiverId);
     }
 
 
@@ -72,6 +74,8 @@ export class RequestsComponent implements OnInit {
         }
       })
 
+      this.filteredRequests = this.filteredRequests.filter(user => user.userId !== receiverId);
+
     }
 
 
@@ -79,12 +83,13 @@ export class RequestsComponent implements OnInit {
 
         this.requests.forEach(element => {
 
-            if(!element.accepted && element.outgoing){
+            if(!element.accepted && !element.outgoing ){
 
               this.filteredRequests.push(element);
             }
           
         });
+
 
         console.log(this.filteredRequests)
     }

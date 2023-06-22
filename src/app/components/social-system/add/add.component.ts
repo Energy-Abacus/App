@@ -23,6 +23,7 @@ export class AddComponent implements OnInit {
   constructor(private friendsService: FriendsService) { }
 
   ngOnInit() {
+    
 
   }
 
