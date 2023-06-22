@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FriendDetails } from 'src/app/models/friend-details.model';
 import { User } from 'src/app/models/user.model';
 import { FriendsService } from 'src/app/services/friends.service';
@@ -10,7 +11,7 @@ import { FriendsService } from 'src/app/services/friends.service';
 })
 export class FriendsComponent implements OnInit {
 
-  constructor(private friendsService: FriendsService) { }
+  constructor(private friendsService: FriendsService,private router: Router) { }
 
   ngOnInit() {
     this.loadFriends();
@@ -35,6 +36,11 @@ export class FriendsComponent implements OnInit {
     }
       
     )
+  }
+
+  buttonClicked(id:string){
+
+    this.router.navigate(['/view-profile/',id])
   }
 
 

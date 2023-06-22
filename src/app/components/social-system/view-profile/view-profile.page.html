@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>view-profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+
+<ion-content>
+  <div>
+    <img src="{{actUser?.picture}}" style="width: 30vw; height: 30vw; border-radius: 50px; margin-top: 130px; margin-left: auto; margin-right: auto; display:block;">
+    <h2 style="text-align: center; margin-top: 20px; font-family:verdana;">{{actUser?.username}}</h2>
+    <table style="margin: 0px auto; border-spacing: 20px;" >
+      <tr>
+        <td><ion-button>Unfriend</ion-button></td>
+        <td><ion-button>Compare</ion-button></td>
+      </tr>
+    </table>
+  </div>
 </ion-content>
+
