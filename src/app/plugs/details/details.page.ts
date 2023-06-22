@@ -16,6 +16,9 @@ export class DetailsPage implements OnInit {
   measurements: Measurement[] = [];
   dataTemp: number[][] = [];
   dataWatt: number[][] = [];
+  totalWatt: number = 0;
+  hidden: boolean = false;
+  avgTemp: number = 0;
 
   plug: Plug  = {name: "", id: 0, powerOn: false, outletIdentifier: "", hubId: 0};
 
@@ -32,10 +35,21 @@ export class DetailsPage implements OnInit {
     this.measurementService.getMeasurements(this.plug_Id!, new Date('2023/01/01 00:00:00'), new Date('2023/12/20 00:00:00')).subscribe(
       (data) => {
         this.measurements = data;
+        console.log(this.measurements)
+
         this.measurements.forEach(m => { 
           this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]);
+          this.avgTemp += m.temperature;
           this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
         });
+
+        this.avgTemp = (this.avgTemp/this.dataTemp.length);
+        this.avgTemp = Math.round((this.avgTemp + Number.EPSILON) * 100) / 100;
+
+        this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
+
+        console.log(this.dataTemp);
+        console.log(this.dataWatt);
       }
     );
 
@@ -43,7 +57,10 @@ export class DetailsPage implements OnInit {
       (data) => {
         this.plug = data;
       }
-    )
+    );
   }
 
+  changeGraph(show: boolean){
+    this.hidden = show;
+  }
 }

@@ -1,15 +1,61 @@
 <ion-content>
 
-  <h5><b>OUTLET INFO</b></h5>
+  <h5 class="text-margin"><b>OUTLET INFO</b></h5>
 
-  <h6><b>TEMPERATURE</b></h6>
+  
 
-  <div class="slides-container">
-    
-    <app-apex-line-chart [data] = dataTemp [firstColor]="'#A73D2A'" [secondColor]="'#C07B47'"></app-apex-line-chart>
+  <div class="select-graph">
+    <div class="grap-type">
+      <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden}">TEMPERATURE</b></h6></button>
+    </div>
+
+    <div class="grap-type">
+      <button class="btn-bg" (click)="changeGraph(true)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': !hidden}">WATT POWER</b></h6></button>
+    </div>
   </div>
 
-  <label><b>name:</b></label> 
-  <h5><b>{{plug.name}}</b></h5>
+  <ng-container *ngIf= hidden>
+    <app-apex-line-chart [data] = dataWatt [firstColor]="'#375E94'" [secondColor]="'#4689AC'"></app-apex-line-chart>
+  </ng-container>
+
+  <ng-container *ngIf= !hidden>
+    <app-apex-line-chart [data] = dataTemp [firstColor]= "'#A73D2A'" [secondColor]="'#C07B47'"></app-apex-line-chart>
+  </ng-container>
+
+  <div class="sector">
+    <label class="text-height"><b>name:</b></label> 
+    <h6><b>{{plug.name}}</b></h6>
+  </div>
+
+  <div class="sector">
+
+    <label class="text-height"><b>power:</b></label> 
+
+    <ng-container *ngIf= plug.powerOn>
+      <div class="graph-select">
+        <span class="dot-green"></span>
+        <h6><b>On</b></h6>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf= !plug.powerOn> 
+      <div class="graph-select">
+        <span class="dot-red"></span>
+        <h6><b>Off</b></h6>
+      </div>
+    </ng-container>
+
+
+  </div>
+
+  <div class="sector">
+    <label class="text-height"><b>totalPower:</b></label> 
+    <h6><b>{{totalWatt}} W</b></h6>
+  </div>
+
+  <div class="sector">
+    <label class="text-height"><b>avg temp:</b></label> 
+    <h6><b>{{avgTemp}} °C</b></h6>
+  </div>
 
 </ion-content>

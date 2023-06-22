@@ -56,6 +56,7 @@ export class ApexLineChartComponent implements OnInit {
   }
 
   initGraph() {
+
     this.chartOptions = {
       series: [
         {
@@ -93,7 +94,6 @@ export class ApexLineChartComponent implements OnInit {
       yaxis: {
         opposite: true,
         labels:{
-          offsetX: -6,
           formatter: function (value: number) {
             return value.toFixed(0);
           }
