@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FriendDetails } from 'src/app/models/friend-details.model';
 import { Friendrequest } from 'src/app/models/friendrequest.model';
 import { User } from 'src/app/models/user.model';
 import { FriendsService } from 'src/app/services/friends.service';
@@ -11,6 +12,8 @@ import { FriendsService } from 'src/app/services/friends.service';
 export class AddComponent implements OnInit {
 
   filteredProfiles: User[] = [];
+  clicked: boolean = false;
+  currentFriends: FriendDetails[] = [];
   requestedProfiles: Friendrequest[] = [];
   private _filter: string = "";
   public get filter(): string {
@@ -24,7 +27,7 @@ export class AddComponent implements OnInit {
 
   ngOnInit() {
     
-
+      this.loadFriends();
   }
 
 
@@ -35,14 +38,30 @@ export class AddComponent implements OnInit {
 
       next: data =>
       { 
-          console.log("Request wurde erfolgreich gesendet")
+          console.log("Request wurde erfolgreich gesendet");
       },
       error: (error) =>
 
       console.log(error.message)
     });
 
+   var btn = document.getElementById("requestButton"+userId);
+   btn!.innerHTML = "Pending";
+   btn?.setAttribute("disabled","disabled");
 
+  }
+
+  loadFriends(){
+
+    this.friendsService.getAllRequests().subscribe({
+      next: data =>{
+        
+        this.currentFriends = data;
+      },
+      error: err =>{
+        console.log(err.message);
+      }
+    })
   }
 
 
@@ -57,6 +76,18 @@ export class AddComponent implements OnInit {
       next: data=>{
 
         this.filteredProfiles = data;
+          
+        for (let indexI = 0; indexI < this.filteredProfiles.length; indexI++) {
+          
+          for (let indexJ = 0; indexJ < this.currentFriends.length; indexJ++) {
+            
+            if(this.filteredProfiles[indexI].user_id == this.currentFriends[indexJ].userId && this.currentFriends[indexJ].accepted){
+
+              this.filteredProfiles.splice(indexI,1);
+            }
+          }
+        }
+      
       },
       error: err =>{
 
