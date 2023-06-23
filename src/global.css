@@ -96,3 +96,8 @@ p{
     padding-right: 10vw;
     padding-left: 1vw;
 }
+
+.apexcharts-tooltip{
+    background-color: #BBBBBB;
+    color: #121212;
+}

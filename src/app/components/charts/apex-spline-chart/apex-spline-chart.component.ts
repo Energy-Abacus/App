@@ -21,6 +21,7 @@ export type ChartOptions = {
   legend: ApexLegend;
   yaxis: ApexYAxis;
   fill: ApexFill;
+  toolTip: ApexTooltip
 };
 
 @Component({
@@ -71,6 +72,9 @@ export class ApexSplineChartComponent implements OnInit{
         width: 2,
       },
       xaxis: {
+        tooltip:{
+          enabled: false
+        },
         type: "datetime",
         tickAmount: 6,
         axisTicks: {
@@ -93,8 +97,18 @@ export class ApexSplineChartComponent implements OnInit{
         }
       },
       tooltip: {
-        x: {
-        }
+        theme: false, 
+        enabled: true,
+        style:{
+          color: '#000000'
+        },
+        fillSeriesColor: true,  
+        marker:{
+          show: false
+        },
+        x:{
+          format: 'HH:mm'
+        },
       },
       grid:{
         borderColor: "#31333C"

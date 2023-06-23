@@ -62,6 +62,7 @@ export class ApexLineChartComponent implements OnInit {
       series: [
         {
           data: this.data,
+          color: this.firstColor
         }
       ],
       chart: {
@@ -84,6 +85,9 @@ export class ApexLineChartComponent implements OnInit {
         size: 0
       },
       xaxis: {
+        tooltip:{
+          enabled: false
+        },
         type: "datetime",
         tickAmount: 6,
         axisTicks: {
@@ -106,9 +110,18 @@ export class ApexLineChartComponent implements OnInit {
         }
       },
       tooltip: {
+        theme: false, 
+        enabled: true,
+        style:{
+          color: '#000000'
+        },
+        fillSeriesColor: true,
+        marker:{
+          show: false
+        },
         x:{
-          
-        }
+          format: 'HH:mm'
+        },
       },
       grid:{
         borderColor: "#31333C"
