@@ -10,10 +10,6 @@ const routes: Routes = [
     path: 'view-profile/:id',
     loadChildren: () => import('./components/social-system/view-profile/view-profile.module').then( m => m.ViewProfilePageModule)
   },
-
-
-
-
 ];
 @NgModule({
   imports: [
@@ -21,4 +17,9 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
+
+
+
 export class AppRoutingModule {}
+
