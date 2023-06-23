@@ -30,6 +30,7 @@ export type ChartOptions = {
   grid: ApexGrid;
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
+  legend: ApexLegend;
 };
 
 @Component({
@@ -61,6 +62,7 @@ export class ApexLineChartComponent implements OnInit {
       series: [
         {
           data: this.data,
+          color: this.firstColor
         }
       ],
       chart: {
@@ -71,6 +73,11 @@ export class ApexLineChartComponent implements OnInit {
         height: "auto",
         width: 370
       },
+      legend:{
+        itemMargin: {
+          vertical: 5
+        } 
+      },
       dataLabels: {
         enabled: false
       },
@@ -78,6 +85,9 @@ export class ApexLineChartComponent implements OnInit {
         size: 0
       },
       xaxis: {
+        tooltip:{
+          enabled: false
+        },
         type: "datetime",
         tickAmount: 6,
         axisTicks: {
@@ -100,9 +110,18 @@ export class ApexLineChartComponent implements OnInit {
         }
       },
       tooltip: {
+        theme: false, 
+        enabled: true,
+        style:{
+          color: '#000000'
+        },
+        fillSeriesColor: true,
+        marker:{
+          show: false
+        },
         x:{
-          
-        }
+          format: 'HH:mm'
+        },
       },
       grid:{
         borderColor: "#31333C"
@@ -166,3 +185,4 @@ function infoText(firstColor: string){
   }
   return "watt"
 }
+

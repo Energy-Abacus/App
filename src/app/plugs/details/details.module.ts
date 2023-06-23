@@ -11,7 +11,7 @@ import { SharedModule } from 'src/app/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     IonicModule,
     DetailsPageRoutingModule,
