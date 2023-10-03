@@ -10,7 +10,7 @@ import { FriendsService } from 'src/app/services/friends.service';
   styleUrls: ['./add.component.css'],
 })
 export class AddComponent implements OnInit {
-
+  sentRequests: string[] = [];
   filteredProfiles: User[] = [];
   clicked: boolean = false;
   currentFriends: FriendDetails[] = [];
@@ -39,6 +39,7 @@ export class AddComponent implements OnInit {
       next: data =>
       { 
           console.log("Request wurde erfolgreich gesendet");
+          this.sentRequests.push(userId);
       },
       error: (error) =>
 
@@ -87,6 +88,8 @@ export class AddComponent implements OnInit {
             }
           }
         }
+
+       
       
       },
       error: err =>{
@@ -94,5 +97,15 @@ export class AddComponent implements OnInit {
         console.log(err)
       }
     })
+
+      setTimeout(()=>{for (let index = 0; index < this.sentRequests.length; index++) {
+          
+        console.log(this.sentRequests[index])
+        var btn = document.getElementById("requestButton"+this.sentRequests[index]);
+        btn!.innerHTML = "Pending";
+        btn?.setAttribute("disabled","disabled");
+        
+      } },500)
+    
   }
 } 

@@ -4,4 +4,5 @@ export interface FriendDetails {
     picture: string,
     outgoing: boolean,
     accepted: boolean
+    friendshipId: number
 }

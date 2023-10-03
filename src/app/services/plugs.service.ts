@@ -9,7 +9,7 @@ import {AuthService} from "@auth0/auth0-angular";
 })
 export class PlugsService {
 
-  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-test-coverage/api/v1/outlet';
+  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/main/api/v1/outlet';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 

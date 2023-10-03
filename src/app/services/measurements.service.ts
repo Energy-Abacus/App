@@ -11,7 +11,7 @@ import { Plug } from '../models/measurement/plug.model';
 })
 export class MeasurementsService {
 
-  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-test-coverage/api/v1/measurement';
+  private url = 'https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/main/api/v1/measurement';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 

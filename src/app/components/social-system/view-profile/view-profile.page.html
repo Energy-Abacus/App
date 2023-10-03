@@ -9,16 +9,26 @@
 
 
 
-<ion-content>
-  <div>
-    <img src="{{actUser?.picture}}" style="width: 30vw; height: 30vw; border-radius: 50px; margin-top: 130px; margin-left: auto; margin-right: auto; display:block;">
-    <h2 style="text-align: center; margin-top: 20px; font-family:verdana;">{{actUser?.username}}</h2>
-    <table style="margin: 0px auto; border-spacing: 20px;" >
-      <tr>
-        <td><ion-button>Unfriend</ion-button></td>
-        <td><ion-button>Compare</ion-button></td>
-      </tr>
-    </table>
-  </div>
+<ion-content [fullscreen]="true">
+  <ion-grid  [fixed]="true" >
+    <ion-row>
+      <ion-col class="center">
+          <img src="{{actUser?.picture}}" style="border-radius: 50%; height: 30vw; width: 30vw;  margin-top: 20%; justify-self: center;">
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="center">
+        <ion-text>
+          <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{actUser?.username}}</h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="center">
+        <ion-button (click)="presentActionSheet()">Followed</ion-button>
+        <ion-button >Compare</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
