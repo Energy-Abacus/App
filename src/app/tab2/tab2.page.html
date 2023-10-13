@@ -50,14 +50,19 @@
             </ion-toolbar>
 
             <div class="outer-modal">
-              <ion-datetime presentation="date" [multiple]="true" ></ion-datetime>
+              <ion-calendar [(ngModel)]="dateRange"
+            [options]="optionsRange"
+            [type]="type"
+            [format]="'YYYY-MM-DD'" class="calendar-style"
+              ></ion-calendar>
             </div>
           </ion-content>
         </ng-template>
       </ion-modal>
     </div>
 
-    <button class="compare-btn" [disabled]="disableButton" [routerLink]="['compare-data', firstPlugId, secondPlugId]">COMPARE</button>
-    
+    <button class="compare-btn" [disabled]="disableButton"
+      [routerLink]="['compare-data', firstPlugId, secondPlugId]">COMPARE</button>
+
   </div>
 </ion-content>

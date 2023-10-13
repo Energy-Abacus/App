@@ -65,7 +65,7 @@ export class CompareDataPage implements OnInit {
       (data) => {
         this.secondPlugMeasurements = data;
 
-        this.secondPlugMeasurements.forEach(m => { 
+          this.secondPlugMeasurements.forEach(m => { 
           this.dataTempSecond.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]);
 
           this.avgTempSecond += m.temperature;

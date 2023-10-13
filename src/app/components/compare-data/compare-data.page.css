@@ -122,3 +122,9 @@ svg {
     border-radius: 20px;
     height: 7vh;
 }
+
+p{
+    color: #8a8888;
+    font-weight: bold;
+    letter-spacing: 0.4vw;
+}

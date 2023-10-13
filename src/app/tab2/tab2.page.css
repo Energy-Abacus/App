@@ -134,3 +134,8 @@ svg {
     display: flex;
     padding-top: 2.5vh;
 }
+
+.calendar-style{
+    background-color: #222428;
+    width: 90%;
+}

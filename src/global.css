@@ -100,12 +100,6 @@ label {
     width: fit-content;
 }
 
-p{
-    color: #8a8888;
-    font-weight: bold;
-    letter-spacing: 0.4vw;
-}
-
 .sector{
     margin: auto;
     width: 80%;
@@ -154,4 +148,8 @@ p{
   .cancel-btn{
     background-color: transparent;
     color: white;
+}
+
+button.days-btn{
+    color: white
 }

@@ -8,13 +8,15 @@ import { ApexLineChartComponent } from './components/charts/apex-line-chart/apex
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ApexBarChartComponent } from './components/charts/apex-bar-chart/apex-bar-chart.component';
 import { ApexSplineChartComponent } from './components/charts/apex-spline-chart/apex-spline-chart.component';
+import { CalendarModule } from 'ion2-calendar';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    CalendarModule
   ],
   exports: [
     ComparisonComponent,

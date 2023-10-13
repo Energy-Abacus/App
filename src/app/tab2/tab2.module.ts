@@ -11,6 +11,8 @@ import { ApexLineChartComponent } from '../components/charts/apex-line-chart/ape
 import { ComparisonComponent } from '../components/comparison/comparison.component';
 import { SharedModule } from '../shared.module';
 
+import { CalendarModule } from 'ion2-calendar';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -18,7 +20,11 @@ import { SharedModule } from '../shared.module';
     FormsModule,
     ExploreContainerComponentModule,
     Tab2PageRoutingModule,
-    SharedModule
+    SharedModule,
+    CalendarModule.forRoot({
+      doneLabel: 'Save',
+      closeIcon: true
+    })
   ],
   exports: [
   ],

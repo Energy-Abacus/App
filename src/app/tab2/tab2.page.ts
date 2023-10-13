@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Plug } from '../models/measurement/plug.model';
 import { PlugsService } from '../services/plugs.service';
+import { CalendarComponentOptions, CalendarModalOptions } from 'ion2-calendar';
 
 @Component({
   selector: 'app-tab2',
@@ -17,6 +18,13 @@ export class Tab2Page implements OnInit{
   disableButton: boolean;
   isModalOpen = false;
   dateValues: string[] = [];
+
+  dateRange: { from: string; to: string; };
+  type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
+  optionsRange: CalendarModalOptions = {
+    pickMode: 'range',
+    cssClass: ''
+  };
 
   constructor(private plugsService: PlugsService) {}
 
