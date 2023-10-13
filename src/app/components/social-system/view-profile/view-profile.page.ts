@@ -40,6 +40,11 @@ export class ViewProfilePage implements OnInit {
           data:{
             action: 'delete',
           },
+          handler: ()=>{
+
+            this.deleteFriend(this.actUser?.friendshipId.toString())           
+            this.router.navigate(['./'])
+          },
         },
       {
         text: 'Cancel',
@@ -77,13 +82,14 @@ export class ViewProfilePage implements OnInit {
       })
     }
 
-    deleteFriend(id: string){
+    deleteFriend(id: string |undefined){
       
-      this.friendsService.deleteFriend(id).subscribe({
+      this.friendsService.deleteFriend(id!).subscribe({
 
         next: data =>{
 
             console.log("Das Löschen war erfolgreich!" + data)
+
         },
         error: err =>{
 
@@ -94,9 +100,7 @@ export class ViewProfilePage implements OnInit {
 
    
 
-  logResult(ev: Event) {
-    console.log(JSON.stringify(ev,null, 2))
-  }
+
   }
 
 

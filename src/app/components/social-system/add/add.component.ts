@@ -105,7 +105,7 @@ export class AddComponent implements OnInit {
         btn!.innerHTML = "Pending";
         btn?.setAttribute("disabled","disabled");
         
-      } },500)
+      } },400)
     
   }
 } 

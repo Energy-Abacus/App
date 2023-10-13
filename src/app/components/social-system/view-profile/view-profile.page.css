@@ -17,7 +17,12 @@ ion-col.my-thin-col {
 
 ion-button{
 
-  --background: #606260;
-  --color: white;
+  --background: #302f2f;
+  color: white;
+  width:150px;
+  height: 25px;
+  margin: 5px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  
 
 }

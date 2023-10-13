@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { FriendDetails } from 'src/app/models/friend-details.model';
 import { Friendrequest } from 'src/app/models/friendrequest.model';
 import { User } from 'src/app/models/user.model';
 import { FriendsService } from 'src/app/services/friends.service';
+import { RefreshService } from 'src/app/services/refresh.service';
 
 @Component({
   selector: 'app-requests',
@@ -11,7 +12,8 @@ import { FriendsService } from 'src/app/services/friends.service';
 })
 export class RequestsComponent implements OnInit {
 
-  constructor(private friendsService: FriendsService) { }
+  constructor(private friendsService: FriendsService, private refreshService: RefreshService) { }
+  
 
   ngOnInit() {
 
