@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { FriendDetails } from 'src/app/models/friend-details.model';
 import { Friendrequest } from 'src/app/models/friendrequest.model';
 import { User } from 'src/app/models/user.model';
@@ -15,6 +16,7 @@ export class AddComponent implements OnInit {
   clicked: boolean = false;
   currentFriends: FriendDetails[] = [];
   requestedProfiles: Friendrequest[] = [];
+  currenUser: string | undefined;
   private _filter: string = "";
   public get filter(): string {
     return this._filter;
@@ -23,11 +25,14 @@ export class AddComponent implements OnInit {
     this._filter = value;
     this.loadFilteredUsers(this.filter);
   }
-  constructor(private friendsService: FriendsService) { }
+  constructor(private friendsService: FriendsService, private auth: AuthService) { }
 
   ngOnInit() {
     
       this.loadFriends();
+      this.auth.user$.subscribe(userProfile => {
+        this.currenUser = userProfile?.sub
+      })
   }
 
 
@@ -76,18 +81,21 @@ export class AddComponent implements OnInit {
     this.friendsService.getFilteredProfiles(username).subscribe({
       next: data=>{
 
+        console.log(this.currenUser)
         this.filteredProfiles = data;
           
         for (let indexI = 0; indexI < this.filteredProfiles.length; indexI++) {
           
           for (let indexJ = 0; indexJ < this.currentFriends.length; indexJ++) {
             
-            if(this.filteredProfiles[indexI].user_id == this.currentFriends[indexJ].userId && this.currentFriends[indexJ].accepted){
+            if(this.filteredProfiles[indexI].user_id == this.currentFriends[indexJ].userId && this.currentFriends[indexJ].accepted || this.filteredProfiles[indexI].user_id == this.currenUser)  {
 
               this.filteredProfiles.splice(indexI,1);
             }
           }
         }
+
+        
 
        
       
