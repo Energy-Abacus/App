@@ -5,7 +5,11 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },  {
+    path: 'compare-data',
+    loadChildren: () => import('./components/compare-data/compare-data.module').then( m => m.CompareDataPageModule)
   }
+
 ];
 @NgModule({
   imports: [

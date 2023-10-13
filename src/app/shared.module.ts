@@ -19,7 +19,8 @@ import { ApexSplineChartComponent } from './components/charts/apex-spline-chart/
   exports: [
     ComparisonComponent,
     ApexLineChartComponent,
-    ApexBarChartComponent
+    ApexBarChartComponent,
+    ApexSplineChartComponent
   ],
   declarations: [
     ComparisonComponent,

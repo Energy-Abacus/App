@@ -49,7 +49,7 @@ export class ApexSplineChartComponent implements OnInit{
         {
           name: "user 1",
           data: this.dataFirst,
-          color: this.firstColor
+          color: this.firstColor,
         },
         {
           name: "user 2",
@@ -90,6 +90,7 @@ export class ApexSplineChartComponent implements OnInit{
       },
       yaxis: {
         opposite: true,
+        min: 0,
         labels: {
           formatter: function (value: number){
             return value.toFixed(0);
