@@ -150,6 +150,6 @@ label {
     color: white;
 }
 
-button.days-btn{
-    color: white
+.my-day p {
+    color: white !important;
 }

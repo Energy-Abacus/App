@@ -4,7 +4,7 @@ p {
     font-size: small;
 }
 
-.slides-container{
+.slides-container {
     text-align: center;
     margin-top: 15vw;
     justify-content: center;
@@ -23,12 +23,12 @@ svg {
     overflow: visible !important;
 }
 
-.text-spacing{
+.text-spacing {
     line-height: 5vw;
 }
 
 .dot-red1 {
-    float:left;
+    float: left;
     margin-right: 2vw;
     display: flex;
     height: 10px;
@@ -39,7 +39,7 @@ svg {
 }
 
 .dot-red2 {
-    float:left;
+    float: left;
     margin-right: 2vw;
     display: flex;
     height: 10px;
@@ -50,7 +50,7 @@ svg {
 }
 
 .dot-blue {
-    float:left;
+    float: left;
     margin-right: 2vw;
     display: flex;
     height: 10px;
@@ -61,7 +61,7 @@ svg {
 }
 
 .dot-green {
-    float:left;
+    float: left;
     margin-right: 2vw;
     display: flex;
     height: 10px;
@@ -75,7 +75,7 @@ svg {
     margin-left: 10vw
 }
 
-.header{
+.header {
     margin-top: 5vh;
     text-align: center;
     background-color: #000000;
@@ -87,7 +87,7 @@ svg {
     padding-bottom: 1em;
 }
 
-.content-inner{
+.content-inner {
     display: flex;
     flex-direction: column;
     gap: 2em;
@@ -103,11 +103,9 @@ svg {
     margin-top: 7vh;
 }
 
-.plug-select{
-    
-}
+.plug-select {}
 
-.content-outer{
+.content-outer {
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -115,7 +113,7 @@ svg {
     align-items: center;
 }
 
-.compare-btn{
+.compare-btn {
     margin-top: 2vh;
     width: 70%;
     background-color: black;
@@ -123,11 +121,11 @@ svg {
     height: 7vh;
 }
 
-.set-view{
+.set-view {
     margin-top: 20vh;
 }
 
-.outer-modal{
+.outer-modal {
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -135,7 +133,7 @@ svg {
     padding-top: 2.5vh;
 }
 
-.calendar-style{
+.calendar-style {
     background-color: #222428;
     width: 90%;
 }

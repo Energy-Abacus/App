@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Plug } from '../models/measurement/plug.model';
 import { PlugsService } from '../services/plugs.service';
-import { CalendarComponentOptions, CalendarModalOptions } from 'ion2-calendar';
+import { CalendarComponentOptions, CalendarModal, CalendarModalOptions, DayConfig } from 'ion2-calendar';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -21,14 +22,24 @@ export class Tab2Page implements OnInit{
 
   dateRange: { from: string; to: string; };
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
+
+
+  daysConfig: DayConfig[] = [];
   optionsRange: CalendarModalOptions = {
     pickMode: 'range',
-    cssClass: ''
+    daysConfig: this.daysConfig,
+    cssClass: 'my-calendar'
   };
 
-  constructor(private plugsService: PlugsService) {}
+  constructor(
+    private plugsService: PlugsService,
+    private modalCtrl: ModalController) {}
 
   ngOnInit(): void {
+    const startDate = new Date();
+    startDate.setFullYear(startDate.getFullYear() - 1);
+    this.generateDaysConfig(startDate);
+
     this.loadPlugs();
     this.firstPlugId = 0;
     this.secondPlugId = 0;
@@ -64,5 +75,34 @@ export class Tab2Page implements OnInit{
       this.dateValues[1] = this.dateValues[2];
       this.dateValues[2] = '';
     }
+  }
+
+  generateDaysConfig(startDate: Date): void {
+    for (var d = startDate; d <= new Date(); d.setDate(d.getDate() + 1)) {
+      this.daysConfig.push({
+        date: new Date(d),
+        cssClass: 'my-day',
+        disable: false
+      });
+    }
+  }
+
+  async openCalendar() {
+    const myCalendar = await this.modalCtrl.create({
+      component: CalendarModal,
+      componentProps: { options: this.optionsRange },
+    });
+
+    myCalendar.present();
+
+    const event: any = await myCalendar.onDidDismiss();
+    const { data: dateRange, role } = event;
+
+    if (role === 'done') {
+      this.dateRange = dateRange;
+    }
+
+    console.log(this.dateRange);
+    console.log('role', role);
   }
 }
