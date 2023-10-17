@@ -139,3 +139,7 @@ svg {
     background-color: #222428;
     width: 90%;
 }
+
+:host([_nghost-eqb-c149] button.days-btn[_ngcontent-eqb-c149] p[_ngcontent-eqb-c149]){
+    color: white;
+}

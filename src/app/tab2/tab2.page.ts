@@ -23,7 +23,7 @@ export class Tab2Page implements OnInit{
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
   optionsRange: CalendarModalOptions = {
     pickMode: 'range',
-    cssClass: ''
+    cssClass: '',
   };
 
   constructor(private plugsService: PlugsService) {}
