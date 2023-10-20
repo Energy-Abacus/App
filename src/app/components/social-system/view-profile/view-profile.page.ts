@@ -43,7 +43,7 @@ export class ViewProfilePage implements OnInit {
           handler: ()=>{
 
             this.deleteFriend(this.actUser?.friendshipId.toString())           
-            this.router.navigate(['./'])
+            this.router.navigate(['/tabs/social'])
           },
         },
       {

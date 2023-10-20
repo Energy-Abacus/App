@@ -4,4 +4,5 @@ export interface Plug {
     powerOn: boolean;
     outletIdentifier: string;
     hubId: number;
+    deviceTypes: string[];
 }

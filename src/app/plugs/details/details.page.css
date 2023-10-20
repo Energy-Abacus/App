@@ -29,6 +29,7 @@
 .text-margin{
     margin-left: 10vw;
     margin-top: 15vw;
+    
 }
 
 .text-height{
@@ -47,6 +48,13 @@
     display: inline-block;
 }
 
+.title-margin{
+
+    margin-left: 10vw;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
+}
+
 .dot-green {
     float: left;
     margin-right: 2vw;
@@ -57,4 +65,11 @@
     background-color: #32730d;
     border-radius: 50%;
     display: inline-block;
+}
+
+.select{
+
+    height:10px;
+    width:200px;
+    margin-left: 50vw;
 }

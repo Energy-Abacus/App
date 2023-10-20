@@ -72,11 +72,6 @@ export class FriendsService {
     )
   }
 
-  getRandomProfiles(){
-
-    //returns a random amount of profiles that can be used to suggest to user
-  }
-
   updateRequest(accept: boolean, receiverId: string){
 
 

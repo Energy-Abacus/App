@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { profile } from 'console';
 import { FriendDetails } from 'src/app/models/friend-details.model';
 import { Friendrequest } from 'src/app/models/friendrequest.model';
 import { User } from 'src/app/models/user.model';
@@ -113,7 +114,7 @@ export class AddComponent implements OnInit {
         btn!.innerHTML = "Pending";
         btn?.setAttribute("disabled","disabled");
         
-      } },400)
+      } },350)
     
   }
 } 

@@ -1,9 +1,15 @@
 <ion-content>
 
-  <h5 class="text-margin"><b>OUTLET INFO</b></h5>
+  <h5 class="title-margin"><b>OUTLET INFO</b></h5>
 
   
-
+  <div class="select">
+    <ion-item>
+      <ion-select label="Device type" placeholder="Choose device type">
+        <ion-select-option *ngFor="let devicetype of deviceTypes" value="{{devicetype.name}}">{{devicetype.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
   <div class="select-graph">
     <div class="grap-type">
       <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden}">TEMPERATURE</b></h6></button>
