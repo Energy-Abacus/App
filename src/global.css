@@ -149,3 +149,7 @@ label {
     background-color: transparent;
     color: white;
 }
+
+.my-day p {
+    color: white !important;
+}
