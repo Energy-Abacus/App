@@ -25,10 +25,9 @@ export class Tab2Page implements OnInit{
 
 
   daysConfig: DayConfig[] = [];
-  optionsRange: CalendarModalOptions = {
+  optionsRange: CalendarComponentOptions = {
     pickMode: 'range',
     daysConfig: this.daysConfig,
-    cssClass: 'my-calendar'
   };
 
   constructor(
@@ -85,24 +84,5 @@ export class Tab2Page implements OnInit{
         disable: false
       });
     }
-  }
-
-  async openCalendar() {
-    const myCalendar = await this.modalCtrl.create({
-      component: CalendarModal,
-      componentProps: { options: this.optionsRange },
-    });
-
-    myCalendar.present();
-
-    const event: any = await myCalendar.onDidDismiss();
-    const { data: dateRange, role } = event;
-
-    if (role === 'done') {
-      this.dateRange = dateRange;
-    }
-
-    console.log(this.dateRange);
-    console.log('role', role);
   }
 }
