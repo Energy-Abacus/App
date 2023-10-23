@@ -72,6 +72,7 @@ export class FriendsService {
     )
   }
 
+
   updateRequest(accept: boolean, receiverId: string){
 
 
