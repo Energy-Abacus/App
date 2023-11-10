@@ -52,7 +52,7 @@ export class RequestsComponent implements OnInit {
         },
         error: err =>{
 
-          console.log("Konnte dies nicht ausführen")
+          console.log("Konnte dies nicht ausführen" + err)
         }
       })
 

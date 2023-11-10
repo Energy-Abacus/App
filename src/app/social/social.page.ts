@@ -23,7 +23,6 @@ export class SocialPage implements OnInit {
     if(this.viewPage == "Friends"){
 
       this.loadFriends();
-      console.log("Segment has changed to Friends")
     }
   
   }
@@ -49,7 +48,6 @@ export class SocialPage implements OnInit {
   filterFriends(){
 
     this.friends = [];
-    // this.auth.user$.subscribe(user => {this.currentUser = user}) 
     this.requests.forEach(element => {
 
       if(element.accepted){

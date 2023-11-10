@@ -8,7 +8,7 @@
   <ion-item>
       <img src="{{profile.picture}}" style="width: 12vw; height: 12vw; border-radius: 50px; ">
     <ion-label style="margin-left: 15px; font-family: Arial, sans-serif; font-size: 22px ">{{profile.username}}</ion-label>
-    <ion-button #requestButton{{profile.user_id}} size="default"  (click)="sendRequest(profile.user_id);  ">Follow</ion-button>
+    <ion-button id="requestButton{{profile.user_id}}" size="default" (click)="sendRequest(profile.user_id); ">Follow</ion-button>
   </ion-item>
 </ion-list>
 </div>

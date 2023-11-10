@@ -4,8 +4,8 @@
 
   
   <div class="select">
-      <ion-select class="always-flip" label="Device type" placeholder="Choose device type" >
-        <ion-select-option *ngFor="let devicetype of deviceTypes" value="{{devicetype.name}}">{{devicetype.name}}</ion-select-option>
+      <ion-select (ionChange)="handleChange($event)" class="always-flip"  label="Device type" placeholder="Choose device type" >
+        <ion-select-option *ngFor="let devicetype of deviceTypes" [value]="devicetype">{{devicetype.name}}</ion-select-option>
       </ion-select>
   </div>
   <div class="select-graph">

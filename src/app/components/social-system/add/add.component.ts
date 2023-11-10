@@ -17,7 +17,7 @@ export class AddComponent implements OnInit {
   clicked: boolean = false;
   currentFriends: FriendDetails[] = [];
   requestedProfiles: Friendrequest[] = [];
-  currenUser: string | undefined;
+  currentUser: string | undefined;
   private _filter: string = "";
   public get filter(): string {
     return this._filter;
@@ -32,7 +32,7 @@ export class AddComponent implements OnInit {
     
       this.loadFriends();
       this.auth.user$.subscribe(userProfile => {
-        this.currenUser = userProfile?.sub
+        this.currentUser = userProfile?.sub
       })
   }
 
@@ -82,14 +82,14 @@ export class AddComponent implements OnInit {
     this.friendsService.getFilteredProfiles(username).subscribe({
       next: data=>{
 
-        console.log(this.currenUser)
+        console.log(this.currentUser)
         this.filteredProfiles = data;
           
         for (let indexI = 0; indexI < this.filteredProfiles.length; indexI++) {
           
           for (let indexJ = 0; indexJ < this.currentFriends.length; indexJ++) {
             
-            if(this.filteredProfiles[indexI].user_id == this.currentFriends[indexJ].userId && this.currentFriends[indexJ].accepted || this.filteredProfiles[indexI].user_id == this.currenUser)  {
+            if(this.filteredProfiles[indexI].user_id == this.currentFriends[indexJ].userId && this.currentFriends[indexJ].accepted || this.filteredProfiles[indexI].user_id == this.currentUser)  {
 
               this.filteredProfiles.splice(indexI,1);
             }
