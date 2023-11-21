@@ -19,22 +19,26 @@ export class Tab2Page implements OnInit{
   disableButton: boolean;
   isModalOpen = false;
   dateValues: string[] = [];
+  dateRangeEmpty: boolean = true;
+  firstTime: string = "";
+  secondTime: string = "";
 
-  dateRange: { from: string; to: string; };
+  dateRange: { from: string; to: string; } = { from: '', to: '' }
   type: 'string'; // 'string' | 'js-date' | 'moment' | 'time' | 'object'
 
 
   daysConfig: DayConfig[] = [];
-  optionsRange: CalendarComponentOptions = {
+  optionsRange: CalendarModalOptions = {
     pickMode: 'range',
     daysConfig: this.daysConfig,
+    cssClass: 'my-calendar'
   };
 
-  constructor(
-    private plugsService: PlugsService,
-    private modalCtrl: ModalController) {}
+  constructor(private plugsService: PlugsService, private modalCtrl: ModalController) {
+  }
 
   ngOnInit(): void {
+
     const startDate = new Date();
     startDate.setFullYear(startDate.getFullYear() - 1);
     this.generateDaysConfig(startDate);
@@ -67,15 +71,6 @@ export class Tab2Page implements OnInit{
     this.isModalOpen = isOpen;
   }
 
-  addDateRange(){
-    console.log('datetest', this.dateValues.length)
-    if(this.dateValues.length == 3){
-      this.dateValues[0] = this.dateValues[1];
-      this.dateValues[1] = this.dateValues[2];
-      this.dateValues[2] = '';
-    }
-  }
-
   generateDaysConfig(startDate: Date): void {
     for (var d = startDate; d <= new Date(); d.setDate(d.getDate() + 1)) {
       this.daysConfig.push({
@@ -84,5 +79,15 @@ export class Tab2Page implements OnInit{
         disable: false
       });
     }
+  }
+
+  onChange($event: any) {
+    const tmpFrom = this.dateRange.from.toString();
+    const tmpTo = this.dateRange.to.toString();
+    
+    this.dateRange.from = tmpFrom.substring(0, 15);
+    this.dateRange.to = tmpTo.substring(0, 15);
+
+    this.dateRangeEmpty = false;
   }
 }

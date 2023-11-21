@@ -119,6 +119,7 @@ svg {
     background-color: black;
     border-radius: 20px;
     height: 7vh;
+    letter-spacing: 0.5vw;
 }
 
 .set-view {
@@ -140,4 +141,51 @@ svg {
 
 :host([_nghost-eqb-c149] button.days-btn[_ngcontent-eqb-c149] p[_ngcontent-eqb-c149]){
     color: white;
+}
+
+p{
+    color: #8a8888;
+    font-weight: bold;
+    letter-spacing: 0.4vw;
+}
+
+
+.inner-sector{
+    display: grid;
+    grid-auto-columns: 1fr
+}
+
+.inner-sector-left{
+    grid-column: 1;
+    width: 50vw;
+}
+
+.inner-sector-right{
+    grid-column: 2;
+}
+
+.time-text-color{
+    color: white;
+}
+
+.btn-submit{
+    width: 70%;
+    height: 5vh;
+    justify-self: center;
+    margin-top: 5vh;
+    border-radius: 9px;
+    background-color: #428CFF;
+    letter-spacing: 0.5vw;
+}
+
+.date-range-outer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.select-date-range{
+    letter-spacing: 0.5vw;
 }

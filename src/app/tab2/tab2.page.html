@@ -36,14 +36,13 @@
         </ion-item>
       </div>
 
-      <!-- <ion-button (click)="openCalendar()">Select date range</ion-button> -->
-      <ion-button id="open-modal" expand="block">Select date range</ion-button> -->
+      <ion-button class="select-date-range" id="open-modal" expand="block" (click)="setOpen(true)">Select date range</ion-button>
 
-      <ion-modal #modal trigger="open-modal">
+      <ion-modal #modal trigger="open-modal" [isOpen]="isModalOpen">
         <ng-template>
           <ion-content>
             <ion-toolbar>
-              <ion-title>Select date range</ion-title>
+              <ion-title>SELECT DATE RANGE</ion-title>
               <ion-buttons slot="end">
                 <ion-button class="cancel-button" (click)="modal.dismiss()">Close</ion-button>
               </ion-buttons>
@@ -53,8 +52,45 @@
               <ion-calendar [(ngModel)]="dateRange"
             [options]="optionsRange"
             [type]="type"
+            (change)="onChange($event)"
             [format]="'YYYY-MM-DD'" class="calendar-style"
               ></ion-calendar>
+            </div>
+
+            <div class="date-range-outer">
+              <div class="sector">
+                <label class="text-height"><b>from: </b></label> 
+                <div class="inner-sector">
+                  <div class="inner-sector-left">
+                    <h6><b>{{dateRange.from}}</b></h6>
+                  </div>
+                  <div class="inner-sector-right">
+                    <ion-datetime-button datetime="datetime1" [hidden]="dateRangeEmpty"></ion-datetime-button>
+                    <ion-modal [keepContentsMounted]="true">
+                      <ng-template>
+                        <ion-datetime color="dark" id="datetime1" presentation="time" class="time-text-color" [(ngModel)]="firstTime" value="firstTime"></ion-datetime>
+                      </ng-template>
+                    </ion-modal>
+                  </div>
+                </div>
+              </div>
+              <div class="sector">
+                <label class="text-height"><b>to: </b></label> 
+                <div class="inner-sector">
+                  <div class="inner-sector-left">
+                    <h6><b>{{dateRange.to}}</b></h6>
+                  </div>
+                  <div class="inner-sector-right">
+                    <ion-datetime-button datetime="datetime2" [hidden]="dateRangeEmpty"></ion-datetime-button>
+                    <ion-modal [keepContentsMounted]="true">
+                      <ng-template>
+                        <ion-datetime color="dark" id="datetime2" presentation="time" class="tp"></ion-datetime>
+                      </ng-template>
+                    </ion-modal>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-submit" (click)="setOpen(false)">SUBMIT</button>
             </div>
           </ion-content>
         </ng-template>
@@ -63,6 +99,5 @@
 
     <button class="compare-btn" [disabled]="disableButton"
       [routerLink]="['compare-data', firstPlugId, secondPlugId]">COMPARE</button>
-
   </div>
 </ion-content>
