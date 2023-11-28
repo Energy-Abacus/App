@@ -22,7 +22,6 @@ import { LogoutButtonComponent } from '../components/login/logout-button/logout-
     NgApexchartsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    
   ],
   declarations: [
     Tab1Page,

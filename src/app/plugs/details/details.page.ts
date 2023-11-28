@@ -81,22 +81,18 @@ export class DetailsPage implements OnInit {
         });
 
         this.avgTemp = (this.avgTemp/this.dataTemp.length);
-         this.avgTemp = Math.round((this.avgTemp + Number.EPSILON) * 100) / 100;
+        this.avgTemp = Math.round((this.avgTemp + Number.EPSILON) * 100) / 100;
 
         this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
 
-        console.log(this.dataTemp);
-        console.log(this.dataWatt);
+        this.changeGraph(false);
       }
     );
-
     this.plugService.getPlug(this.plug_Id).subscribe(
       (data) => {
         this.plug = data;
       }
     );
-
-   
   }
 
   changeGraph(show: boolean){
@@ -123,10 +119,6 @@ export class DetailsPage implements OnInit {
         }
       })
     }
-
-
-  
-
   }
 }
 

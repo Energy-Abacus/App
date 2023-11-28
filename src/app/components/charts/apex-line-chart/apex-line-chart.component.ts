@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import { MeasurementsService } from "../../../services/measurements.service";
 import { Measurement } from "../../../models/measurement/measurement.model";
@@ -38,19 +38,38 @@ export type ChartOptions = {
   templateUrl: './apex-line-chart.component.html',
   styleUrls: ['./apex-line-chart.component.css'],
 })
-export class ApexLineChartComponent implements OnInit {
+export class ApexLineChartComponent implements OnInit, AfterViewInit {
 
   constructor(private measurementsService: MeasurementsService) {
 
   }
+  ngAfterViewInit(): void {
+    this.chart.autoUpdateSeries = true;
+  }
 
-  @ViewChild("chart") chart: ChartComponent;
+  @ViewChild('apxchart') chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
   measurements: Measurement[] = [];
-  @Input() data: number[][] = [];
+  // @Input() data: number[][] = [];
   @Input() firstColor = '';
   @Input() secondColor = '';
+
+  _data: number[][] = [];
+  get data(): number[][] {
+      return this._data;
+  }
+  @Input() set data(value: number[][]) {
+      this._data = value;
+      // this.chart.updateSeries(
+      //   [
+      //     {
+      //       data: this._data,
+      //       color: this.firstColor
+      //     }
+      //   ]
+      // );
+  }
 
   ngOnInit(): void {
     this.initGraph();
@@ -134,12 +153,12 @@ export class ApexLineChartComponent implements OnInit {
             {
               offset: 0,
               color: this.firstColor,
-              opacity: 0.8
+              opacity: 0.5
             },
             { 
               offset: 100,
               color: this.secondColor,
-              opacity: 0.8
+              opacity: 0.5
             }
           ]
         }

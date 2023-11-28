@@ -1,0 +1,191 @@
+p {
+    margin-top: -10vw;
+    margin-left: 5vw;
+    font-size: small;
+}
+
+.slides-container {
+    text-align: center;
+    margin-top: 15vw;
+    justify-content: center;
+}
+
+app-apex-bar-chart {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+compare-chart {
+    margin-bottom: 50vw;
+}
+
+svg {
+    overflow: visible !important;
+}
+
+.text-spacing {
+    line-height: 5vw;
+}
+
+.dot-red1 {
+    float: left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #A73D2A;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-red2 {
+    float: left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #C07B47;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-blue {
+    float: left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #375E94;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-green {
+    float: left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #54cc50;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.margin-temp {
+    margin-left: 10vw
+}
+
+.header {
+    margin-top: 5vh;
+    text-align: center;
+    background-color: #000000;
+    border-radius: 25px;
+    height: 200%;
+    width: 90%;
+    justify-self: center;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.content-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    background-color: #000000;
+    border-radius: 25px;
+    height: 200%;
+    width: 90%;
+    margin-top: 2vh;
+    padding-top: 1em;
+    padding-bottom: 1.5em;
+    padding-left: 1.5em;
+    padding-right: 1em;
+    margin-top: 7vh;
+}
+
+.plug-select {}
+
+.content-outer {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.compare-btn {
+    margin-top: 2vh;
+    width: 70%;
+    background-color: black;
+    border-radius: 20px;
+    height: 7vh;
+    letter-spacing: 0.5vw;
+}
+
+.set-view {
+    margin-top: 20vh;
+}
+
+.outer-modal {
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    padding-top: 2.5vh;
+}
+
+.calendar-style {
+    background-color: #222428;
+    width: 90%;
+}
+
+:host([_nghost-eqb-c149] button.days-btn[_ngcontent-eqb-c149] p[_ngcontent-eqb-c149]){
+    color: white;
+}
+
+p{
+    color: #8a8888;
+    font-weight: bold;
+    letter-spacing: 0.4vw;
+}
+
+
+.inner-sector{
+    display: grid;
+    grid-auto-columns: 1fr
+}
+
+.inner-sector-left{
+    grid-column: 1;
+    width: 50vw;
+}
+
+.inner-sector-right{
+    grid-column: 2;
+}
+
+.time-text-color{
+    color: white;
+}
+
+.btn-submit{
+    width: 70%;
+    height: 5vh;
+    justify-self: center;
+    margin-top: 5vh;
+    border-radius: 9px;
+    background-color: #428CFF;
+    letter-spacing: 0.5vw;
+}
+
+.date-range-outer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.select-date-range{
+    letter-spacing: 0.5vw;
+}

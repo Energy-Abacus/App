@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: Tab2Page,
+  },
+  {
+    path: 'compare-data/:firstId/:secondId',
+    loadChildren: () => import('../components/compare-data/compare-data.module').then(m => m.CompareDataPageModule)
   }
 ];
 

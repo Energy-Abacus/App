@@ -57,7 +57,5 @@ export class MeasurementsService {
         headers: {'Authorization' : 'Bearer ' + token}, params: httpParams
       }))
     )
-  }
-
-  
+  }  
 }

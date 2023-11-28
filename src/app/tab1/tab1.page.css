@@ -1,27 +1,3 @@
-@font-face{
-  src: url(/assets/fonts/Montserrat-VariableFont_wght.ttf);
-  font-family: mont;
-  font-weight: bold;
-}
-
-.bubble {
-  display: flex;
-  content: '';
-  border-bottom-left-radius: 100% 50%;
-  border-bottom-right-radius: 100% 50%;
-  width: 100%;
-  background-color: #000000;
-  z-index: -1;
-  height: 35%;
-  justify-content: center;
-}
-
-.foreground {
-  z-index: 1;
-  margin-top: 15vw;
-  font-family: mont;
-}
-
 .slide{
   margin-bottom: 15%;
   content: '';
@@ -39,26 +15,12 @@
 }
 
 .selection-container{
-  margin-top: 25%;
+  margin-top: 12vh;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
   flex-direction: column;
-}
-
-.button {
-  background-color: black;
-  border: none;
-  padding: 16px 32px;
-  text-align: center;
-  font-size: 16px;
-  margin-top: 20px;
-  transition: 0.3s;
-  width: 90%;
-  height: 80px;
-  border-radius: 360px;
-  cursor: pointer;
 }
 
 .button:hover {
@@ -81,4 +43,10 @@
   top: 50%;
   transform: translateY(-50%);
   padding-left: 1.3rem;
+}
+
+p{
+  color: #8a8888;
+  font-weight: bold;
+  letter-spacing: 0.4vw;
 }

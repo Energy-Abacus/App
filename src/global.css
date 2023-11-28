@@ -38,25 +38,43 @@
 
 h6 {
     color: #BBBBBB;
-    line-height: 1vw;
+    line-height: 2vh;
     letter-spacing: 0.5vw;
 }
 
 h5 {
     color: #BBBBBB;
-    line-height: 1vw;
-    letter-spacing: 0.5vw; 
+    line-height: 2vh;
+    letter-spacing: 0.5vw;
+}
+
+h4 {
+    color: #BBBBBB;
+    line-height: 2vh;
+    letter-spacing: 0.5vw;
+}
+
+h3 {
+    color: #BBBBBB;
+    line-height: 2vh;
+    letter-spacing: 0.5vw;
+}
+
+h1 {
+    color: #BBBBBB;
+    line-height: 2vh;
+    letter-spacing: 0.5vw;
 }
 
 label {
     color: #8a8888;
-    font-size: 3vw;
+    font-size: 12px;
     letter-spacing: 0.5vw;
 }
 
 .text-margin{
     margin-left: 10vw;
-    margin-top: 15vw;
+    margin-top: 7vh;
 }
 
 .text-height{
@@ -100,4 +118,44 @@ p{
 .apexcharts-tooltip{
     background-color: #BBBBBB;
     color: #121212;
+}
+
+.bubble {
+    display: flex;
+    content: '';
+    border-bottom-left-radius: 100% 50%;
+    border-bottom-right-radius: 100% 50%;
+    width: 100%;
+    background-color: #0D0D0D;
+    z-index: -1;
+    height: 13%;
+    justify-content: center;
+  }
+  
+  .foreground {
+    z-index: 1;
+    margin-top: 5vh;
+  }
+
+  .black-button {
+    background-color: black;
+    border: none;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 3vh;
+    transition: 0.3s;
+    width: 90%;
+    height: 10vh;
+    border-radius: 360px;
+    cursor: pointer;
+  }
+
+  .cancel-btn{
+    background-color: transparent;
+    color: white;
+}
+
+.my-day p {
+    color: white !important;
 }

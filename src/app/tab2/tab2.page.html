@@ -1,3 +1,103 @@
 <ion-content [fullscreen]="true">
-  <app-comparison></app-comparison>
+  <div class="bubble">
+    <h1 class="foreground"><b>COMPARISON</b></h1>
+  </div>
+  <div class="content-outer">
+    <div class="header">
+      <h6><b>Compare Watt Power and</b></h6>
+      <h6><b>Temperature of 2 Plugs</b></h6>
+    </div>
+    <div class="content-inner">
+      <div class="plug-select">
+        <label><b>Plug 1</b></label>
+        <ion-item>
+          <ion-select label="Default label" placeholder="Select first plug" [(ngModel)]="firstPlugId"
+            (ionChange)="handleChange($event)">
+            <ng-container *ngFor="let plug of plugs">
+              <ng-container *ngIf="secondPlugId != plug.id">
+                <ion-select-option [value]="plug.id">{{plug.name}}</ion-select-option>
+              </ng-container>
+            </ng-container>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <div class="plug-select">
+        <label><b>Plug 2</b></label>
+        <ion-item>
+          <ion-select label="Default label" placeholder="Select second plug" [(ngModel)]="secondPlugId"
+            (ionChange)="handleChange($event)">
+            <ng-container *ngFor="let plug of plugs">
+              <ng-container *ngIf="firstPlugId != plug.id">
+                <ion-select-option [value]="plug.id">{{plug.name}}</ion-select-option>
+              </ng-container>
+            </ng-container>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <ion-button class="select-date-range" id="open-modal" expand="block" (click)="setOpen(true)">Select date range</ion-button>
+
+      <ion-modal #modal trigger="open-modal" [isOpen]="isModalOpen">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-title>SELECT DATE RANGE</ion-title>
+              <ion-buttons slot="end">
+                <ion-button class="cancel-button" (click)="modal.dismiss()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+
+            <div class="outer-modal">
+              <ion-calendar [(ngModel)]="dateRange"
+            [options]="optionsRange"
+            [type]="type"
+            (change)="onChange($event)"
+            [format]="'YYYY-MM-DD'" class="calendar-style"
+              ></ion-calendar>
+            </div>
+
+            <div class="date-range-outer">
+              <div class="sector">
+                <label class="text-height"><b>from: </b></label> 
+                <div class="inner-sector">
+                  <div class="inner-sector-left">
+                    <h6><b>{{dateRange.from}}</b></h6>
+                  </div>
+                  <div class="inner-sector-right">
+                    <ion-datetime-button datetime="datetime1" [hidden]="dateRangeEmpty"></ion-datetime-button>
+                    <ion-modal [keepContentsMounted]="true">
+                      <ng-template>
+                        <ion-datetime color="dark" id="datetime1" presentation="time" class="time-text-color" [(ngModel)]="firstTime" value="firstTime"></ion-datetime>
+                      </ng-template>
+                    </ion-modal>
+                  </div>
+                </div>
+              </div>
+              <div class="sector">
+                <label class="text-height"><b>to: </b></label> 
+                <div class="inner-sector">
+                  <div class="inner-sector-left">
+                    <h6><b>{{dateRange.to}}</b></h6>
+                  </div>
+                  <div class="inner-sector-right">
+                    <ion-datetime-button datetime="datetime2" [hidden]="dateRangeEmpty"></ion-datetime-button>
+                    <ion-modal [keepContentsMounted]="true">
+                      <ng-template>
+                        <ion-datetime color="dark" id="datetime2" presentation="time" class="time-text-color" [(ngModel)]="secondTime" value="secondTime"></ion-datetime>
+                      </ng-template>
+                    </ion-modal>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-submit" (click)="setOpen(false)">SUBMIT</button>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </div>
+
+    <button class="compare-btn" [disabled]="disableButton"
+      [routerLink]="['compare-data', firstPlugId, secondPlugId]">COMPARE</button>
+  </div>
 </ion-content>
