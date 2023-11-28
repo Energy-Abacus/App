@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Event, Params, Router } from '@angular/router';
 import { FriendDetails } from 'src/app/models/friend-details.model';
 import { Friendrequest } from 'src/app/models/friendrequest.model';
 import { FriendsService } from 'src/app/services/friends.service';
+import { ActionSheetController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-view-profile',
@@ -14,7 +16,9 @@ export class ViewProfilePage implements OnInit {
   actUserId: string = "";
   friends: FriendDetails[] = [];
   actUser: FriendDetails | undefined = undefined;
-  constructor(private route: ActivatedRoute, private router: Router,private friendsService: FriendsService) { }
+   //action sheet
+
+  constructor(private route: ActivatedRoute, private router: Router,private friendsService: FriendsService, private actionSheetCtrl: ActionSheetController) { }
   ngOnInit() {
    
     this.route.params.subscribe(
@@ -25,6 +29,33 @@ export class ViewProfilePage implements OnInit {
     )
     console.log(this.actUserId);
     this.loadUser();
+    }
+
+    async presentActionSheet(){
+      const actionSheet = await this.actionSheetCtrl.create({
+        header: this.actUser?.username,
+        buttons: [{
+          text: 'Unfriend',
+          role: 'destructive',
+          data:{
+            action: 'delete',
+          },
+          handler: ()=>{
+
+            this.deleteFriend(this.actUser?.friendshipId.toString())           
+            this.router.navigate(['/tabs/social'])
+          },
+        },
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        data:{
+          action: 'cancel'
+        },
+      },],
+      })
+
+      await actionSheet.present();
     }
 
     loadUser(){
@@ -50,7 +81,26 @@ export class ViewProfilePage implements OnInit {
         }
       })
     }
-    
+
+    deleteFriend(id: string |undefined){
+      
+      this.friendsService.deleteFriend(id!).subscribe({
+
+        next: data =>{
+
+            console.log("Das Löschen war erfolgreich!" + data)
+
+        },
+        error: err =>{
+
+          console.log("User konnte nicht entfreundet werden!" + err.message)
+        }
+      })
+    }
+
+   
+
+
   }
 
 

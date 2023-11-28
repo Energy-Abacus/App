@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import {  NgModule  } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { CalendarModule } from 'ion2-calendar';
+
 
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 
@@ -27,7 +29,9 @@ const redirect_uri = `${config.appId}://dev-3adocs3bconafo8d.us.auth0.com/capaci
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
+       
         AppRoutingModule,
+        IonicModule,
         HttpClientModule,
         NgApexchartsModule,
         AuthModule.forRoot({

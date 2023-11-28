@@ -5,7 +5,7 @@
     </ion-title>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-segment [(ngModel)]="viewPage" value="all">
+    <ion-segment [(ngModel)]="viewPage"(ionChange)="segmentChanged($event)" value="all">
       <ion-segment-button value="Friends">
         <ion-label>Friends</ion-label>
       </ion-segment-button>
@@ -21,6 +21,6 @@
 
 <ion-content [fullscreen]="true">
   <app-add [hidden]="viewPage != 'Add'"></app-add>
-  <app-friends [hidden]="viewPage != 'Friends'"></app-friends>
+  <app-friends [friends]="friends" [hidden]="viewPage != 'Friends'"></app-friends>
   <app-requests [hidden]="viewPage != 'Requests'"></app-requests>
 </ion-content>

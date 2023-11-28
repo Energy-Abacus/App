@@ -1,4 +1,31 @@
+.btn-bg{
+    background-color: transparent;
+    width: fit-content;
+}
 
+.greyed-out {
+    color: #757373;
+    font-size: 80%;
+}
+
+.sector{
+    margin: auto;
+    width: 80%;
+    border-bottom: 0.2vw solid #575555;
+    padding-bottom: 3vw;
+    padding-right: 10vw;
+    padding-left: 1vw;
+}
+
+.text-margin{
+    margin-left: 10vw;
+    margin-top: 15vw;
+    
+}
+
+.text-height{
+    line-height: 12vw;
+}
 
 .dot-red {
     float: left;
@@ -12,6 +39,13 @@
     display: inline-block;
 }
 
+.title-margin{
+
+    margin-left: 10vw;
+    margin-top: 10vw;
+    margin-bottom: 5vw;
+}
+
 .dot-green {
     float: left;
     margin-right: 2vw;
@@ -23,3 +57,10 @@
     border-radius: 50%;
     display: inline-block;
 }
+
+.select{
+    height: 10px;
+    width:200px;
+    margin-left: 50vw;
+}
+

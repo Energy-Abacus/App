@@ -24,7 +24,7 @@ const httpOptions = {
 
 export class FriendsService {
 
-  private url="https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/elig-add-test-coverage/api/v1/friendship"
+  private url="https://student.cloud.htl-leonding.ac.at/e.gstallnig/abacus/main/api/v1/friendship"
 
 
   constructor(private http: HttpClient, private auth: AuthService) { }
@@ -49,6 +49,18 @@ export class FriendsService {
     )
   }
 
+  deleteFriend(id: string){
+
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.delete<string>(this.url + '/' + id, {
+        headers: {'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      }
+      }))
+    )
+
+  }
+
   postFriendRequest(userId: string){
 
     return this.auth.getAccessTokenSilently().pipe(
@@ -59,6 +71,7 @@ export class FriendsService {
       }))
     )
   }
+
 
   updateRequest(accept: boolean, receiverId: string){
 
