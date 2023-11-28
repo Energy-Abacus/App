@@ -26,6 +26,7 @@ export class DetailsPage implements OnInit {
   avgTemp: number = 0;
   deviceTypes: DeviceType[] = [];
   currentDeviceType: DeviceType | undefined;
+  totalPowerPlug: number = 0;
 
   plugDto: PlugDto = {name: "", outletIdentifier: "", hubId: 0, deviceTypeIds: []};
 
@@ -42,6 +43,17 @@ export class DetailsPage implements OnInit {
         this.plug_Id = Number(params['id'])
       }
     );
+
+
+    this.measurementService.getTotalPowerPlug().subscribe({
+      next: data => {
+        this.totalPowerPlug = data;
+      },
+      error: err =>{
+
+        console.log(err)
+      }
+    })
 
    
       

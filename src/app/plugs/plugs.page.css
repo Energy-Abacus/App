@@ -6,6 +6,7 @@
   justify-items: center;
   row-gap: 10px;
   border-radius: 5%;
+  margin-top: 20px;
 }
 .circle-button {
   width: 30vw;
@@ -27,4 +28,9 @@
 .placeholder {
   background-color: white;
 
+}
+
+.text-height{
+
+  line-height: 12vw;
 }
