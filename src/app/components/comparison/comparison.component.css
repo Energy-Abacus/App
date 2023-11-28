@@ -22,3 +22,55 @@ compare-chart {
 svg {
     overflow: visible !important;
 }
+
+.text-spacing{
+    line-height: 5vw;
+}
+
+.dot-red1 {
+    float:left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #A73D2A;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-red2 {
+    float:left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #C07B47;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-blue {
+    float:left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #375E94;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-green {
+    float:left;
+    margin-right: 2vw;
+    display: flex;
+    height: 10px;
+    width: 10px;
+    background-color: #54cc50;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.margin-temp {
+    margin-left: 10vw
+}

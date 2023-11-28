@@ -13,11 +13,6 @@ const routes: Routes = [
     path: 'details/:id',
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
   },
-  {
-    path: 'plug-comparism/:firstId/:secondId',
-    loadChildren: () => import('./plug-comparism/plug-comparism.module').then( m => m.PlugComparismPageModule)
-  }
-
 
 ];
 

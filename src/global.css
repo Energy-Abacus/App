@@ -53,3 +53,51 @@ label {
     font-size: 3vw;
     letter-spacing: 0.5vw;
 }
+
+.text-margin{
+    margin-left: 10vw;
+    margin-top: 15vw;
+}
+
+.text-height{
+    line-height: 12vw;
+}
+
+.select-graph{
+    margin: auto;
+    display: flex;
+}
+
+.graph-type{
+ text-align: center;   
+}
+
+.greyed-out {
+    color: #757373;
+    font-size: 80%;
+}
+
+.btn-bg{
+    background-color: transparent;
+    width: fit-content;
+}
+
+p{
+    color: #8a8888;
+    font-weight: bold;
+    letter-spacing: 0.4vw;
+}
+
+.sector{
+    margin: auto;
+    width: 80%;
+    border-bottom: 0.2vw solid #575555;
+    padding-bottom: 3vw;
+    padding-right: 10vw;
+    padding-left: 1vw;
+}
+
+.apexcharts-tooltip{
+    background-color: #BBBBBB;
+    color: #121212;
+}

@@ -44,7 +44,6 @@ export class DetailsPage implements OnInit {
       }
     );
 
-
     this.measurementService.getTotalPowerPlug().subscribe({
       next: data => {
         this.totalPowerPlug = data;

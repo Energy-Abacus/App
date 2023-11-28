@@ -1,12 +1,3 @@
-.select-graph{
-    margin: auto;
-    display: flex;
-}
-
-.graph-type{
- text-align: center;   
-}
-
 .btn-bg{
     background-color: transparent;
     width: fit-content;

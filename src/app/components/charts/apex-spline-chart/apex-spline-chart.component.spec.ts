@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ComparismChartComponent } from './comparism-chart.component';
+import { ApexSplineChartComponent } from './apex-spline-chart.component';
 
-describe('ComparismChartComponent', () => {
-  let component: ComparismChartComponent;
-  let fixture: ComponentFixture<ComparismChartComponent>;
+describe('ApexSplineChartComponent', () => {
+  let component: ApexSplineChartComponent;
+  let fixture: ComponentFixture<ApexSplineChartComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ComparismChartComponent ],
+      declarations: [ ApexSplineChartComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ComparismChartComponent);
+    fixture = TestBed.createComponent(ApexSplineChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
