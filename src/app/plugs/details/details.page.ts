@@ -32,7 +32,7 @@ export class DetailsPage implements OnInit {
       }
     );
 
-    this.measurementService.getMeasurements(this.plug_Id!, new Date('2023/01/01 00:00:00'), new Date('2023/12/20 00:00:00')).subscribe(
+    this.measurementService.getMeasurements(this.plug_Id!, new Date('2020/11/21 10:00:00'), new Date('2024/11/21 12:00:00')).subscribe(
       (data) => {
         this.measurements = data;
         console.log(this.measurements)

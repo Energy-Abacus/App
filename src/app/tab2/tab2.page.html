@@ -84,7 +84,7 @@
                     <ion-datetime-button datetime="datetime2" [hidden]="dateRangeEmpty"></ion-datetime-button>
                     <ion-modal [keepContentsMounted]="true">
                       <ng-template>
-                        <ion-datetime color="dark" id="datetime2" presentation="time" class="tp"></ion-datetime>
+                        <ion-datetime color="dark" id="datetime2" presentation="time" class="time-text-color" [(ngModel)]="secondTime" value="secondTime"></ion-datetime>
                       </ng-template>
                     </ion-modal>
                   </div>

@@ -3,11 +3,6 @@
     <h1 class="foreground"><b>PLUGS</b></h1>
   </div>
 
-  <div class="checkbox-container">
-    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-    <label><b>private</b></label>
-  </div>
-
   <div class="grid-container">
     <div class="grid-item" *ngFor="let plug of plugs">
       <button class="circle-button" [routerLink]="['details', plug.id]" routerLinkActive="router-link-active">
