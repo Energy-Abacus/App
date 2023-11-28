@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content [fullscreen]="true">
+  <ion-grid  [fixed]="true" >
+    <ion-row>
+      <ion-col class="center">
+          <img src="{{actUser?.picture}}" style="border-radius: 50%; height: 30vw; width: 30vw;  margin-top: 20%; justify-self: center;">
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="center">
+        <ion-text>
+          <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{actUser?.username}}</h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="center">
+        <ion-button (click)="presentActionSheet()">Followed</ion-button>
+        <ion-button>Compare</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+

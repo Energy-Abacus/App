@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Socials
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="viewPage"(ionChange)="segmentChanged($event)" value="all">
+      <ion-segment-button value="Friends">
+        <ion-label>Friends</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Add">
+        <ion-label>Add</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Requests">
+        <ion-label>Requests</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-add [hidden]="viewPage != 'Add'"></app-add>
+  <app-friends [friends]="friends" [hidden]="viewPage != 'Friends'"></app-friends>
+  <app-requests [hidden]="viewPage != 'Requests'"></app-requests>
+</ion-content>

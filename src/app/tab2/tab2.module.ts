@@ -10,7 +10,6 @@ import {NgApexchartsModule} from "ng-apexcharts";
 import { ApexLineChartComponent } from '../components/charts/apex-line-chart/apex-line-chart.component';
 import { ComparisonComponent } from '../components/comparison/comparison.component';
 import { SharedModule } from '../shared.module';
-
 import { CalendarModule } from 'ion2-calendar';
 
 @NgModule({

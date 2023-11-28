@@ -32,7 +32,6 @@ export class ComparisonComponent implements OnInit {
   ngOnInit() {
 
     this.loadPlugs();
-
     this.plug_Id = 7;
 
     this.measurementService.getMeasurements(this.plug_Id!, new Date('2023/01/01 00:00:00'), new Date('2023/12/20 00:00:00')).subscribe(

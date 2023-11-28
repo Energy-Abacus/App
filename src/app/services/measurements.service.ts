@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { AuthService } from '@auth0/auth0-angular';
-import { map, mergeMap } from 'rxjs';
+import { from, map, mergeMap } from 'rxjs';
 import { DatePipe, formatDate } from '@angular/common';
 import { Measurement } from '../models/measurement/measurement.model';
 import { Plug } from '../models/measurement/plug.model';
@@ -25,5 +25,37 @@ export class MeasurementsService {
     )
   }
 
-  
+  getTotalPowerPlug(){
+
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<number>(this.url + '/total-power-plug',{
+        headers: {'Authorization' : 'Bearer ' + token}
+      }))
+    )
+
+  }
+
+  getTotalPowerUser(){
+
+    
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<number>(this.url + '/total-power-user',{
+        headers: {'Authorization' : 'Bearer ' + token}
+      }))
+    )
+  }
+
+
+  getTotalPowerBetween(fromDate: Date, toDate: Date){
+
+
+    let httpParams = new HttpParams({ fromObject: { from: fromDate.getTime() / 1000, to: toDate.getTime() / 1000 } });
+
+
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<number>(this.url + '/total-power-user-between',{
+        headers: {'Authorization' : 'Bearer ' + token}, params: httpParams
+      }))
+    )
+  }  
 }
