@@ -25,10 +25,10 @@ export class MeasurementsService {
     )
   }
 
-  getTotalPowerPlug(){
+  getTotalPowerPlug(outletId: number){
 
     return this.auth.getAccessTokenSilently().pipe(
-      mergeMap(token => this.http.get<number>(this.url + '/total-power-plug',{
+      mergeMap(token => this.http.get<number>(this.url + '/total-power-plug-id?outletId=' + outletId,{
         headers: {'Authorization' : 'Bearer ' + token}
       }))
     )

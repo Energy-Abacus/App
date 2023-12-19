@@ -44,7 +44,7 @@ export class DetailsPage implements OnInit {
       }
     );
 
-    this.measurementService.getTotalPowerPlug().subscribe({
+    this.measurementService.getTotalPowerPlug(this.plug_Id!).subscribe({
       next: data => {
         this.totalPowerPlug = data;
       },
@@ -85,7 +85,7 @@ export class DetailsPage implements OnInit {
 
         this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
 
-        this.changeGraph(false);
+        this.changeGraph(true);
       }
     );
     this.plugService.getPlug(this.plug_Id).subscribe(
@@ -100,10 +100,6 @@ export class DetailsPage implements OnInit {
   }
 
   handleChange(ev: any){
-
-  
-
-
     if(ev.target.value != undefined){
 
       this.plug.deviceTypes = ev.target.value;
