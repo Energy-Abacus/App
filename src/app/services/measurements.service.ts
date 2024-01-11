@@ -25,5 +25,12 @@ export class MeasurementsService {
     )
   }
 
+  getTotalPowerUsed() {
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<number>(this.url + '/total-power-user',{
+        headers: {'Authorization' : 'Bearer ' + token}
+      }))
+    )
+  }
   
 }

@@ -1,6 +1,24 @@
 <ion-content [fullscreen]="true">
-  <div class="bubble">
+  <div class="center-headline">
     <h1 class="foreground"><b>ENERGY ABACUS</b></h1>
+  </div>
+
+  <h5 class="text-format" style="margin-top: 7vh; margin-bottom: -2vh;">PLUG DSITRIBUTION</h5>
+  <app-apex-column-chart></app-apex-column-chart>
+
+  <h5 class="text-format" style="margin-top: 3vh; margin-bottom: -2vh;">WATT USAGE SINCE:</h5>
+  <app-apex-line-chart *ngIf="dataWatt.length > 0" [data] = dataWatt [firstColor]="'#6CD3EB'" [_height]="175"></app-apex-line-chart>
+
+  <div class="total-power-outer">
+    <div class="total-power-left">
+      <app-apex-pie-chart></app-apex-pie-chart>
+    </div>
+    <div class="total-power-right">
+      <div style="text-align: center;">
+        <h1 style="font-weight: bold; color: #99c5c4; text-shadow:#99c5c4 1px 0 10px;;">{{totalPower}}</h1>
+        <h5 style="font-weight: bold; font-size: 12px; color: #595757;">WATT</h5>
+      </div>
+    </div>
   </div>
 
   <div class="selection-container">

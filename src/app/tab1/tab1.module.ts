@@ -8,7 +8,7 @@ import { ExploreContainerComponentModule } from '../components/explore-container
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {NgChartsModule} from "ng2-charts";
 import {NgApexchartsModule} from "ng-apexcharts";
-import {Tab2PageModule} from "../tab2/tab2.module";
+import { SharedModule } from '../shared.module';
 
 @NgModule({
   imports: [
@@ -19,6 +19,7 @@ import {Tab2PageModule} from "../tab2/tab2.module";
     NgApexchartsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
+    SharedModule
   ],
   declarations: [Tab1Page]
 })

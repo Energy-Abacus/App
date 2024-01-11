@@ -1,4 +1,6 @@
-
+.chart-container{
+    margin-left:  -14px;
+}
 
 .dot-red {
     float: left;

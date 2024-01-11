@@ -27,6 +27,10 @@ svg {
     line-height: 5vw;
 }
 
+.calendar-icon-style{
+    
+}
+
 .dot-red1 {
     float: left;
     margin-right: 2vw;
@@ -78,7 +82,7 @@ svg {
 .header {
     margin-top: 5vh;
     text-align: center;
-    background-color: #000000;
+    background-color: transparent;
     border-radius: 25px;
     height: 200%;
     width: 90%;
@@ -91,7 +95,7 @@ svg {
     display: flex;
     flex-direction: column;
     gap: 2em;
-    background-color: #000000;
+    background-color: transparent;
     border-radius: 25px;
     height: 200%;
     width: 90%;
@@ -100,7 +104,16 @@ svg {
     padding-bottom: 1.5em;
     padding-left: 1.5em;
     padding-right: 1em;
-    margin-top: 7vh;
+    margin-top: 17vh;
+}
+
+.button-icon-container{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    background-color: transparent;
+    align-items: center;
+    width: 65%;
 }
 
 .plug-select {}
@@ -114,12 +127,15 @@ svg {
 }
 
 .compare-btn {
-    margin-top: 2vh;
-    width: 70%;
-    background-color: black;
+    width: 80%;
+    height: 5vh;
+    background-color: #3880FF;
     border-radius: 20px;
-    height: 7vh;
     letter-spacing: 0.5vw;
+}
+
+.compare-btn:disabled{
+    background-color: #6181b8;
 }
 
 .set-view {
@@ -135,7 +151,7 @@ svg {
 }
 
 .calendar-style {
-    background-color: #222428;
+    background-color: transparent;
     width: 90%;
 }
 

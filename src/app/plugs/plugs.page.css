@@ -40,3 +40,9 @@ p{
   color: #A6A6A6;
   font-weight: bold;
 }
+
+#chart {
+  max-width: 650px;
+  margin-left: -14px;
+  min-width: 100vw;
+}

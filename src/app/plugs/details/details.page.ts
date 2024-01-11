@@ -48,7 +48,7 @@ export class DetailsPage implements OnInit {
 
         this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
 
-        this.changeGraph(false);
+        this.changeGraph(true);
       }
     );
     this.plugService.getPlug(this.plug_Id).subscribe(

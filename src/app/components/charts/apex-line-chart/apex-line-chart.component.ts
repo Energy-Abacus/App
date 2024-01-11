@@ -54,6 +54,7 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
   // @Input() data: number[][] = [];
   @Input() firstColor = '';
   @Input() secondColor = '';
+  @Input() _height: any;
 
   _data: number[][] = [];
   get data(): number[][] {
@@ -89,8 +90,8 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
           show: false
         },
         type: "area",
-        height: "auto",
-        width: 370
+        width: 390,
+        height: this._height
       },
       legend:{
         itemMargin: {
@@ -147,46 +148,17 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
       },
       fill: {
         type: "gradient",
+        color: this.firstColor,
         gradient: { 
-          type: getType(this.firstColor),
-          colorStops: [
-            {
-              offset: 0,
-              color: this.firstColor,
-              opacity: 0.5
-            },
-            { 
-              offset: 100,
-              color: this.secondColor,
-              opacity: 0.5
-            }
-          ]
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0,
+          opacityFrom: 1,
+          opacityTo: 0,
         }
       },
       stroke: {
-        width: 2,
-        fill: {
-          type: "gradient",
-        
-          gradient: { 
-            type: "horizontal",
-            shadeIntensity: 0,
-            opacityFrom: 1,
-            opacityTo: 0.1,
-            colorStops: [
-              {
-                offset: 0,
-                color: this.firstColor,
-                opacity: 1
-              },
-              { 
-                offset: 100,
-                color: this.secondColor,
-                opacity: 1
-              }
-            ]
-          }
-        }
+        width: 3,
       }
     };
   }

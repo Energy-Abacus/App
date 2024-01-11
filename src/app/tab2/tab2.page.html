@@ -1,12 +1,8 @@
 <ion-content [fullscreen]="true">
-  <div class="bubble">
+  <div class="center-headline">
     <h1 class="foreground"><b>COMPARISON</b></h1>
   </div>
   <div class="content-outer">
-    <div class="header">
-      <h6><b>Compare Watt Power and</b></h6>
-      <h6><b>Temperature of 2 Plugs</b></h6>
-    </div>
     <div class="content-inner">
       <div class="plug-select">
         <label><b>Plug 1</b></label>
@@ -35,8 +31,6 @@
           </ion-select>
         </ion-item>
       </div>
-
-      <ion-button class="select-date-range" id="open-modal" expand="block" (click)="setOpen(true)">Select date range</ion-button>
 
       <ion-modal #modal trigger="open-modal" [isOpen]="isModalOpen">
         <ng-template>
@@ -97,7 +91,13 @@
       </ion-modal>
     </div>
 
-    <button class="compare-btn" [disabled]="disableButton"
+    <div class="button-icon-container">
+      <button class="compare-btn" [disabled]="disableButton"
       [routerLink]="['compare-data', firstPlugId, secondPlugId]">COMPARE</button>
+
+      <ion-icon class="calendar-icon-style" name="calendar" size="large" color="primary" id="open-modal" expand="block" (click)="setOpen(true)">Select date range></ion-icon>
+    </div>
+
+    
   </div>
 </ion-content>

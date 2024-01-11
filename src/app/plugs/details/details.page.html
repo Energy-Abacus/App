@@ -15,11 +15,15 @@
   </div>
 
   <ng-container *ngIf=hidden>
-    <app-apex-line-chart [data] = dataWatt [firstColor]="'#375E94'" [secondColor]="'#4689AC'"></app-apex-line-chart>
+    <div class="chart-container">
+      <app-apex-line-chart [_height]="'auto'" [data] = dataWatt [firstColor]="'#6CD3EB'"></app-apex-line-chart>
+    </div>
   </ng-container>
 
   <ng-container *ngIf= !hidden>
-    <app-apex-line-chart [data] = dataTemp [firstColor]= "'#A73D2A'" [secondColor]="'#C07B47'"></app-apex-line-chart>
+    <div class="chart-container">
+      <app-apex-line-chart [_height]="'auto'" [data] = dataTemp [firstColor]= "'#FF5F1F'"></app-apex-line-chart>
+    </div>
   </ng-container>
 
   <div class="sector">
