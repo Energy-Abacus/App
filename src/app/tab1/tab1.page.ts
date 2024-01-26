@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MeasurementsService } from '../services/measurements.service';
 import { PlugsService } from '../services/plugs.service';
 import { Measurement } from '../models/measurement/measurement.model';
+import { Plug } from '../models/measurement/plug.model';
 
 @Component({
   selector: 'app-tab1',
@@ -13,10 +14,14 @@ export class Tab1Page implements OnInit{
   measurements: Measurement[] = [];
   dataWatt: number[][] = [];
   totalPower: number = 0;
+  plugs: Plug[] = [];
 
-  constructor(private measurementService: MeasurementsService) { }
+  constructor(private measurementService: MeasurementsService, private plugsService: PlugsService) { }
   
   ngOnInit(): void {
+
+    this.loadPlugs();
+
     this.measurementService.getMeasurements(10, new Date('2020/11/21 10:00:00'), new Date('2024/11/21 12:00:00')).subscribe(
       (data) => {
         this.measurements = data;
@@ -33,6 +38,17 @@ export class Tab1Page implements OnInit{
         this.totalPower = data;
       }
     );
+  }
+
+  loadPlugs() {
+    this.plugsService.getPlugs(4).subscribe({
+      next: data => {
+        this.plugs = data;
+      },
+      error: err => {
+        console.log(err);
+      }
+    });
   }
 
 }

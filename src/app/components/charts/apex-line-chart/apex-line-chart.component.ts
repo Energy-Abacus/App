@@ -90,7 +90,7 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
           show: false
         },
         type: "area",
-        width: 390,
+        width: 350,
         height: this._height
       },
       legend:{
@@ -118,12 +118,14 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
           color: '#31333C'
         },
         labels: {
-          format: 'HH:mm'
+          format: 'HH:mm',
+          show: false
         }
       },
       yaxis: {
         opposite: true,
         labels:{
+          show: true,
           formatter: function (value: number) {
             return value.toFixed(0);
           }
@@ -144,7 +146,8 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
         },
       },
       grid:{
-        borderColor: "#31333C"
+        borderColor: "#31333C",
+        show: true
       },
       fill: {
         type: "gradient",

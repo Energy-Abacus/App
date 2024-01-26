@@ -57,7 +57,8 @@ export class ApexColumnChartComponent {
         toolbar:{
           show: false
         },
-        height: 250,
+        height: 165,
+        width: 350,
         type: "bar",
       },
       fill: {
@@ -99,6 +100,7 @@ export class ApexColumnChartComponent {
         show: false
       },
       grid: {
+        show: false,
         borderColor: "#31333C"
       },
       xaxis: {
@@ -123,6 +125,7 @@ export class ApexColumnChartComponent {
           ["Plug 8", ""]
         ],
         labels: {
+          show: true,
           style: {
             colors: [
               "#595757",
@@ -141,8 +144,12 @@ export class ApexColumnChartComponent {
       yaxis: {
         opposite: true,
         labels:{
+          show: false,
           formatter: function (value: number) {
             return value.toFixed(0);
+          },
+          style:{
+            fontSize: "10px"
           }
         }
       },

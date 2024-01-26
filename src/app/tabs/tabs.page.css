@@ -1,10 +1,16 @@
-.block {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  ion-modal {
-    --height:300px;
+
+
+  ion-tab-bar {
+		--border: 0;
+		--background: transparent;
+		position: absolute;
+		bottom: 0;
+		left:0; right: 0;
+		width: 100%
+	} 
+
+  .outlet-style{
+    width: 12vw;
+    height: 12vw;
+    background: transparent;
   }
