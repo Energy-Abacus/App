@@ -71,6 +71,16 @@ export class ApexSplineChartComponent implements OnInit{
       stroke: {
         width: 2,
       },
+      fill:{
+        type: "gradient",
+        gradient: { 
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0,
+          opacityFrom: 0.7,
+          opacityTo: 0.1
+        }
+      },
       xaxis: {
         tooltip:{
           enabled: false

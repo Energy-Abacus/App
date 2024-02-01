@@ -73,9 +73,12 @@ export class ApexBarChartComponent{
       yaxis: {
         opposite: false,
         show: true,
-        labels:{}
+        labels:{
+          show: false
+        }
       },
       grid:{
+        show: false,
         borderColor: "#31333C"
       }
     };

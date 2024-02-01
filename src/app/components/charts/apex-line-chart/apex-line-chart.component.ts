@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 
-import { MeasurementsService } from "../../../services/measurements.service";
 import { Measurement } from "../../../models/measurement/measurement.model";
 
 import {
@@ -40,9 +39,6 @@ export type ChartOptions = {
 })
 export class ApexLineChartComponent implements OnInit, AfterViewInit {
 
-  constructor(private measurementsService: MeasurementsService) {
-
-  }
   ngAfterViewInit(): void {
     this.chart.autoUpdateSeries = true;
   }
@@ -54,6 +50,7 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
   // @Input() data: number[][] = [];
   @Input() firstColor = '';
   @Input() secondColor = '';
+  @Input() _height: any;
 
   _data: number[][] = [];
   get data(): number[][] {
@@ -89,8 +86,8 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
           show: false
         },
         type: "area",
-        height: "auto",
-        width: 370
+        width: 350,
+        height: this._height
       },
       legend:{
         itemMargin: {
@@ -117,12 +114,14 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
           color: '#31333C'
         },
         labels: {
-          format: 'HH:mm'
+          format: 'HH:mm',
+          show: false
         }
       },
       yaxis: {
         opposite: true,
         labels:{
+          show: true,
           formatter: function (value: number) {
             return value.toFixed(0);
           }
@@ -143,50 +142,22 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
         },
       },
       grid:{
-        borderColor: "#31333C"
+        borderColor: "#31333C",
+        show: true
       },
       fill: {
         type: "gradient",
+        color: this.firstColor,
         gradient: { 
-          type: getType(this.firstColor),
-          colorStops: [
-            {
-              offset: 0,
-              color: this.firstColor,
-              opacity: 0.5
-            },
-            { 
-              offset: 100,
-              color: this.secondColor,
-              opacity: 0.5
-            }
-          ]
+          shade: "light",
+          type: "vertical",
+          shadeIntensity: 0,
+          opacityFrom: 1,
+          opacityTo: 0,
         }
       },
       stroke: {
-        width: 2,
-        fill: {
-          type: "gradient",
-        
-          gradient: { 
-            type: "horizontal",
-            shadeIntensity: 0,
-            opacityFrom: 1,
-            opacityTo: 0.1,
-            colorStops: [
-              {
-                offset: 0,
-                color: this.firstColor,
-                opacity: 1
-              },
-              { 
-                offset: 100,
-                color: this.secondColor,
-                opacity: 1
-              }
-            ]
-          }
-        }
+        width: 3,
       }
     };
   }

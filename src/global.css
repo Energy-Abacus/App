@@ -126,7 +126,7 @@ p{
     border-bottom-left-radius: 100% 50%;
     border-bottom-right-radius: 100% 50%;
     width: 100%;
-    background-color: #0D0D0D;
+    background-color: #161d21;
     z-index: -1;
     height: 13%;
     justify-content: center;
@@ -158,4 +158,12 @@ p{
 
 .my-day p {
     color: white !important;
+}
+
+ion-content{
+    --background: #111c21;
+}
+
+.center-headline{
+    text-align: center;
 }

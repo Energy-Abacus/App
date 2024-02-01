@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../components/explore-container
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {NgApexchartsModule} from "ng-apexcharts";
+import { SharedModule } from '../shared.module';
 import { MenuComponent } from '../components/menu/menu.component';
 import { LoginButtonComponent } from '../components/login/login-button/login-button.component';
 import { LogoutButtonComponent } from '../components/login/logout-button/logout-button.component';
@@ -19,6 +20,7 @@ import { LogoutButtonComponent } from '../components/login/logout-button/logout-
     NgApexchartsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
+    SharedModule
   ],
   declarations: [
     Tab1Page,

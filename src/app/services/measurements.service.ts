@@ -25,8 +25,19 @@ export class MeasurementsService {
     )
   }
 
-  getTotalPowerPlug(outletId: number){
+  getTotalPowerUsed() {
+    return this.getTotalPowerUser();
+  }
 
+  getTotalPowerUser(){
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<number>(this.url + '/total-power-user',{
+        headers: {'Authorization' : 'Bearer ' + token}
+      }))
+    )
+  }
+    
+ getTotalPowerPlug(outletId: number){
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<number>(this.url + '/total-power-plug-id?outletId=' + outletId,{
         headers: {'Authorization' : 'Bearer ' + token}
@@ -34,17 +45,6 @@ export class MeasurementsService {
     )
 
   }
-
-  getTotalPowerUser(){
-
-    
-    return this.auth.getAccessTokenSilently().pipe(
-      mergeMap(token => this.http.get<number>(this.url + '/total-power-user',{
-        headers: {'Authorization' : 'Bearer ' + token}
-      }))
-    )
-  }
-
 
   getTotalPowerBetween(fromDate: Date, toDate: Date){
 

@@ -1,3 +1,7 @@
+.chart-container{
+    margin-left:  -14px;
+}
+
 .btn-bg{
     background-color: transparent;
     width: fit-content;
