@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'view-profile/:id',
     loadChildren: () => import('./components/social-system/view-profile/view-profile.module').then( m => m.ViewProfilePageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+
 ];
 @NgModule({
   imports: [

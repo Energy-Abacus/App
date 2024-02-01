@@ -1,0 +1,49 @@
+.title{
+
+    text-align: center;
+    margin-top: 40%;
+        
+}
+
+.input{
+
+    width: 50%;
+}
+
+
+.center{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    overflow: hidden;
+}
+
+
+.text{
+
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+
+}
+
+
+.card{
+
+    height: 200px;
+}
+
+.content-align-right{
+
+    display: flex;
+    margin-left: auto;
+    align-items: flex-end;
+}
+
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    margin-top:10%;
+}
