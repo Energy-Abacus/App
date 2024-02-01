@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from "@angular/core";
 import {
   ApexChart,
   ApexAxisChartSeries,
@@ -41,7 +41,7 @@ export type ChartOptions = {
   templateUrl: './column-chart.component.html',
   styleUrls: ['./column-chart.component.css'],
 })
-export class ApexColumnChartComponent {
+export class ApexColumnChartComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
@@ -64,7 +64,12 @@ export class ApexColumnChartComponent {
       this._values = value;
   }
 
-  constructor() {
+  ngOnInit(): void {
+    this.initGraph();
+  }
+
+  initGraph() {
+    console.log(this.names);
     this.chartOptions = {
       series: [
         {
@@ -133,9 +138,7 @@ export class ApexColumnChartComponent {
         axisTicks: {
           show: false
         },
-        categories: [
-          this.names
-        ],
+        categories: this.names,
         labels: {
           show: true,
           style: {

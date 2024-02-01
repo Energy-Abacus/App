@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 
-import { MeasurementsService } from "../../../services/measurements.service";
 import { Measurement } from "../../../models/measurement/measurement.model";
 
 import {
@@ -40,9 +39,6 @@ export type ChartOptions = {
 })
 export class ApexLineChartComponent implements OnInit, AfterViewInit {
 
-  constructor(private measurementsService: MeasurementsService) {
-
-  }
   ngAfterViewInit(): void {
     this.chart.autoUpdateSeries = true;
   }

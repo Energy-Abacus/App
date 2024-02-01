@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MeasurementsService } from '../services/measurements.service';
 import { PlugsService } from '../services/plugs.service';
 import { Measurement } from '../models/measurement/measurement.model';
@@ -26,9 +25,8 @@ export class Tab1Page implements OnInit{
 
     this.plugsService.getColumnChartData().subscribe(
       (data) =>{
-        this.columnData = data,
-        this.columnData.forEach(c => this.columnDataNames.push(c.name)),
-        this.columnData.forEach(c => this.columnDataValues.push(c.totalPowerUsed))
+        this.columnData = data;
+        this.columnData.forEach(c => { this.columnDataNames.push(c.name); this.columnDataValues.push(c.totalPowerUsed) });
       }
     )
 

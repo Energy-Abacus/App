@@ -6,7 +6,7 @@
   <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">PLUG DSITRIBUTION</h5>
   <div class="column-chart-outer">
     <div class="column-chart-inner">
-      <app-apex-column-chart [names]="columnDataNames" [values]="columnDataValues"></app-apex-column-chart>
+      <app-apex-column-chart *ngIf="columnDataValues.length > 0" [names]="columnDataNames" [values]="columnDataValues"></app-apex-column-chart>
     </div>
   </div>
 
@@ -25,7 +25,7 @@
   <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">WATT USAGE</h5>
   <div class="line-chart-outer">
     <div class="div">
-      <app-apex-line-chart *ngIf="dataWatt.length > 0" [data] = dataWatt [firstColor]="'#6CD3EB'" [_height]="150"></app-apex-line-chart>
+      <app-apex-line-chart *ngIf="dataWatt.length > 0" [data]="dataWatt" [firstColor]="'#6CD3EB'" [_height]="150"></app-apex-line-chart>
     </div>
   </div>  
 
