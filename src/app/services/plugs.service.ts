@@ -52,4 +52,27 @@ export class PlugsService {
     }))
     )
   }
+
+ async connectToPlug(ssid: string, password: string){
+
+    return  await this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<string>('http://192.168.1.100/settings/sta?enabled=1'+'&ssid='+ssid+'&key='+password+'!ipv4_method=dhcp',
+      {headers: {'Authorization' : 'Bearer ' + token,
+      'Content-Type': 'application/json'}}))
+    )
+
+    
+
+  }
+
+  postToHub(payload: string){
+
+     var dummy = "mqtt_enable=true&mqtt_server=1192.168.1.103%3A1883&mqtt_id=shellyplug-s-4022D8892671&mqtt_user=abacustest&mqtt_reconnect_timeout_max=60&mqtt_reconnect_timeout_min=2&mqtt_clean_session=true&mqtt_keep_alive=60&mqtt_max_qos=0&mqtt_retain=false&mqtt_pass=test";
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.post<string>('http://192.168.1.100/settings',payload ?? dummy,
+      {headers: {'Authorization' : 'Bearer ' + token,
+    'Content-Type': 'application/json'}}))
+    )
+
+  }
 }
