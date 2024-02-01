@@ -4,6 +4,7 @@ import { MeasurementsService } from '../services/measurements.service';
 import { PlugsService } from '../services/plugs.service';
 import { Measurement } from '../models/measurement/measurement.model';
 import { Plug } from '../models/measurement/plug.model';
+import { GetOutletDto } from '../models/measurement/get-outlet-dto';
 
 @Component({
   selector: 'app-tab1',
@@ -15,10 +16,21 @@ export class Tab1Page implements OnInit{
   dataWatt: number[][] = [];
   totalPower: number = 0;
   plugs: Plug[] = [];
+  columnData: GetOutletDto[] = [];
+  columnDataNames: string[] = [];
+  columnDataValues: number[] = [];
 
   constructor(private measurementService: MeasurementsService, private plugsService: PlugsService) { }
   
   ngOnInit(): void {
+
+    this.plugsService.getColumnChartData().subscribe(
+      (data) =>{
+        this.columnData = data,
+        this.columnData.forEach(c => this.columnDataNames.push(c.name)),
+        this.columnData.forEach(c => this.columnDataValues.push(c.totalPowerUsed))
+      }
+    )
 
     this.loadPlugs();
 

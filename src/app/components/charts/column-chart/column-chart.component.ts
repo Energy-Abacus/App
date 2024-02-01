@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Input, ViewChild } from "@angular/core";
 import {
   ApexChart,
   ApexAxisChartSeries,
@@ -45,12 +45,31 @@ export class ApexColumnChartComponent {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
+  @Input() _height: any;
+
+  _names: string[] = [];
+  get names(): string[] {
+      return this._names;
+  }
+  @Input() set names(value: string[]) {
+      this._names = value;
+  }
+
+
+  _values: number[] = [];
+  get values(): number[] {
+      return this._values;
+  }
+  @Input() set values(value: number[]) {
+      this._values = value;
+  }
+
   constructor() {
     this.chartOptions = {
       series: [
         {
-          name: "distibuted",
-          data: [21, 22, 10, 28, 16, 21, 13, 30]
+          name: "distributed",
+          data: this.values
         }
       ],
       chart: {
@@ -115,14 +134,7 @@ export class ApexColumnChartComponent {
           show: false
         },
         categories: [
-          ["Plug 1", ""],
-          ["Plug 2", ""],
-          ["Plug 3", ""],
-          "Plug4 ",
-          ["Plug 5", ""],
-          ["Plug 6", ""],
-          ["Plug 7", ""],
-          ["Plug 8", ""]
+          this.names
         ],
         labels: {
           show: true,

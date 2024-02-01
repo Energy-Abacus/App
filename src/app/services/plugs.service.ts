@@ -3,6 +3,7 @@ import {mergeMap} from "rxjs";
 import {Plug} from "../models/measurement/plug.model";
 import {HttpClient} from "@angular/common/http";
 import {AuthService} from "@auth0/auth0-angular";
+import { GetOutletDto } from '../models/measurement/get-outlet-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,19 @@ export class PlugsService {
     });
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<Plug>(this.url + '/' + id,{
+        headers: {'Authorization' : 'Bearer ' + token}
+      }))
+    )
+  }
+
+  getColumnChartData(){
+    this.auth.isAuthenticated$.subscribe({
+      next: data => {
+        console.log(data);
+      }
+    });
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<GetOutletDto[]>(this.url, {
         headers: {'Authorization' : 'Bearer ' + token}
       }))
     )
