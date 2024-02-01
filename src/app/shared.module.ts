@@ -2,7 +2,6 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { ComparisonComponent } from './components/comparison/comparison.component';
 import { ApexLineChartComponent } from './components/charts/apex-line-chart/apex-line-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
@@ -11,6 +10,7 @@ import { ApexSplineChartComponent } from './components/charts/apex-spline-chart/
 import { ApexColumnChartComponent } from './components/charts/column-chart/column-chart.component';
 import { CalendarModule } from 'ion2-calendar';
 import { ApexPieChartComponent } from './components/charts/apex-pie-chart/apex-pie-chart.component';
+
 
 @NgModule({
   imports: [

@@ -1,9 +1,12 @@
 <ion-content>
-
-  <h5 class="text-margin"><b>OUTLET INFO</b></h5>
+  <h5 class="title-margin"><b>OUTLET INFO</b></h5>
 
   
-
+  <div class="select">
+      <ion-select (ionChange)="handleChange($event)" class="always-flip"  label="Device type" placeholder="Choose device type" >
+        <ion-select-option *ngFor="let devicetype of deviceTypes" [value]="devicetype">{{devicetype.name}}</ion-select-option>
+      </ion-select>
+  </div>
   <div class="select-graph">
     <div class="grap-type">
       <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden}">TEMPERATURE</b></h6></button>
@@ -59,5 +62,8 @@
     <label class="text-height"><b>avg temp:</b></label> 
     <h6><b>{{avgTemp}} °C</b></h6>
   </div>
-
+  <div class="sector">
+    <label class="text-height"><b>totalPowerPlug:</b></label> 
+    <h6><b>{{totalPowerPlug}}</b></h6>
+  </div>
 </ion-content>

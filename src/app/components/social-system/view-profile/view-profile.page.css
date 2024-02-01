@@ -1,0 +1,28 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+table{
+  border-spacing:50px;
+}
+
+
+ion-col.my-thin-col {
+  flex: 0 0 10px;
+  padding:0;
+}
+
+ion-button{
+
+  --background: #302f2f;
+  color: white;
+  width:150px;
+  height: 25px;
+  margin: 5px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  
+
+}

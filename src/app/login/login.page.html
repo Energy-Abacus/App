@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Energy Abacus</ion-title>
+    <ion-progress-bar [value]="progress"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="center" scrollY="false">
+  <div class="center">
+    <ion-card [hidden]="isTutorialDone">
+      <ion-card-header>
+        <ion-card-title>{{cardTitle}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="text">
+       
+          {{cardText}}  
+          <div [hidden]="isHidden" class="inputs">
+            <div>
+              <label><b>WLAN-SSID</b></label>
+                <ion-input [(ngModel)]="ssid"  label="WLAN-SSID" label-placement="floating"  placeholder="Enter WLAN-SSID"></ion-input>
+            </div>
+            <div>
+              <label><b>WLAN-Password</b></label>
+                <ion-input [(ngModel)]="password"   label="WLAN-Password" type="password" label-placement="floating" placeholder="Enter WLAN-Password">
+                </ion-input>
+            </div>
+          </div>
+      </ion-card-content>
+    <div class="content-align-right">
+      <ion-button [disabled]="isFirstButtonDisabled"  (click)="changeText(-1)" fill="clear"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+      <ion-button [disabled]="isSecondButtonDisabled" (click)="changeText(+1); showLoading()" fill="clear"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
+    </div>
+    </ion-card>
+  </div>
+</ion-content>

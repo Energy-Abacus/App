@@ -41,8 +41,13 @@ p{
   font-weight: bold;
 }
 
+
 #chart {
   max-width: 650px;
   margin-left: -14px;
   min-width: 100vw;
+}
+
+.text-height{
+  line-height: 12vw;
 }

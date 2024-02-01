@@ -1,0 +1,15 @@
+&nbsp;
+<ion-searchbar [(ngModel)]="filter" placeholder="Search for people" animated="true"></ion-searchbar>
+
+<div  style="background-color: black; width: 100%; height: 100%; padding-top:10px" >
+  <h5 style="margin-left: 20px; margin-top: 10px;">Suggested users</h5>
+  <hr>
+<ion-list *ngFor="let profile of filteredProfiles">
+  <ion-item>
+      <img src="{{profile.picture}}" style="width: 12vw; height: 12vw; border-radius: 50px; ">
+    <ion-label style="margin-left: 15px; font-family: Arial, sans-serif; font-size: 22px ">{{profile.username}}</ion-label>
+    <ion-button id="requestButton{{profile.user_id}}" size="default" (click)="sendRequest(profile.user_id); ">Follow</ion-button>
+  </ion-item>
+</ion-list>
+</div>
+ 
