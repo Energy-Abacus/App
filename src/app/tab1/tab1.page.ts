@@ -26,26 +26,27 @@ export class Tab1Page implements OnInit{
     this.plugsService.getColumnChartData().subscribe(
       (data) =>{
         this.columnData = data;
-        this.columnData.forEach(c => { this.columnDataNames.push(c.name); this.columnDataValues.push(c.totalPowerUsed) });
+        this.columnData.forEach(c => { this.columnDataNames.push(c.name); this.columnDataValues.push(c.totalPowerUsed)});
+        console.log(this.columnDataValues);
       }
     )
 
     this.loadPlugs();
 
-    // this.measurementService.getMeasurements(10, new Date('2020/11/21 10:00:00'), new Date('2024/11/21 12:00:00')).subscribe(
-    //   (data) => {
-    //     this.measurements = data;
+    /* this.measurementService.getMeasurements(10, new Date('2020/11/21 10:00:00'), new Date('2024/11/21 12:00:00')).subscribe(
+      (data) => {
+        this.measurements = data;
 
-    //     this.measurements.forEach(m => { 
-    //       this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
-    //     });
-    //     console.log(this.dataWatt)
-    //   }
-    // );
+        this.measurements.forEach(m => { 
+          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
+        });
+        console.log(this.dataWatt)
+      }
+    ); */
 
     this.measurementService.getTotalPowerUsed().subscribe(
       (data) => {
-        this.totalPower = data;
+        this.totalPower = Math.round((data + Number.EPSILON) * 100) / 100
       }
     );
   }

@@ -47,6 +47,8 @@ export class ApexColumnChartComponent implements OnInit {
 
   @Input() _height: any;
 
+  
+
   _names: string[] = [];
   get names(): string[] {
       return this._names;
@@ -55,13 +57,13 @@ export class ApexColumnChartComponent implements OnInit {
       this._names = value;
   }
 
-
   _values: number[] = [];
   get values(): number[] {
       return this._values;
   }
   @Input() set values(value: number[]) {
       this._values = value;
+      
   }
 
   ngOnInit(): void {
@@ -69,12 +71,20 @@ export class ApexColumnChartComponent implements OnInit {
   }
 
   initGraph() {
-    console.log(this.names);
+    var splitNames = [], size = 5;
+    var splitValues = [], size = 5;
+
+    for (let i = 0; i < this.values.length; i += size){
+      splitValues.push(this.values.slice(i, i + size));
+      splitNames.push(this.names.slice(i, i + size))
+    }
+   
     this.chartOptions = {
       series: [
         {
-          name: "distributed",
-          data: this.values
+          name: "Watt:",
+          data: splitValues[0],
+          labels: splitNames[0]
         }
       ],
       chart: {
@@ -85,6 +95,20 @@ export class ApexColumnChartComponent implements OnInit {
         width: 350,
         type: "bar",
       },
+      zoom: {
+        enabled: true,
+        type: 'x',
+        resetIcon: {
+            offsetX: -10,
+            offsetY: 0,
+            fillColor: '#fff',
+            strokeColor: '#37474F'
+        },
+        selection: {
+            background: '#90CAF9',
+            border: '#0D47A1'
+        }    
+    },
       fill: {
         type: "gradient",
 
@@ -112,7 +136,7 @@ export class ApexColumnChartComponent implements OnInit {
       plotOptions: {
         bar: {
           columnWidth: "80%",
-          distributed: false,
+          distributed: true,
           borderRadius: 4,
           borderRadiusApplication: 'end' 
         }
@@ -131,6 +155,7 @@ export class ApexColumnChartComponent implements OnInit {
         tooltip:{
           enabled: false
         },
+        categories: splitNames[0],
         axisBorder: {
           show: true,
           color: '#31333C'
@@ -138,20 +163,10 @@ export class ApexColumnChartComponent implements OnInit {
         axisTicks: {
           show: false
         },
-        categories: this.names,
+        
         labels: {
-          show: true,
+          show: false,
           style: {
-            colors: [
-              "#595757",
-              "#595757",
-              "#595757",
-              "#595757",
-              "#595757",
-              "#595757",
-              "#595757",
-              "#595757"
-            ],
             fontSize: "12px"
           }
         }
@@ -159,13 +174,16 @@ export class ApexColumnChartComponent implements OnInit {
       yaxis: {
         opposite: true,
         labels:{
-          show: false,
+          show: true,
+          style:{
+            colors:[
+              "#595757"
+            ],
+            fontSize: "10px"
+          },
           formatter: function (value: number) {
             return value.toFixed(0);
           },
-          style:{
-            fontSize: "10px"
-          }
         }
       },
       tooltip:{

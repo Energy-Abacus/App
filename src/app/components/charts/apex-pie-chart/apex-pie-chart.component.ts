@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { ChartComponent } from "ng-apexcharts";
 
 import {
@@ -26,13 +26,35 @@ export type ChartOptions = {
   templateUrl: './apex-pie-chart.component.html',
   styleUrls: ['./apex-pie-chart.component.css'],
 })
-export class ApexPieChartComponent{
+export class ApexPieChartComponent implements OnInit{
+  
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
-  constructor() {
+  _values: number[] = [];
+  get values(): number[] {
+      return this._values;
+  }
+  @Input() set values(value: number[]) {
+      this._values = value;
+  }
+
+  _names: string[] = [];
+  get names(): string[] {
+      return this._names;
+  }
+  @Input() set names(value: string[]) {
+      this._names = value;
+  }
+
+  ngOnInit(): void {
+    this.initGraph();
+  }
+
+  initGraph(){
     this.chartOptions = {
-      series: [44, 55, 41, 17, 15],
+      series: this._values,
+      labels: this._names,
       chart: {
         width: 380,
         type: "donut",

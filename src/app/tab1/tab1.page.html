@@ -4,7 +4,7 @@
     <h1 class="foreground"><b>ENERGY ABACUS</b></h1>
   </div>
 
-  <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">PLUG DSITRIBUTION</h5>
+  <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">PLUG DISTRIBUTION</h5>
   <div class="column-chart-outer">
     <div class="column-chart-inner">
       <app-apex-column-chart *ngIf="columnDataValues.length > 0" [names]="columnDataNames" [values]="columnDataValues"></app-apex-column-chart>
@@ -13,7 +13,7 @@
 
   <div class="total-power-outer">
     <div class="total-power-left">
-      <app-apex-pie-chart></app-apex-pie-chart>
+      <app-apex-pie-chart  *ngIf="columnDataValues.length > 0" [values]="columnDataValues" [names]="columnDataNames"></app-apex-pie-chart>
     </div>
     <div class="total-power-right">
       <div style="text-align: center;">
