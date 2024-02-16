@@ -9,27 +9,41 @@
   </div>
   <div class="select-graph">
     <div class="grap-type">
-      <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden}">TEMPERATURE</b></h6></button>
+      <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden && !showBothGraphs}">TEMPERATURE</b></h6></button>
     </div>
 
     <div class="grap-type">
-      <button class="btn-bg" (click)="changeGraph(true)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': !hidden}">WATT POWER</b></h6></button>
+      <button class="btn-bg" (click)="changeGraph(true)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': !hidden && !showBothGraphs}">WATT POWER</b></h6></button>
     </div>
   </div>
 
-  <ng-container *ngIf=hidden>
+  <ng-container *ngIf="hidden">
     <div class="chart-container">
-      <app-apex-line-chart [_height]="'auto'" [data] = dataWatt [firstColor]="'#6CD3EB'"></app-apex-line-chart>
+      <app-apex-line-chart-new [_height]="'auto'" [data] = dataWatt [firstColor]="'#6CD3EB'"></app-apex-line-chart-new>
     </div>
   </ng-container>
 
-  <ng-container *ngIf= !hidden>
+  <ng-container *ngIf="!hidden">
     <div class="chart-container">
-      <app-apex-line-chart [_height]="'auto'" [data] = dataTemp [firstColor]= "'#FF5F1F'"></app-apex-line-chart>
+      <app-apex-line-chart-new [_height]="'auto'" [data] = dataTemp [firstColor]= "'#FF5F1F'" [listener]="notifyDataChanged"></app-apex-line-chart-new>
     </div>
   </ng-container>
 
-  <div class="sector">
+  <div class="arrow-button-container">
+    <div class="arrow-button-left">
+      <button class="arrow-button left-point" (click)="arrowClicked(-24)"></button>
+    </div>
+    <div class="from-to-container">
+      <label style="margin-right: 2vw;">{{fromDate.toLocaleDateString()}}</label>
+      <label>-</label>
+      <label style="margin-left: 2vw;">{{toDate.toLocaleDateString()}}</label>
+    </div>
+    <div class="arrow-button-right">
+      <button class="arrow-button right-point" (click)="arrowClicked(24)"></button>
+    </div>
+  </div>
+
+  <div class="sector" style="margin-top: 3vh;">
     <label class="text-height"><b>name:</b></label> 
     <h6><b>{{plug.name}}</b></h6>
   </div>
@@ -61,9 +75,5 @@
   <div class="sector">
     <label class="text-height"><b>avg temp:</b></label> 
     <h6><b>{{avgTemp}} °C</b></h6>
-  </div>
-  <div class="sector">
-    <label class="text-height"><b>totalPowerPlug:</b></label> 
-    <h6><b>{{totalPowerPlug}}</b></h6>
   </div>
 </ion-content>

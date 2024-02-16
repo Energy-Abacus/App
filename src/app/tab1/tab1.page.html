@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-  <!-- <app-menu auto-hide="false"></app-menu> -->
+  <!-- <app-menu auto-hide="false"></app-menu>  -->
   <div class="center-headline">
     <h1 class="foreground"><b>ENERGY ABACUS</b></h1>
   </div>
@@ -26,7 +26,7 @@
   <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">WATT USAGE</h5>
   <div class="line-chart-outer">
     <div class="div">
-      <app-apex-line-chart *ngIf="dataWatt.length > 0" [data]="dataWatt" [firstColor]="'#6CD3EB'" [_height]="150"></app-apex-line-chart>
+      <app-apex-line-chart-new *ngIf="dataWatt.length > 0" [data]="dataWatt" [firstColor]="'#6CD3EB'" [_height]="150"></app-apex-line-chart-new>
     </div>
   </div>  
 

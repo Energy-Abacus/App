@@ -7,7 +7,6 @@ import { ExploreContainerComponentModule } from '../components/explore-container
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
 import {NgApexchartsModule} from "ng-apexcharts";
-import { ApexLineChartComponent } from '../components/charts/apex-line-chart/apex-line-chart.component';
 import { ComparisonComponent } from '../components/comparison/comparison.component';
 import { SharedModule } from '../shared.module';
 import { CalendarModule } from 'ion2-calendar';

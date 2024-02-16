@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ApexLineChartComponent } from './apex-line-chart.component';
+import { ApexLineChartNewComponent } from './apex-line-chart-new.component';
 
-describe('ApexLineChartComponent', () => {
-  let component: ApexLineChartComponent;
-  let fixture: ComponentFixture<ApexLineChartComponent>;
+describe('ApexLineChartNewComponent', () => {
+  let component: ApexLineChartNewComponent;
+  let fixture: ComponentFixture<ApexLineChartNewComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApexLineChartComponent ],
+      declarations: [ ApexLineChartNewComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ApexLineChartComponent);
+    fixture = TestBed.createComponent(ApexLineChartNewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

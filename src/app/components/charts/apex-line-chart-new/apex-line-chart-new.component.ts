@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 
 import { Measurement } from "../../../models/measurement/measurement.model";
 
@@ -30,21 +30,24 @@ export type ChartOptions = {
   stroke: ApexStroke;
   title: ApexTitleSubtitle;
   legend: ApexLegend;
+  markers: ApexMarkers;
 };
 
 @Component({
-  selector: 'app-apex-line-chart',
-  templateUrl: './apex-line-chart.component.html',
-  styleUrls: ['./apex-line-chart.component.css'],
+  selector: 'app-apex-line-chart-new',
+  templateUrl: './apex-line-chart-new.component.html',
+  styleUrls: ['./apex-line-chart-new.component.css'],
 })
-export class ApexLineChartComponent implements OnInit, AfterViewInit {
+export class ApexLineChartNewComponent implements OnInit, AfterViewInit {
+
+  constructor(private ngZone: NgZone, private cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     this.chart.autoUpdateSeries = true;
   }
 
-  @ViewChild('apxchart') chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions> | any;
+  @ViewChild('apxchart', { static: false }) chart!: ChartComponent;
+  public chartOptions: Partial<ChartOptions>;
 
   measurements: Measurement[] = [];
   // @Input() data: number[][] = [];
@@ -58,18 +61,34 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
   }
   @Input() set data(value: number[][]) {
       this._data = value;
-      // this.chart.updateSeries(
-      //   [
-      //     {
-      //       data: this._data,
-      //       color: this.firstColor
-      //     }
-      //   ]
-      // );
+  }
+
+  #dataChangeListener: EventEmitter<any> = new EventEmitter<any>()
+  @Input()
+  set listener(emitter: EventEmitter<any>) {
+    this.#dataChangeListener.unsubscribe()
+    this.#dataChangeListener = emitter
+    this.#dataChangeListener.subscribe(this.refreshChart.bind(this))
+  }
+
+  test: string = 'test';
+  dataUpdated: boolean = false;
+
+  refreshChart() {
+    this.dataUpdated = true;
   }
 
   ngOnInit(): void {
     this.initGraph();
+    setInterval(()=> { 
+      if (this.dataUpdated) {
+        console.log('refresh')
+        this.chartOptions.series = [{ data: this.data }];
+        this.test = 'test update new';
+        this.dataUpdated = false;
+        this.cdr.detectChanges();
+      }
+    }, 500);
   }
 
   initGraph() {
@@ -77,6 +96,7 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
     this.chartOptions = {
       series: [
         {
+          name: this.infoText(this.firstColor),
           data: this.data,
           color: this.firstColor
         }
@@ -128,10 +148,10 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
         }
       },
       tooltip: {
-        theme: false, 
+        // theme: false, 
         enabled: true,
         style:{
-          color: '#000000'
+          // color: '#000000'
         },
         fillSeriesColor: true,
         marker:{
@@ -147,7 +167,7 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
       },
       fill: {
         type: "gradient",
-        color: this.firstColor,
+        colors: [this.firstColor],
         gradient: { 
           shade: "light",
           type: "vertical",
@@ -161,18 +181,18 @@ export class ApexLineChartComponent implements OnInit, AfterViewInit {
       }
     };
   }
-}
-function getType(firstColor: string) {
-  if (firstColor === '#A73D2A') {
-    return "horizontal"
-  }
-  return "vertical"
-}
 
-function infoText(firstColor: string){
-  if(firstColor === '#A73D2A'){
-    return "temperature"
+  getType(firstColor: string) {
+    if (firstColor === '#A73D2A') {
+      return "horizontal"
+    }
+    return "vertical"
   }
-  return "watt"
+  
+  infoText(firstColor: string){
+    if(firstColor === '#A73D2A'){
+      return "temperature"
+    }
+    return "watt"
+  }
 }
-

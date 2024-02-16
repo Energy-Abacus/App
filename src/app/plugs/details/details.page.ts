@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { error } from 'console';
 import { DeviceType } from 'src/app/models/device-type.model';
@@ -27,16 +27,23 @@ export class DetailsPage implements OnInit {
   deviceTypes: DeviceType[] = [];
   currentDeviceType: DeviceType | undefined;
   totalPowerPlug: number = 0;
+  toDate = new Date('2024/02/03 00:00:00');
+  fromDate: Date;
 
   plugDto: PlugDto = {name: "", outletIdentifier: "", hubId: 0, deviceTypeIds: []};
 
 
   plug: Plug  = {name: "", id: 0, powerOn: false, outletIdentifier: "", hubId: 0, deviceTypes: []};
 
+  notifyDataChanged: EventEmitter<any> = new EventEmitter<any>()
+
+  showBothGraphs: boolean;
 
   constructor(private activatedRoute: ActivatedRoute, private measurementService: MeasurementsService, private plugService: PlugsService,private devicetypesService: DevicetypesService) { }
 
   ngOnInit() {
+
+    this.fromDate = this.addHours(this.toDate, -24);
 
     this.activatedRoute.params.subscribe(
       (params: Params) => {
@@ -54,7 +61,7 @@ export class DetailsPage implements OnInit {
       }
     })
 
-   
+    this.initMeasurements();
       
     this.devicetypesService.getDeviceTypes().subscribe(
       (data) => {
@@ -69,7 +76,18 @@ export class DetailsPage implements OnInit {
       }
     )
 
-    this.measurementService.getMeasurements(this.plug_Id!, new Date('2023/01/01 00:00:00'), new Date('2023/12/20 00:00:00')).subscribe(
+    
+    this.plugService.getPlug(this.plug_Id).subscribe(
+      (data) => {
+        this.plug = data;
+      }
+    );
+  }
+
+  initMeasurements(){
+    this.showBothGraphs = false;
+    this.changeGraph(false);
+    this.measurementService.getMeasurements(this.plug_Id!, this.fromDate, this.toDate).subscribe(
       (data) => {
         this.measurements = data;
         console.log(this.measurements)
@@ -86,13 +104,23 @@ export class DetailsPage implements OnInit {
         this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
 
         this.changeGraph(true);
+        this.showBothGraphs = true;
+        this.notifyDataChanged.emit({title: "measurement data changed", id: 1});
       }
     );
-    this.plugService.getPlug(this.plug_Id).subscribe(
-      (data) => {
-        this.plug = data;
-      }
-    );
+  }
+
+  addHours(date: Date, hours: number) {
+    let newDate = new Date(date);
+    newDate.setHours(date.getHours() + hours);
+    return newDate;
+  }
+
+  arrowClicked(hours: number){
+    this.fromDate = this.addHours(this.fromDate, hours);
+    this.toDate = this.addHours(this.toDate, hours);
+
+    this.initMeasurements();
   }
 
   changeGraph(show: boolean){

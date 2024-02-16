@@ -32,16 +32,16 @@ export class Tab1Page implements OnInit{
 
     this.loadPlugs();
 
-    this.measurementService.getMeasurements(10, new Date('2020/11/21 10:00:00'), new Date('2024/11/21 12:00:00')).subscribe(
-      (data) => {
-        this.measurements = data;
+    // this.measurementService.getMeasurements(10, new Date('2020/11/21 10:00:00'), new Date('2024/11/21 12:00:00')).subscribe(
+    //   (data) => {
+    //     this.measurements = data;
 
-        this.measurements.forEach(m => { 
-          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
-        });
-        console.log(this.dataWatt)
-      }
-    );
+    //     this.measurements.forEach(m => { 
+    //       this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
+    //     });
+    //     console.log(this.dataWatt)
+    //   }
+    // );
 
     this.measurementService.getTotalPowerUsed().subscribe(
       (data) => {

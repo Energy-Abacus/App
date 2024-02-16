@@ -73,3 +73,48 @@ p{
     width:200px;
     margin-left: 50vw;
 }
+
+.arrow-button-container{
+    display: grid;
+    columns: 3;
+    margin-top: -2vh;
+    width: 90%;
+    padding-left: 5vw;
+    padding-right: 5vw;
+}
+
+.arrow-button{
+    content: "";
+    width: 0;  
+    height: 0;  
+    background-color: transparent;
+}
+
+.left-point{
+    border-top: 7px solid transparent;
+    border-right: 17.5px solid #272B34;
+    border-bottom: 7px solid transparent;
+}
+
+.right-point{
+    border-top: 7px solid transparent;
+    border-left: 17.5px solid #272B34;
+    border-bottom: 7px solid transparent;
+}
+
+.arrow-button-left{
+    grid-column: 1;
+    width: fit-content;
+}
+
+.from-to-container{
+    grid-column: 2;
+    width: fit-content;
+    margin-top: 0.25vh;
+}
+
+.arrow-button-right{
+    grid-column: 3;
+    width: fit-content;
+}
+
