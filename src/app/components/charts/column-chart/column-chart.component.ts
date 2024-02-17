@@ -66,13 +66,18 @@ export class ApexColumnChartComponent implements OnInit {
       
   }
 
+  currentIdx: number = 0;
+  arraySize: number = 0;
+
   ngOnInit(): void {
     this.initGraph();
   }
 
   initGraph() {
+    console.log('newInit');
     var splitNames = [], size = 5;
     var splitValues = [], size = 5;
+    this.arraySize = splitNames.length;
 
     for (let i = 0; i < this.values.length; i += size){
       splitValues.push(this.values.slice(i, i + size));
@@ -83,8 +88,8 @@ export class ApexColumnChartComponent implements OnInit {
       series: [
         {
           name: "Watt:",
-          data: splitValues[0],
-          labels: splitNames[0]
+          data: splitValues[this.currentIdx],
+          labels: splitNames[this.currentIdx]
         }
       ],
       chart: {
@@ -155,7 +160,7 @@ export class ApexColumnChartComponent implements OnInit {
         tooltip:{
           enabled: false
         },
-        categories: splitNames[0],
+        categories: splitNames[this.currentIdx],
         axisBorder: {
           show: true,
           color: '#31333C'
@@ -190,5 +195,11 @@ export class ApexColumnChartComponent implements OnInit {
         enabled: 'false'
       },
     };
+  }
+
+  newInit(idx: number){
+    this.currentIdx = this.currentIdx + idx;
+    console.log('newIdx: '+this.currentIdx);
+    this.initGraph();
   }
 }

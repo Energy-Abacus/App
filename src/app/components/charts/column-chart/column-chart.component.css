@@ -1,0 +1,48 @@
+.arrow-button{
+    content: "";
+    width: 0;  
+    height: 0;  
+    background-color: transparent;
+    margin-top: 0;
+}
+
+.left-point{
+    border-top: 7px solid transparent;
+    border-right: 17.5px solid #343945;
+    border-bottom: 7px solid transparent;
+}
+
+.right-point{
+    border-top: 7px solid transparent;
+    border-left: 17.5px solid #343945;
+    border-bottom: 7px solid transparent;
+}
+
+.arrow-button-container{
+    display: grid;
+    columns: 10;
+    margin-top: -5.5vh;
+    margin-bottom: 2vh;
+    width: 100%;
+    padding-left: 5vw;
+    position: relative;
+    z-index: 1;
+}
+
+.arrow-button-left{
+    grid-column: 1;
+    width: fit-content;
+}
+
+.arrow-button-right{
+    grid-column: 10;
+    width: fit-content;
+    margin-left: 10vw;
+}
+
+.chart-style{
+    
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
