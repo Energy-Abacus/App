@@ -19,7 +19,7 @@
   <div class="arrow-button-left" (click)="newInit(-1)" [ngStyle]="{'display': currentIdx == 0 ? 'none' : 'block'}">
     <button class="arrow-button left-point"></button>
   </div>
-  <div class="arrow-button-right" (click)="newInit(1)">
+  <div class="arrow-button-right" (click)="newInit(1)" [ngStyle]="{'display': currentIdx == (arraySize-1) ? 'none' : 'block'}">
     <button class="arrow-button right-point"></button>
   </div>
 </div>

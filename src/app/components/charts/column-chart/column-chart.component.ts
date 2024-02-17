@@ -74,15 +74,22 @@ export class ApexColumnChartComponent implements OnInit {
   }
 
   initGraph() {
-    console.log('newInit');
     var splitNames = [], size = 5;
     var splitValues = [], size = 5;
-    this.arraySize = splitNames.length;
 
     for (let i = 0; i < this.values.length; i += size){
       splitValues.push(this.values.slice(i, i + size));
       splitNames.push(this.names.slice(i, i + size))
     }
+
+    for(let i = 0; i < 5; i++){
+      if(splitNames[splitNames.length-1][i] == null){
+
+        splitNames[splitNames.length-1][i] = '';
+      }
+    }
+
+    this.arraySize = splitNames.length;
    
     this.chartOptions = {
       series: [
@@ -199,7 +206,6 @@ export class ApexColumnChartComponent implements OnInit {
 
   newInit(idx: number){
     this.currentIdx = this.currentIdx + idx;
-    console.log('newIdx: '+this.currentIdx);
     this.initGraph();
   }
 }
