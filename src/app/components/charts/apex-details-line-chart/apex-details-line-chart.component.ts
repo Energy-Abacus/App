@@ -35,26 +35,22 @@ export type ChartOptions = {
 };
 
 @Component({
-  selector: 'app-apex-line-chart-new',
-  templateUrl: './apex-line-chart-new.component.html',
-  styleUrls: ['./apex-line-chart-new.component.css'],
+  selector: 'app-apex-details-line-chart',
+  templateUrl: './apex-details-line-chart.component.html',
+  styleUrls: ['./apex-details-line-chart.component.css'],
 })
-export class ApexLineChartNewComponent implements OnInit, AfterViewInit {
+export class ApexDetailsLineChartComponent implements OnInit{
 
   constructor(private measurementService: MeasurementsService) {}
-
-  ngAfterViewInit(): void {
-    this.chart.autoUpdateSeries = true;
-  }
 
   @ViewChild('apxchart', { static: false }) chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
   measurements: Measurement[] = [];
-  // @Input() data: number[][] = [];
   @Input() firstColor = '';
   @Input() secondColor = '';
   @Input() _height: any;
+  @Input() plugId: number = 0;
 
   dataWatt: number[][] = [];
 
@@ -68,18 +64,15 @@ export class ApexLineChartNewComponent implements OnInit, AfterViewInit {
   fromDate: Date;
 
   initGraph() {
-    console.log('initGraph called');
-    /*this.measurementService.getMeasurements(10, new Date(this.fromDate), new Date(this.toDate)).subscribe(
+    this.measurementService.getMeasurements(this.plugId, this.fromDate, this.toDate).subscribe(
       (data) => {
         this.measurements = data;
-        console.log(this.measurements);
 
         this.measurements.forEach(m => {
-          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
+          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round(( + Number.EPSILON) * 100) / 100)]);
         });
-        console.log('datawatt'+this.dataWatt)
       }
-    );*/
+    );
 
     this.chartOptions = {
       series: [

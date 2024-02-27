@@ -17,7 +17,7 @@ import { PlugsService } from 'src/app/services/plugs.service';
 })
 export class DetailsPage implements OnInit {
 
-  plug_Id: number | undefined = undefined;
+  plug_Id: number = 0;
   measurements: Measurement[] = [];
   dataTemp: number[][] = [];
   dataWatt: number[][] = [];
@@ -43,8 +43,6 @@ export class DetailsPage implements OnInit {
 
   ngOnInit() {
 
-    this.fromDate = this.addHours(this.toDate, -24);
-
     this.activatedRoute.params.subscribe(
       (params: Params) => {
         this.plug_Id = Number(params['id'])
@@ -61,7 +59,7 @@ export class DetailsPage implements OnInit {
       }
     })
 
-    this.initMeasurements();
+
       
     this.devicetypesService.getDeviceTypes().subscribe(
       (data) => {
@@ -84,65 +82,33 @@ export class DetailsPage implements OnInit {
     );
   }
 
-  initMeasurements(){
-    this.showBothGraphs = false;
-    this.changeGraph(false);
-    this.measurementService.getMeasurements(this.plug_Id!, this.fromDate, this.toDate).subscribe(
-      (data) => {
-        this.measurements = data;
-        console.log(this.measurements)
+  // initMeasurements(){
+  //   this.showBothGraphs = false;
+  //   this.changeGraph(false);
+  //   this.measurementService.getMeasurements(this.plug_Id!, this.fromDate, this.toDate).subscribe(
+  //     (data) => {
+  //       this.measurements = data;
 
-        this.measurements.forEach(m => { 
-          this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]);
-          this.avgTemp += m.temperature;
-          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
-        });
+  //       this.measurements.forEach(m => { 
+  //         this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]);
+  //         this.avgTemp += m.temperature;
+  //         this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
+  //       });
 
-        this.avgTemp = (this.avgTemp/this.dataTemp.length);
-        this.avgTemp = Math.round((this.avgTemp + Number.EPSILON) * 100) / 100;
+  //       this.avgTemp = (this.avgTemp/this.dataTemp.length);
+  //       this.avgTemp = Math.round((this.avgTemp + Number.EPSILON) * 100) / 100;
 
-        this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
+  //       this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
 
-        this.changeGraph(true);
-        this.showBothGraphs = true;
-        this.notifyDataChanged.emit({title: "measurement data changed", id: 1});
-      }
-    );
-  }
-
-  addHours(date: Date, hours: number) {
-    let newDate = new Date(date);
-    newDate.setHours(date.getHours() + hours);
-    return newDate;
-  }
-
-  arrowClicked(hours: number){
-    this.fromDate = this.addHours(this.fromDate, hours);
-    this.toDate = this.addHours(this.toDate, hours);
-
-    this.initMeasurements();
-  }
+  //       this.changeGraph(true);
+  //       this.showBothGraphs = true;
+  //       this.notifyDataChanged.emit({title: "measurement data changed", id: 1});
+  //     }
+    // );
+  // }
 
   changeGraph(show: boolean){
     this.hidden = show;
-  }
-
-  handleChange(ev: any){
-    if(ev.target.value != undefined){
-
-      this.plug.deviceTypes = ev.target.value;
-
-      this.plugService.updatePlug(this.plug).subscribe({
-        next: data => {
-
-          console.log("Update war erfolgreich" + data);
-        },
-        error: err => {
-
-          console.log("Konnte nicht aktualisiert werden!" + err);
-        }
-      })
-    }
   }
 }
 

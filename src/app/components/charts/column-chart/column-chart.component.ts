@@ -46,9 +46,7 @@ export class ApexColumnChartComponent implements OnInit {
   public chartOptions: Partial<ChartOptions> | any;
 
   @Input() _height: any;
-
   
-
   _names: string[] = [];
   get names(): string[] {
       return this._names;
@@ -84,7 +82,6 @@ export class ApexColumnChartComponent implements OnInit {
 
     for(let i = 0; i < 5; i++){
       if(splitNames[splitNames.length-1][i] == null){
-
         splitNames[splitNames.length-1][i] = '';
       }
     }
