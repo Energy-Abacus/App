@@ -56,23 +56,35 @@ export class ApexDetailsLineChartComponent implements OnInit{
 
   ngOnInit(){
     console.log('ngOnInit called');
-    this.fromDate = this.addHours(this.toDate, -24);
     this.initGraph();
   }
 
-  toDate = new Date('2024/02/03 00:00:00');
-  fromDate: Date;
+  toDate: Date = new Date('2024/02/03 00:00:00');
+  fromDate: Date = this.addHours(this.toDate, -24);
 
-  initGraph() {
+
+  getData() {
     this.measurementService.getMeasurements(this.plugId, this.fromDate, this.toDate).subscribe(
       (data) => {
         this.measurements = data;
 
+        this.dataWatt = [];
         this.measurements.forEach(m => {
-          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round(( + Number.EPSILON) * 100) / 100)]);
+          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
         });
+        this.chart.updateSeries([
+          {
+            name: this.infoText(this.firstColor),
+            data: this.dataWatt,
+            color: this.firstColor
+          }
+        ]);
       }
     );
+  }
+
+  initGraph() {
+    this.getData();
 
     this.chartOptions = {
       series: [
@@ -173,7 +185,7 @@ export class ApexDetailsLineChartComponent implements OnInit{
     this.fromDate = this.addHours(this.fromDate, hours);
     this.toDate = this.addHours(this.toDate, hours);
 
-    this.initGraph();
+    this.getData();
   }
 
   getType(firstColor: string) {
