@@ -3,7 +3,7 @@ import { ActivatedRoute, Event, Params, Router } from '@angular/router';
 import { FriendDetails } from 'src/app/models/friend-details.model';
 import { Friendrequest } from 'src/app/models/friendrequest.model';
 import { FriendsService } from 'src/app/services/friends.service';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, LoadingController } from '@ionic/angular';
 
 
 @Component({
@@ -15,10 +15,10 @@ export class ViewProfilePage implements OnInit {
 
   actUserId: string = "";
   friends: FriendDetails[] = [];
-  actUser: FriendDetails | undefined = undefined;
+  actUser: FriendDetails | undefined;
    //action sheet
 
-  constructor(private route: ActivatedRoute, private router: Router,private friendsService: FriendsService, private actionSheetCtrl: ActionSheetController) { }
+  constructor(private route: ActivatedRoute, private router: Router,private friendsService: FriendsService, private actionSheetCtrl: ActionSheetController,private loadingCtrl: LoadingController) { }
   ngOnInit() {
    
     this.route.params.subscribe(
@@ -58,8 +58,15 @@ export class ViewProfilePage implements OnInit {
       await actionSheet.present();
     }
 
-    loadUser(){
+    async loadUser(){
 
+      const loading = await this.loadingCtrl.create({
+
+        message: 'Fetching user'
+
+      });
+
+      loading.present();
       this.friendsService.getAllRequests().subscribe({
         next: data =>{
            this.friends = data;  
@@ -72,12 +79,15 @@ export class ViewProfilePage implements OnInit {
               this.actUser = element;
               console.log("This thing actually works")
               console.log(this.actUser?.picture);
+              console.log(this.actUser?.username)
+              loading.dismiss();
               
            });
         },
         error: err =>{
 
           console.log("User konnte nicht geladen werden!" + err.message)
+          loading.dismiss();
         }
       })
     }
@@ -87,7 +97,7 @@ export class ViewProfilePage implements OnInit {
       this.friendsService.deleteFriend(id!).subscribe({
 
         next: data =>{
-
+  
             console.log("Das Löschen war erfolgreich!" + data)
 
         },
@@ -100,7 +110,7 @@ export class ViewProfilePage implements OnInit {
 
    
 
-
+ 
   }
 
 

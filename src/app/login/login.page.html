@@ -14,22 +14,33 @@
       <ion-card-content class="text">
        
           {{cardText}}  
-          <div [hidden]="isHidden" class="inputs">
-            <div>
-              <label><b>WLAN-SSID</b></label>
-                <ion-input [(ngModel)]="ssid"  label="WLAN-SSID" label-placement="floating"  placeholder="Enter WLAN-SSID"></ion-input>
-            </div>
-            <div>
-              <label><b>WLAN-Password</b></label>
-                <ion-input [(ngModel)]="password"   label="WLAN-Password" type="password" label-placement="floating" placeholder="Enter WLAN-Password">
-                </ion-input>
-            </div>
+          <div [hidden]="isHidden"  class="inputs">
+            <form #form="ngForm" (ngSubmit)="onSubmit()">
+              <div>
+                <label><b>WLAN-SSID</b></label>
+                  <ion-input [(ngModel)]="ssid"  label="WLAN-SSID" label-placement="floating"  placeholder="Enter WLAN-SSID" required></ion-input>
+              </div>
+              <div *ngIf="form.controls[ssid].invalid && (form.controls[ssid].dirty || form.controls[ssid].touched)">
+                <ion-text color="danger" *ngIf="form.controls[ssid]?.errors?.['required']" >SSID is required.</ion-text>
+              </div>
+              <div>
+                <label><b>WLAN-Password</b></label>
+                  <ion-input [(ngModel)]="password"   label="WLAN-Password" type="password" label-placement="floating" placeholder="Enter WLAN-Password" required></ion-input>
+              </div>
+              <div *ngIf="form.controls[password].invalid && (form.controls[password].dirty || form.controls[password].touched)">
+                <ion-text color="danger" *ngIf="form.controls[password]?.errors?.['required']" >Password is required.</ion-text>
+              </div>
+            </form>
           </div>
       </ion-card-content>
     <div class="content-align-right">
       <ion-button [disabled]="isFirstButtonDisabled"  (click)="changeText(-1)" fill="clear"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
-      <ion-button [disabled]="isSecondButtonDisabled" (click)="changeText(+1); showLoading()" fill="clear"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
+      <ion-button [disabled]="isSecondButtonDisabled" type="submit" (click)="changeText(+1); showLoading()" fill="clear"><ion-icon name="chevron-forward-outline"></ion-icon></ion-button>
     </div>
     </ion-card>
+  </div>
+  <div>
+
+    
   </div>
 </ion-content>

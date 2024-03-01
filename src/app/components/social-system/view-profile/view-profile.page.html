@@ -10,25 +10,66 @@
 
 
 <ion-content [fullscreen]="true">
-  <ion-grid  [fixed]="true" >
-    <ion-row>
-      <ion-col class="center">
-          <img src="{{actUser?.picture}}" style="border-radius: 50%; height: 30vw; width: 30vw;  margin-top: 20%; justify-self: center;">
-      </ion-col>
-    </ion-row>
-    <ion-row >
-      <ion-col class="center">
-        <ion-text>
-          <h2 style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">{{actUser?.username}}</h2>
-        </ion-text>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="center">
-        <ion-button (click)="presentActionSheet()">Followed</ion-button>
-        <ion-button>Compare</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="content">
+    <div class="picture">
+      <div>
+        <img class="profile" src="{{actUser?.picture}}">
+      </div>
+      <div class="profile-name">
+        <h1>{{actUser?.username}}</h1>
+      </div>
+      </div>
+      <div class="buttons">
+        <button class="button"  (click)="presentActionSheet()">Followed</button>
+        <button class="button">Compare</button>
+      </div>
+      <div class="stats-sheet">
+        <div class="stats-align">
+          <ion-icon name="trophy-outline"></ion-icon>
+          <p class="stats-name">LOCAL RANK</p>
+          <p class="stats">#50</p>
+        </div>
+        <div class="stats-align">
+          <ion-icon name="power-outline"></ion-icon>
+          <p class="stats-name">AVG. ENERGY</p>
+          <p class="stats">500 kWh</p>
+        </div>
+        <div class="stats-align">
+          <ion-icon name="trending-up-outline"></ion-icon>
+          <p class="stats-name">TOTAL ENERGY</p>
+          <p class="stats">1000 kWh</p>        
+       </div>
+      </div>
+      <div class="plugs-content">
+        <div class="plugs-list">
+          <div class="">
+            <label>List of devices</label>
+          </div>
+          <ul>
+            <li>
+              <span>Washing mashine</span>
+              <button class="plug-button">View</button>
+            </li>
+            <li>
+              <span>Dryer</span>
+              <button class="plug-button">View</button>
+            </li>
+            <li>
+              <span>Television</span>
+              <button class="plug-button">View</button>
+            </li>
+            <li>
+              <span>Fridge</span>
+              <button class="plug-button">View</button>
+            </li>
+            <li>
+              <span>PC</span>
+              <button class="plug-button">View</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+   
 </ion-content>
 

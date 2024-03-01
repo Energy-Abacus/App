@@ -3,6 +3,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { stat } from 'fs';
 import { PlugsService } from 'src/app/services/plugs.service';
 import { LoadingController } from '@ionic/angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,11 +13,13 @@ import { LoadingController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
+ 
   public progress = 0;
   isFirstButtonDisabled: boolean = true;
   isSecondButtonDisabled: boolean = false;
   isHidden: boolean = true;
   isInvalid: boolean = false;
+  form: FormGroup;
 
   private _ssid: string = "";
   public get ssid(): string {
@@ -78,11 +81,39 @@ export class LoginPage implements OnInit {
       
     }
 
+    if(this.isTutorialDone){
+
+      const loading = await this.loadingCtrl.create({
+        message: "Posting to hub....",
+
+
+      });
+      await loading.present();
+
+      (await this.plugService.postToHub("").subscribe({
+        next: data =>{
+          console.log("Verbindung war erfolgreich!" + data);
+          loading.dismiss();
+        },
+        error: err =>{
+
+          this.errorMessage ="Could not connect to hub!"+ err;
+
+          loading.dismiss();
+          
+        }
+      }))
+
+    }
+
     
    
   }
 
-  constructor(private plugService: PlugsService, private loadingCtrl: LoadingController) { }
+  constructor(private plugService: PlugsService, private loadingCtrl: LoadingController,private formBuilder: FormBuilder) {
+ 
+
+   }
 
   
   changeText(count: number) {
@@ -169,6 +200,12 @@ export class LoginPage implements OnInit {
     }
   }
 
- 
+  onSubmit(){
+
+    const formData ={
+      ssid: this.ssid,
+      password: this.password
+    }
+  }
   
 }

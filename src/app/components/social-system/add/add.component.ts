@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { LoadingController } from '@ionic/angular';
 import { profile } from 'console';
 import { FriendDetails } from 'src/app/models/friend-details.model';
 import { Friendrequest } from 'src/app/models/friendrequest.model';
@@ -26,7 +27,7 @@ export class AddComponent implements OnInit {
     this._filter = value;
     this.loadFilteredUsers(this.filter);
   }
-  constructor(private friendsService: FriendsService, private auth: AuthService) { }
+  constructor(private friendsService: FriendsService, private auth: AuthService,private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     
@@ -58,15 +59,25 @@ export class AddComponent implements OnInit {
 
   }
 
-  loadFriends(){
+  async loadFriends(){
+    const loading = await this.loadingCtrl.create({
+
+      message: 'Fetching data'
+    });
+
+    loading.present();
+
 
     this.friendsService.getAllRequests().subscribe({
       next: data =>{
         
         this.currentFriends = data;
+        loading.dismiss();
       },
       error: err =>{
         console.log(err.message);
+
+        loading.dismiss();
       }
     })
   }

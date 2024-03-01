@@ -1,11 +1,9 @@
-
-<ion-list  *ngFor="let item of friends">
-    <ion-item lines="none">
-        <img src="{{item.picture}}" style="width: 13vw; height: 13vw; border-radius: 50%; ">&nbsp;
-        &nbsp;<ion-label>  {{item.username}}</ion-label>
-        <ion-button style="width: 120px; height:30px; padding-right: 10px;" (click)="buttonClicked(item.userId)">View Profile</ion-button>
-    </ion-item>
-</ion-list>
-
-
+<div>
+    <ul *ngFor="let item of friends">
+        <li (click)="buttonClicked(item.userId)">
+            <img src="{{item.picture}}">
+            <span class="name">Testname</span>
+        </li>
+    </ul>
+</div>
 
