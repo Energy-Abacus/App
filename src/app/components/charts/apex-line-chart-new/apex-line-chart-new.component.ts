@@ -17,6 +17,7 @@ import * as ApexCharts from 'apexcharts';
 import { Color } from 'chart.js';
 import { first } from 'rxjs';
 import { MeasurementsService } from 'src/app/services/measurements.service';
+import { GetWattSumDto } from 'src/app/models/measurement/get-watt-sum-dto';
 
 export type ChartOptions = {
   tooltip: ApexTooltip
@@ -50,7 +51,7 @@ export class ApexLineChartNewComponent implements OnInit, AfterViewInit {
   @ViewChild('apxchart', { static: false }) chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  measurements: Measurement[] = [];
+  measurements: GetWattSumDto[] = [];
   // @Input() data: number[][] = [];
   @Input() firstColor = '';
   @Input() secondColor = '';
@@ -80,6 +81,27 @@ export class ApexLineChartNewComponent implements OnInit, AfterViewInit {
         console.log('datawatt'+this.dataWatt)
       }
     );*/
+
+    this.measurementService.getWattSum(new Date(this.fromDate), new Date(this.toDate)).subscribe(
+      (data) => {
+        this.measurements = data;
+        this.dataWatt = [];
+        data.forEach(m => {
+          this.dataWatt.push([new Date(m.time).getTime(), (Math.round((m.wattPowerSum + Number.EPSILON) * 100) / 100)]);
+        });
+        // console.log('datawatt'+this.dataWatt)
+
+        this.chart.updateSeries(
+          [
+            {
+              name: this.infoText(this.firstColor),
+              data: this.dataWatt,
+              color: this.firstColor
+            }
+          ]
+        );
+      }
+    );
 
     this.chartOptions = {
       series: [

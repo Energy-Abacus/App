@@ -5,6 +5,7 @@ import { from, map, mergeMap } from 'rxjs';
 import { DatePipe, formatDate } from '@angular/common';
 import { Measurement } from '../models/measurement/measurement.model';
 import { Plug } from '../models/measurement/plug.model';
+import { GetWattSumDto } from '../models/measurement/get-watt-sum-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,16 @@ export class MeasurementsService {
 
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<Measurement[]>(this.url,{
+        headers: {'Authorization' : 'Bearer ' + token} , params: httpParams
+      }))
+    )
+  }
+
+  getWattSum(paramFrom: Date, paramTo: Date) {
+    let httpParams = new HttpParams({fromObject: {from: paramFrom.getTime() / 1000 , to: paramTo.getTime() / 1000}});
+
+    return this.auth.getAccessTokenSilently().pipe(
+      mergeMap(token => this.http.get<GetWattSumDto[]>(this.url + "/sum-watt",{
         headers: {'Authorization' : 'Bearer ' + token} , params: httpParams
       }))
     )

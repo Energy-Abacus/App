@@ -54,35 +54,23 @@ export class ApexDetailsLineChartComponent implements OnInit{
   @Input() plugId: number = 0;
 
   dataWatt: number[][] = [];
-  toDate = new Date('2024/02/03 00:00:00');
-  fromDate: Date;
+  // toDate = new Date('2024/02/03 00:00:00');
+  // fromDate: Date;
   dataTemp: number[][] = [];
   totalWatt: number = 0;
   avgTemp: number = 0;
 
   ngOnInit(){
     console.log('ngOnInit called');
-<<<<<<< HEAD
-    this.fromDate = this.addHours(this.toDate, -24);
-    console.log(this.fromDate +' '+this.toDate);
-=======
->>>>>>> c29bc1bde8f7ab29d471915cb76e2eba3ca2bccb
     this.initGraph();
     this.showGraph();
   }
 
-<<<<<<< HEAD
-  initGraph() {
-
-    this.dataWatt = [];
-
-=======
   toDate: Date = new Date('2024/02/03 00:00:00');
   fromDate: Date = this.addHours(this.toDate, -24);
 
 
   getData() {
->>>>>>> c29bc1bde8f7ab29d471915cb76e2eba3ca2bccb
     this.measurementService.getMeasurements(this.plugId, this.fromDate, this.toDate).subscribe(
       (data) => {
         this.measurements = data;
@@ -91,11 +79,6 @@ export class ApexDetailsLineChartComponent implements OnInit{
         this.measurements.forEach(m => {
           this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
         });
-<<<<<<< HEAD
-
-        this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
-
-=======
         this.chart.updateSeries([
           {
             name: this.infoText(this.firstColor),
@@ -103,7 +86,6 @@ export class ApexDetailsLineChartComponent implements OnInit{
             color: this.firstColor
           }
         ]);
->>>>>>> c29bc1bde8f7ab29d471915cb76e2eba3ca2bccb
       }
     );
   }
