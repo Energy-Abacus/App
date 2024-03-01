@@ -13,6 +13,7 @@ import { LoginPage } from './login/login.page';
 import { LoginButtonComponent } from './components/login/login-button/login-button.component';
 import { ApexLineChartNewComponent } from './components/charts/apex-line-chart-new/apex-line-chart-new.component';
 import { ApexDetailsLineChartComponent } from './components/charts/apex-details-line-chart/apex-details-line-chart.component';
+import { ApexDetailsTermperatureComponent } from './components/charts/apex-details-temperature/apex-details-temperature.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ApexDetailsLineChartComponent } from './components/charts/apex-details-
     ApexSplineChartComponent,
     ApexColumnChartComponent,
     ApexPieChartComponent,
-    ApexDetailsLineChartComponent
+    ApexDetailsLineChartComponent,
+    ApexDetailsTermperatureComponent
   ],
   declarations: [
     ComparisonComponent,
@@ -39,7 +41,8 @@ import { ApexDetailsLineChartComponent } from './components/charts/apex-details-
     ApexSplineChartComponent,
     ApexColumnChartComponent,
     ApexPieChartComponent,
-    ApexDetailsLineChartComponent
+    ApexDetailsLineChartComponent,
+    ApexDetailsTermperatureComponent
   ]
 })
 export class SharedModule {}

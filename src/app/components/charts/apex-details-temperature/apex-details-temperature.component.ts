@@ -36,11 +36,11 @@ export type ChartOptions = {
 };
 
 @Component({
-  selector: 'app-apex-details-line-chart',
-  templateUrl: './apex-details-line-chart.component.html',
-  styleUrls: ['./apex-details-line-chart.component.css'],
+  selector: 'app-apex-details-temperature',
+  templateUrl: './apex-details-temperature.component.html',
+  styleUrls: ['./apex-details-temperature.component.css'],
 })
-export class ApexDetailsLineChartComponent implements OnInit{
+export class ApexDetailsTermperatureComponent implements OnInit{
 
   constructor(private measurementService: MeasurementsService) {}
 
@@ -53,12 +53,11 @@ export class ApexDetailsLineChartComponent implements OnInit{
   @Input() _height: any;
   @Input() plugId: number = 0;
 
-  dataWatt: number[][] = [];
   toDate = new Date('2024/02/03 00:00:00');
   fromDate: Date;
   dataTemp: number[][] = [];
-  totalWatt: number = 0;
   avgTemp: number = 0;
+  totalWatt: number = 0;
 
   ngOnInit(){
     console.log('ngOnInit called');
@@ -70,18 +69,17 @@ export class ApexDetailsLineChartComponent implements OnInit{
 
   initGraph() {
 
-    this.dataWatt = [];
+    this.dataTemp = [];
 
     this.measurementService.getMeasurements(this.plugId, this.fromDate, this.toDate).subscribe(
       (data) => {
         this.measurements = data;
 
         this.measurements.forEach(m => {
-          this.dataWatt.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
+          this.dataTemp.push([new Date(m.timeStamp).getTime(), (Math.round((m.temperature + Number.EPSILON) * 100) / 100)]);
         });
 
         this.totalWatt = this.measurements[this.measurements.length - 1].totalPowerUsed;
-
       }
     );
 
@@ -93,7 +91,7 @@ export class ApexDetailsLineChartComponent implements OnInit{
       series: [
         {
           name: this.infoText(this.firstColor),
-          data: this.dataWatt,
+          data: this.dataTemp,
           color: this.firstColor
         }
       ],

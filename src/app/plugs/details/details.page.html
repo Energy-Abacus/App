@@ -9,11 +9,11 @@
   </div>
   <div class="select-graph">
     <div class="grap-type">
-      <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden && !showBothGraphs}">TEMPERATURE</b></h6></button>
+      <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hidden}">TEMPERATURE</b></h6></button>
     </div>
 
     <div class="grap-type">
-      <button class="btn-bg" (click)="changeGraph(true)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': !hidden && !showBothGraphs}">WATT POWER</b></h6></button>
+      <button class="btn-bg" (click)="changeGraph(true)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': !hidden}">WATT POWER</b></h6></button>
     </div>
   </div>
 
@@ -25,7 +25,7 @@
 
   <ng-container *ngIf="!hidden">
     <div class="chart-container">
-      <app-apex-details-line-chart [_height]="'auto'" [plugId] = plug_Id [firstColor]= "'#FF5F1F'"></app-apex-details-line-chart>
+      <app-apex-details-temperature [_height]="'auto'" [plugId] = plug_Id [firstColor]= "'#FF5F1F'"></app-apex-details-temperature>
     </div>
   </ng-container>
 
@@ -55,7 +55,7 @@
 
   <div class="sector">
     <label class="text-height"><b>totalPower:</b></label> 
-    <h6><b>{{totalWatt}} W</b></h6>
+    <h6><b>{{totalPowerPlug}}</b></h6>
   </div>
 
   <div class="sector">

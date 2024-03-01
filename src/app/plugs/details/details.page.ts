@@ -2,6 +2,8 @@ import { JsonPipe } from '@angular/common';
 import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { error } from 'console';
+import { ApexDetailsLineChartComponent } from 'src/app/components/charts/apex-details-line-chart/apex-details-line-chart.component';
+import { ApexDetailsTermperatureComponent } from 'src/app/components/charts/apex-details-temperature/apex-details-temperature.component';
 import { DeviceType } from 'src/app/models/device-type.model';
 import { Measurement } from 'src/app/models/measurement/measurement.model';
 import { Plug } from 'src/app/models/measurement/plug.model';
@@ -20,26 +22,25 @@ export class DetailsPage implements OnInit {
   plug_Id: number = 0;
   measurements: Measurement[] = [];
   dataTemp: number[][] = [];
-  dataWatt: number[][] = [];
-  totalWatt: number = 0;
-  hidden: boolean = false;
   avgTemp: number = 0;
+  dataWatt: number[][] = [];
+  hidden: boolean = true;
+  totalWatt: number = 0;
   deviceTypes: DeviceType[] = [];
   currentDeviceType: DeviceType | undefined;
   totalPowerPlug: number = 0;
   toDate = new Date('2024/02/03 00:00:00');
   fromDate: Date;
 
+  @ViewChild(ApexDetailsLineChartComponent) lineGraph: ApexDetailsLineChartComponent
+  @ViewChild(ApexDetailsTermperatureComponent) lineTempGraph: ApexDetailsLineChartComponent
+
   plugDto: PlugDto = {name: "", outletIdentifier: "", hubId: 0, deviceTypeIds: []};
-
-
   plug: Plug  = {name: "", id: 0, powerOn: false, outletIdentifier: "", hubId: 0, deviceTypes: []};
 
   notifyDataChanged: EventEmitter<any> = new EventEmitter<any>()
 
-  showBothGraphs: boolean;
-
-  constructor(private activatedRoute: ActivatedRoute, private measurementService: MeasurementsService, private plugService: PlugsService,private devicetypesService: DevicetypesService) { }
+  constructor(private activatedRoute: ActivatedRoute, private measurementService: MeasurementsService, private plugService: PlugsService,private devicetypesService: DevicetypesService) {}
 
   ngOnInit() {
 
@@ -109,6 +110,7 @@ export class DetailsPage implements OnInit {
 
   changeGraph(show: boolean){
     this.hidden = show;
+    this.totalWatt = this.lineGraph?.totalWatt ?? this.lineTempGraph?.totalWatt;
   }
 }
 

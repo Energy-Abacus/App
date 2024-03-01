@@ -1,0 +1,29 @@
+<apx-chart #apxchart
+  [series]="chartOptions.series!"
+  [autoUpdateSeries]="true"
+  [chart]="chartOptions.chart!"
+  [xaxis]="chartOptions.xaxis!"
+  [yaxis]="chartOptions.yaxis!"
+  [dataLabels]="chartOptions.dataLabels!"
+  [grid]="chartOptions.grid!"
+  [stroke]="chartOptions.stroke!"
+  [title]="chartOptions.title!"
+  [colors]="chartOptions.colors!"
+  [fill]="chartOptions.fill!"
+  [legend]="chartOptions.legend!"
+  [tooltip]="chartOptions.tooltip!"
+></apx-chart>
+
+<div class="arrow-button-container">
+  <div class="arrow-button-left">
+    <button class="arrow-button left-point" (click)="arrowClicked(-24)"></button>
+  </div>
+  <div class="from-to-container">
+    <label style="margin-right: 2vw;">{{fromDate.toLocaleDateString()}}</label>
+    <label>-</label>
+    <label style="margin-left: 2vw;">{{toDate.toLocaleDateString()}}</label>
+  </div>
+  <div class="arrow-button-right">
+    <button class="arrow-button right-point" (click)="arrowClicked(24)"></button>
+  </div>
+</div>
