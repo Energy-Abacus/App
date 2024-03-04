@@ -24,7 +24,7 @@ export class PlugsService {
     });
     return this.auth.getAccessTokenSilently().pipe(
       mergeMap(token => this.http.get<Plug[]>(this.url,{
-        headers: {'Authorization' : 'Bearer ' + token} , params: {hubId: hubId}
+        headers: {'Authorization' : 'Bearer ' + token} , params: {hubId: hubId, loadMeasurements: false}
       }))
     )
   }

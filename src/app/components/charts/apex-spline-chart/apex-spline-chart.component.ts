@@ -38,7 +38,6 @@ export class ApexSplineChartComponent implements OnInit{
 
   dataWattFirst: number[][] = [];
   dataWattSecond: number[][] = [];
-  plugMeasurements: Measurement[] = [];
   avgWattFirst: number;
   avgWattSecond: number;
   @Input() firstColor: string = '';
@@ -47,22 +46,23 @@ export class ApexSplineChartComponent implements OnInit{
   @Input() secondPlug_Id: number;
 
   ngOnInit(): void {
+    this.showGraph();
     this.getData();
   }
 
-  toDate: Date = new Date('2024/02/03 00:00:00');
+  toDate: Date = new Date('2024/02/02 00:00:00');
   fromDate: Date = this.addHours(this.toDate, -24);
 
   constructor(private measurementService: MeasurementsService){}
 
   getData(){
+    this.dataWattFirst = [];
+    this.dataWattSecond = [];
+
     this.measurementService.getMeasurements(this.firstPlug_Id!, this.fromDate, this.toDate).subscribe(
       (data) => {
-        this.dataWattFirst = [];
-        this.plugMeasurements = [];
-
-        this.plugMeasurements = data;
-        this.plugMeasurements.forEach(m => { 
+        const plugMeasurements = data;
+        plugMeasurements.forEach(m => { 
 
           this.avgWattFirst += m.wattPower;
           
@@ -70,17 +70,15 @@ export class ApexSplineChartComponent implements OnInit{
         });
         this.avgWattFirst = (this.avgWattFirst/this.dataWattFirst.length);
         this.avgWattFirst = Math.round((this.avgWattFirst + Number.EPSILON) * 100) / 100;
+        this.updateSeries();
       }
     );
 
     this.measurementService.getMeasurements(this.secondPlug_Id!, this.fromDate, this.toDate).subscribe(
       (data) => {
-        this.dataWattSecond = [];
-        this.plugMeasurements = [];
+        const plugMeasurements = data;
 
-        this.plugMeasurements = data;
-
-          this.plugMeasurements.forEach(m => { 
+        plugMeasurements.forEach(m => { 
 
           this.avgWattSecond += m.wattPower;
           
@@ -89,10 +87,29 @@ export class ApexSplineChartComponent implements OnInit{
 
         this.avgWattSecond = (this.avgWattSecond/this.dataWattSecond.length);
         this.avgWattSecond = Math.round((this.avgWattSecond + Number.EPSILON) * 100) / 100;
+        this.updateSeries();
       }
     );
+  }
 
-    this.showGraph();
+  updateSeries() {
+
+    if (this.dataWattFirst.length === 0 || this.dataWattSecond.length === 0) {
+      return;
+    }
+
+    this.chart.updateSeries([
+      {
+        name: "user 1",
+        data: this.dataWattFirst,
+        color: this.firstColor,
+      },
+      {
+        name: "user 2",
+        data: this.dataWattSecond,
+        color: this.secondColor
+      }
+    ]);
   }
 
   showGraph(){
