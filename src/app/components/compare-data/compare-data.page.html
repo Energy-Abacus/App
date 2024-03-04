@@ -1,58 +1,25 @@
 <ion-content>
   <h5 class="text-margin"><b>COMPARISON</b></h5>
-  <div class="select-graph">
-    <div class="graph-type">
-      <button class="btn-bg" (click)="changeGraph(false)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': hiddenGraphs}">TEMPERATURE</b></h6></button>
-    </div>
 
-    <div class="graph-type">
-      <button class="btn-bg" (click)="changeGraph(true)"><h6 class="text-margin"><b [ngClass]="{'greyed-out': !hiddenGraphs}">WATT POWER</b></h6></button>
-    </div>
+  <div [ngStyle]="{'display': (firstPlug_Id == 0 && secondPlug_Id == 0) ? 'none' : 'block'}">
+    <app-apex-spline-chart [firstPlug_Id]="firstPlug_Id" [secondPlug_Id]="secondPlug_Id" [firstColor]="'#6CD3EB'" [secondColor]="'#7d12ff'"></app-apex-spline-chart>
   </div>
-
-  <ng-container *ngIf= !hiddenGraphs>
-    <app-apex-spline-chart [dataFirst]="dataTempFirst" [dataSecond]="dataTempSecond" [firstColor]="'#FF5F1F'" [secondColor]="'#FF3131'"></app-apex-spline-chart>
-  </ng-container>
-  <ng-container *ngIf= hiddenGraphs>
-    <app-apex-spline-chart [dataFirst]="dataWattFirst" [dataSecond]="dataWattSecond" [firstColor]="'#6CD3EB'" [secondColor]="'#7d12ff'"></app-apex-spline-chart>
-  </ng-container>
   
   
-  <ng-container *ngIf="!hiddenGraphs">
-    <div class="sector">
-      <label class="text-height"><b>Avg Temp:</b></label> 
-      <div class="select-graph">
-        
-        <div class="select-graph">
-          <span class="dot-red1" ></span>
-          <h6 class=""> {{avgTempFirst}} °C</h6>
-        </div>
-
-        <div class="select-graph">
-          <span class="dot-red2" [ngClass]="{'background-color: firstColor': hiddenGraphs}"></span>
-        <h6 class=""> {{avgTempSecond}} °C</h6>
-        </div>
-      </div>
+  <div class="sector">
+    <label class="text-height"><b>Avg power:</b></label> 
+    <div class="select-graph">
       
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="hiddenGraphs">
-    <div class="sector">
-      <label class="text-height"><b>Avg power:</b></label> 
       <div class="select-graph">
-        
-        <div class="select-graph">
-          <span class="dot-blue" ></span>
-          <h6 class=""> {{avgWattFirst}} W</h6>
-        </div>
-
-        <div class="select-graph">
-          <span class="dot-green" [ngClass]="{'background-color: firstColor': hiddenGraphs}"></span>
-        <h6 class=""> {{avgWattSecond}} W</h6>
-        </div>
+        <span class="dot-blue" ></span>
+        <h6 class=""> {{avgWattFirst}} W</h6>
       </div>
-      
+
+      <div class="select-graph">
+        <span class="dot-green"></span>
+      <h6 class=""> {{avgWattSecond}} W</h6>
+      </div>
     </div>
-  </ng-container>
+    
+  </div>
 </ion-content>

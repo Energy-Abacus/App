@@ -1,3 +1,54 @@
 #chart {
-    margin-left: -15px;
+    max-width: 650px;
+    min-width: 100vw;
+    margin-top: -2vh;
+  }
+  
+.div{
+  text-align: center;
+}
+
+.arrow-button-container{
+  display: grid;
+  columns: 3;
+  margin-top: -3vh;
+  margin-left: 1.3em;
+  width: 90%;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.arrow-button{
+  content: "";
+  width: 0;  
+  height: 0;  
+  background-color: transparent;
+}
+
+.left-point{
+  border-top: 7px solid transparent;
+  border-right: 17.5px solid #343945;
+  border-bottom: 7px solid transparent;
+}
+
+.right-point{
+  border-top: 7px solid transparent;
+  border-left: 17.5px solid #343945;
+  border-bottom: 7px solid transparent;
+}
+
+.arrow-button-left{
+  grid-column: 1;
+  width: fit-content;
+}
+
+.from-to-container{
+  grid-column: 2;
+  width: fit-content;
+  margin-top: 0.25vh;
+}
+
+.arrow-button-right{
+  grid-column: 3;
+  width: fit-content;
 }

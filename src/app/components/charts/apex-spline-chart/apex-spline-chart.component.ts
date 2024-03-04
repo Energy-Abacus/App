@@ -9,6 +9,8 @@ import {
   ApexTooltip,
   ApexStroke
 } from "ng-apexcharts";
+import { Measurement } from 'src/app/models/measurement/measurement.model';
+import { MeasurementsService } from 'src/app/services/measurements.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -31,29 +33,80 @@ export type ChartOptions = {
 })
 export class ApexSplineChartComponent implements OnInit{
 
-  ngOnInit(): void {
-    this.initGraph();
-  }
-
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions> | any;
 
-  @Input() dataFirst: number[][] = [];
-  @Input() dataSecond: number[][] = [];
+  dataWattFirst: number[][] = [];
+  dataWattSecond: number[][] = [];
+  plugMeasurements: Measurement[] = [];
+  avgWattFirst: number;
+  avgWattSecond: number;
   @Input() firstColor: string = '';
   @Input() secondColor: string = '';
+  @Input() firstPlug_Id: number;
+  @Input() secondPlug_Id: number;
 
-  initGraph(){
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  toDate: Date = new Date('2024/02/03 00:00:00');
+  fromDate: Date = this.addHours(this.toDate, -24);
+
+  constructor(private measurementService: MeasurementsService){}
+
+  getData(){
+    this.measurementService.getMeasurements(this.firstPlug_Id!, this.fromDate, this.toDate).subscribe(
+      (data) => {
+        this.dataWattFirst = [];
+        this.plugMeasurements = [];
+
+        this.plugMeasurements = data;
+        this.plugMeasurements.forEach(m => { 
+
+          this.avgWattFirst += m.wattPower;
+          
+          this.dataWattFirst.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
+        });
+        this.avgWattFirst = (this.avgWattFirst/this.dataWattFirst.length);
+        this.avgWattFirst = Math.round((this.avgWattFirst + Number.EPSILON) * 100) / 100;
+      }
+    );
+
+    this.measurementService.getMeasurements(this.secondPlug_Id!, this.fromDate, this.toDate).subscribe(
+      (data) => {
+        this.dataWattSecond = [];
+        this.plugMeasurements = [];
+
+        this.plugMeasurements = data;
+
+          this.plugMeasurements.forEach(m => { 
+
+          this.avgWattSecond += m.wattPower;
+          
+          this.dataWattSecond.push([new Date(m.timeStamp).getTime(), (Math.round((m.wattPower + Number.EPSILON) * 100) / 100)]);
+        });
+
+        this.avgWattSecond = (this.avgWattSecond/this.dataWattSecond.length);
+        this.avgWattSecond = Math.round((this.avgWattSecond + Number.EPSILON) * 100) / 100;
+      }
+    );
+
+    this.showGraph();
+  }
+
+  showGraph(){
+
     this.chartOptions = {
       series: [
         {
           name: "user 1",
-          data: this.dataFirst,
+          data: this.dataWattFirst,
           color: this.firstColor,
         },
         {
           name: "user 2",
-          data: this.dataSecond,
+          data: this.dataWattSecond,
           color: this.secondColor
         }
       ],
@@ -125,6 +178,19 @@ export class ApexSplineChartComponent implements OnInit{
         borderColor: "#31333C"
       },
     }
+  }
+
+  addHours(date: Date, hours: number) {
+    let newDate = new Date(date);
+    newDate.setHours(date.getHours() + hours);
+    return newDate;
+  }
+  
+  arrowClicked(hours: number){
+    this.fromDate = this.addHours(this.fromDate, hours);
+    this.toDate = this.addHours(this.toDate, hours);
+  
+    this.getData();
   }
 } 
 

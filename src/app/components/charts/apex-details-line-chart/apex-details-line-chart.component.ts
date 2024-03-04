@@ -69,7 +69,6 @@ export class ApexDetailsLineChartComponent implements OnInit{
   toDate: Date = new Date('2024/02/03 00:00:00');
   fromDate: Date = this.addHours(this.toDate, -24);
 
-
   getData() {
     this.measurementService.getMeasurements(this.plugId, this.fromDate, this.toDate).subscribe(
       (data) => {

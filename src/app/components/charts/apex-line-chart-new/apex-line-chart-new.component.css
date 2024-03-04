@@ -1,6 +1,7 @@
 #chart {
     max-width: 650px;
     min-width: 100vw;
+    margin-top: -2vh;
   }
   
 .div{
@@ -10,7 +11,8 @@
 .arrow-button-container{
   display: grid;
   columns: 3;
-  margin-top: -2vh;
+  margin-top: -3vh;
+  margin-left: 1.3em;
   width: 90%;
   padding-left: 5vw;
   padding-right: 5vw;
@@ -25,13 +27,13 @@
 
 .left-point{
   border-top: 7px solid transparent;
-  border-right: 17.5px solid #272B34;
+  border-right: 17.5px solid #343945;
   border-bottom: 7px solid transparent;
 }
 
 .right-point{
   border-top: 7px solid transparent;
-  border-left: 17.5px solid #272B34;
+  border-left: 17.5px solid #343945;
   border-bottom: 7px solid transparent;
 }
 
