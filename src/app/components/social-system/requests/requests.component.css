@@ -1,0 +1,58 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.content{
+
+    height: 100vh;
+    width: 100%;
+    
+}
+
+ul{
+    position: relative;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+ul li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1B1B1B;
+    border-radius: 5px;
+    height: 6vh;
+    margin: 5px 0px;
+}
+.accept{
+
+    background-color: green;
+    width: 6.5vh;
+    height: 2.5vh;
+    border-radius: 5px;
+    margin-left: 30px;
+
+}
+
+span{
+    font-size: 18px;
+    
+}
+
+.decline{
+
+    background-color: red;
+    width: 6.5vh;
+    height: 2.5vh;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+img{
+
+    border-radius: 50%;
+    width: 45px;
+    margin: 0px 10px;
+}

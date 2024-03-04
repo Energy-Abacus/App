@@ -18,3 +18,4 @@ import { ViewProfilePage } from './view-profile.page';
   declarations: [ViewProfilePage]
 })
 export class ViewProfilePageModule {}
+
