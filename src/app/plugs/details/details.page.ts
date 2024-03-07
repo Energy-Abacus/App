@@ -52,7 +52,7 @@ export class DetailsPage implements OnInit {
 
     this.measurementService.getTotalPowerPlug(this.plug_Id!).subscribe({
       next: data => {
-        this.totalPowerPlug = data;
+        this.totalPowerPlug = (Math.round((data + Number.EPSILON) * 100) / 100);
       },
       error: err =>{
 

@@ -161,3 +161,10 @@ ion-modal {
 .plug-detail-button{
   background-color: transparent;
 }
+
+.plugs-list{
+  overflow: auto;
+  overflow-y: scroll;
+}
+
+ion-modal{--overflow-y: scroll}

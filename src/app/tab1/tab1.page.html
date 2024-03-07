@@ -4,7 +4,7 @@
     <h1 class="foreground"><b>ENERGY ABACUS</b></h1>
   </div>
 
-  <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">PLUG DISTRIBUTION</h5>
+  <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">PLUGS: WATT USAGE</h5>
   <div class="column-chart-outer">
     <div class="column-chart-inner">
       <app-apex-column-chart *ngIf="columnDataValues.length > 0" [names]="columnDataNames" [values]="columnDataValues"></app-apex-column-chart>
@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">WATT USAGE</h5>
+  <h5 class="text-format" style="margin-top: 2vh; margin-bottom: -2vh;">TOTAL WATT USAGE</h5>
   <div class="line-chart-outer">
     <div class="div">
       <app-apex-line-chart-new [firstColor]="'#6CD3EB'" [_height]="150"></app-apex-line-chart-new>
@@ -36,24 +36,25 @@
     </div>
     <div style="text-align: center; margin-top: 5vh">
       <h3 style="font-weight: bold; color: #BBBBBB; text-shadow:#BBBBBB 1px 0 10px;;">COUNT</h3>
-      <h4 style="font-weight: bold; color: #BBBBBB; text-shadow:#BBBBBB 1px 0 10px;; margin-top: 2vh;">4</h4>
+      <h4 style="font-weight: bold; color: #BBBBBB; text-shadow:#BBBBBB 1px 0 10px;; margin-top: 2vh;">{{plugs.length}}</h4>
     </div>
     <div style="text-align: center; margin-top: 5vh">
       <h3 style="font-weight: bold; color: #5afa72; text-shadow:#5afa72 1px 0 10px;;">ACTIVE</h3>
-      <h4 style="font-weight: bold; color: #BBBBBB; text-shadow:#BBBBBB 1px 0 10px;; margin-top: 2vh;">4</h4>
+      <h4 style="font-weight: bold; color: #BBBBBB; text-shadow:#BBBBBB 1px 0 10px;; margin-top: 2vh;">0</h4>
     </div>
   </div>
 
   <ion-modal trigger="open-plugs" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
     <ng-template>
-        
-        <ion-list>
-          <div *ngFor="let plug of plugs">
-            <ion-item>
-              <button class="plug-detail-button" [routerLink]="['../plugs/details/' + plug.id]" routerLinkActive="router-link-active">{{plug.name}}</button>
-            </ion-item>
-          </div>
-        </ion-list>
+        <div class="plugs-list">
+          <ion-list>
+            <ng-container *ngFor="let plug of plugs">
+              <ion-item>
+                <button class="plug-detail-button" [routerLink]="['../plugs/details/' + plug.id]" routerLinkActive="router-link-active">{{plug.name}}</button>
+              </ion-item>
+            </ng-container>
+          </ion-list>
+        </div>
     </ng-template>
   </ion-modal>
    

@@ -3,9 +3,6 @@
 
   
   <div class="select">
-      <ion-select yclass="always-flip"  label="Device type" placeholder="Choose device type" >
-        <ion-select-option *ngFor="let devicetype of deviceTypes" [value]="devicetype">{{devicetype.name}}</ion-select-option>
-      </ion-select>
   </div>
   <div class="select-graph">
     <div class="grap-type">
@@ -40,26 +37,26 @@
 
     <ng-container *ngIf= plug.powerOn>
       <div class="graph-select">
-        <span class="dot-green"></span>
-        <h6><b>On</b></h6>
+        <span class="dot-red"></span>
+        <h6><b>Off</b></h6>
       </div>
     </ng-container>
 
     <ng-container *ngIf= !plug.powerOn> 
       <div class="graph-select">
-        <span class="dot-green"></span>
-        <h6><b>ON</b></h6>
+        <span class="dot-red"></span>
+        <h6><b>Off</b></h6>
       </div>
     </ng-container>
   </div>
 
   <div class="sector">
-    <label class="text-height"><b>totalPower:</b></label> 
-    <h6><b>{{totalPowerPlug}}</b></h6>
+    <label class="text-height"><b>total power:</b></label> 
+    <h6><b>{{totalPowerPlug}} Wh</b></h6>
   </div>
 
   <div class="sector">
-    <label class="text-height"><b>avg temp:</b></label> 
+    <label class="text-height"><b>avgerage temp.:</b></label> 
     <h6><b>{{avgTemp}} °C</b></h6>
   </div>
 </ion-content>

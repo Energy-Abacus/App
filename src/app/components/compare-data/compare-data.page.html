@@ -2,22 +2,22 @@
   <h5 class="text-margin"><b>COMPARISON</b></h5>
 
   <div [ngStyle]="{'display': (firstPlug_Id == 0 && secondPlug_Id == 0) ? 'none' : 'block'}">
-    <app-apex-spline-chart [firstPlug_Id]="firstPlug_Id" [secondPlug_Id]="secondPlug_Id" [firstColor]="'#6CD3EB'" [secondColor]="'#7d12ff'"></app-apex-spline-chart>
+    <app-apex-spline-chart [firstPlug_Id]="firstPlug_Id" [secondPlug_Id]="secondPlug_Id" [firstPlugName]="firstPlugName" [secondPlugName]="secondPlugName" [firstColor]="'#6CD3EB'" [secondColor]="'#7d12ff'"></app-apex-spline-chart>
   </div>
   
   
   <div class="sector">
-    <label class="text-height"><b>Avg power:</b></label> 
+    <label class="text-height"><b>total power:</b></label> 
     <div class="select-graph">
       
       <div class="select-graph">
         <span class="dot-blue" ></span>
-        <h6 class=""> {{avgWattFirst}} W</h6>
+        <h6 class=""> {{totalWattFirst}} Wh</h6>
       </div>
 
       <div class="select-graph">
         <span class="dot-green"></span>
-      <h6 class=""> {{avgWattSecond}} W</h6>
+      <h6 class=""> {{totalWattSecond}} Wh</h6>
       </div>
     </div>
     

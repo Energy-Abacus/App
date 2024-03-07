@@ -44,6 +44,8 @@ export class ApexSplineChartComponent implements OnInit{
   @Input() secondColor: string = '';
   @Input() firstPlug_Id: number;
   @Input() secondPlug_Id: number;
+  @Input() firstPlugName: string = "";
+  @Input() secondPlugName: string = "";
 
   ngOnInit(): void {
     this.showGraph();
@@ -100,12 +102,12 @@ export class ApexSplineChartComponent implements OnInit{
 
     this.chart.updateSeries([
       {
-        name: "user 1",
+        name: this.firstPlugName,
         data: this.dataWattFirst,
         color: this.firstColor,
       },
       {
-        name: "user 2",
+        name: this.secondPlugName,
         data: this.dataWattSecond,
         color: this.secondColor
       }
@@ -117,12 +119,12 @@ export class ApexSplineChartComponent implements OnInit{
     this.chartOptions = {
       series: [
         {
-          name: "user 1",
+          name: this.firstPlugName,
           data: this.dataWattFirst,
           color: this.firstColor,
         },
         {
-          name: "user 2",
+          name: this.secondPlugName,
           data: this.dataWattSecond,
           color: this.secondColor
         }

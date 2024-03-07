@@ -11,7 +11,7 @@
 .arrow-button-container{
   display: grid;
   columns: 3;
-  margin-top: -3vh;
+  margin-top: -1vh;
   margin-left: 1.3em;
   width: 90%;
   padding-left: 5vw;
